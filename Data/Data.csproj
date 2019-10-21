@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,16 +52,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Denuncia.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DonacionesHorasTrabajo.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DonacionesInsumo.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DonacionesMonetaria.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MotivoDenuncia.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Propuesta.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropuestasDonacionesHorasTrabajo.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropuestasDonacionesInsumo.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropuestasDonacionesMonetaria.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropuestasReferencia.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropuestasValoracione.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
     <Compile Include="TP-20192C.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TP-20192C.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="TP-20192C.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TP-20192C.tt</DependentUpon>
+    </Compile>
     <Compile Include="TP-20192C.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TP-20192C.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>TP-20192C.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +122,10 @@
     <Content Include="TP-20192C.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>TP-20192C.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TP-20192C.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TP-20192C.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
