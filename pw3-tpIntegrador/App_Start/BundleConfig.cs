@@ -23,8 +23,11 @@ namespace pw3_tpIntegrador
 					  "~/Scripts/bootstrap.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
-					  "~/Content/bootstrap/bootstrap.css",
-					  "~/Content/main.css"));
+                      "~/Content/bootstrap/bootstrap-reboot.css",
+                      "~/Content/bootstrap/bootstrap-grid.css",
+                      "~/Content/bootstrap/bootstrap.css",
+                      "~/Content/home.css",
+                      "~/Content/main.css"));
 		}
 	}
 }
