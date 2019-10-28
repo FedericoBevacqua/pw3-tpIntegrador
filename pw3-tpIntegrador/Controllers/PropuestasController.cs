@@ -17,7 +17,7 @@ namespace pw3_tpIntegrador.Controllers
 
 
 
-        public ActionResult DetalleMonetaria()
+        public ActionResult Detalle()
         {
             //Action temporal para desarrollo, luego sera Detalle() quien decida si es DetalleMonetaria() o alguna otra de sus variantes
             return View();
