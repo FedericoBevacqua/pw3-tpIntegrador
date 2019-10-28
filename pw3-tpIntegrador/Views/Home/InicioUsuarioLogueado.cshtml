@@ -8,14 +8,30 @@
 <h2>Ayudando al prójimo</h2>
 <hr />
 
-<h3>Buscar propuestas</h3>
-<form action="/Home/Buscar" method="post">
-    <div class="form-group">
-        @Html.TextBox("Texto", null, new { @class = "form-control", @placeholder = "Ingresá el nombre del usuario o la propuesta que estás buscando" })
+
+
+<div class="card-columns two-columns">
+    <div class="card">
+        <div class="card-header"><h5 class="card-title">Buscar propuestas</h5></div>
+        <div class="card-body">
+            <form action="/Home/Buscar" method="post">
+                <div class="form-group">
+                    @Html.TextBox("Texto", null, new { @class = "form-control", @placeholder = "Ingresá el nombre del usuario o la propuesta que estás buscando" })
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Buscar" />
+            </form>
+        </div>
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Buscar" />
-</form>
+    <div class="card">
+        <div class="card-header"><h5 class="card-title">Crear propuesta</h5></div>
+        <div class="card-body">
+            <p class="card-text">Creá una nueva propuesta.</p>
+            @Html.ActionLink("Crear propuesta", "Crear", "Propuestas", new object { }, new { @class = "pull-right btn btn-primary" })
+        </div>
+    </div>
+</div>
 
 <hr />
 

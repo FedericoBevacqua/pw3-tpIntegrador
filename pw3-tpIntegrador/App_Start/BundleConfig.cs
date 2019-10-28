@@ -20,7 +20,8 @@ namespace pw3_tpIntegrador
 						"~/Scripts/modernizr-*"));
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap/bootstrap.js"));
+                      "~/Scripts/bootstrap/bootstrap.js",
+                      "~/Scripts/bootstrap/bootstrap.bundle.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap/bootstrap-reboot.css",
