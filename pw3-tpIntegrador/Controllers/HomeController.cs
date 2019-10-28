@@ -12,5 +12,27 @@ namespace pw3_tpIntegrador.Controllers
 		{
 			return View();
 		}
-	}
+
+        //Eliminar este action cuando se agregue la logica que hace el redirect desde el action Inicio()
+        public ActionResult InicioUsuarioLogueado()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult Registro()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Buscar(String Texto)
+        {
+            return View();
+        }
+    }
 }

@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Inicio";
+    ViewBag.TusPropuestasImgUrl = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
+    ViewBag.ImgUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0a3QyGyINLq1pkAfLB8F3oJDfaP0vg3lg_lCcjMeVNCZTMwbs&s";
+}
+
+<h2>Ayudando al prójimo</h2>
+<hr />
+
+
+
+<div class="card-columns two-columns">
+    <div class="card">
+        <div class="card-header"><h5 class="card-title">Buscar propuestas</h5></div>
+        <div class="card-body">
+            <form action="/Home/Buscar" method="post">
+                <div class="form-group">
+                    @Html.TextBox("Texto", null, new { @class = "form-control", @placeholder = "Ingresá el nombre del usuario o la propuesta que estás buscando" })
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Buscar" />
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h5 class="card-title">Crear propuesta</h5></div>
+        <div class="card-body">
+            <p class="card-text">Creá una nueva propuesta.</p>
+            @Html.ActionLink("Crear propuesta", "Crear", "Propuestas", new object { }, new { @class = "pull-right btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<h3>Tus propuestas</h3>
+
+<div class="custom-control custom-switch">
+    <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+    <label class="custom-control-label" for="customSwitch1">Sólo visualizar activas</label>
+</div>
+<div class="card-columns">
+    @for (int i = 0; i < 2; i++)
+    {
+        <div class="card">
+            <img src="@ViewBag.TusPropuestasImgUrl" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Creada por juan.perez el 10/10/2019</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <div class="card-footer">
+                <div>Aceptación: 82%</div>
+                <div class="text-muted">Finaliza el 22/11/2019</div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<hr />
+
+<h3>Propuestas de otros usuarios</h3>
+<div class="card-columns">
+    @for (int i = 0; i < 8; i++)
+    {
+        <div class="card">
+            <img src="@ViewBag.ImgUrl" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Creada por juan.perez el 10/10/2019</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <div class="card-footer">
+                <div>Aceptación: 82%</div>
+                <div class="text-muted">Finaliza el 22/11/2019</div>
+            </div>
+        </div>
+    }
+</div>
