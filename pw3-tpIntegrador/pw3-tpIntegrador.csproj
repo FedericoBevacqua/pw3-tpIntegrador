@@ -180,6 +180,7 @@
     <Content Include="Views\Home\Registro.cshtml" />
     <Content Include="Views\Home\InicioUsuarioLogueado.cshtml" />
     <Content Include="Views\Propuestas\Crear.cshtml" />
+    <Content Include="Views\Propuestas\DetalleMonetaria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

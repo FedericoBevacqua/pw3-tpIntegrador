@@ -1,3 +1,7 @@
 ﻿.navbar{
     margin-bottom: 20px;
 }
+
+.boton-me-gusta, .boton-no-me-gusta{
+    max-width: 49%;
+}
