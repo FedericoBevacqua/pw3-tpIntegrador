@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Denunciar publicación";
+    ViewBag.Img = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
+}
+
+
+    <div class="container">
+        <h2>Denunciar una publicación</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="@ViewBag.Img" alt="..." class="img-thumbnail">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                Estás por denunciar la publicación <span class="font-weight-bold">Pinta mi cerca</span> del usuario <span class="font-weight-bold">nariyoshi.miyagi</span>. A continuación te vamos a pedir que nos cuentes cuál es el problema con la publicación para que podamos revisar el caso.
+            </div>
+        </div>
+
+        <form action="/Propuestas/Denuncia" method="post" class="mt-4">
+            <div class="form-group">
+                @Html.Label("MotivoDenuncia", "Motivo:")
+                <select class="form-control" id="TipoDonacion" name="TipoDonacion">
+                    <option value="1">Fraude</option>
+                    <option value="2">Indebida</option>
+                    <option value="3">Violación de derechos</option>
+                    <option value="4">Contiene información política</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Comentarios", "Comentarios:")
+                @Html.TextArea("Comentarios", null, new { @class = "form-control" })
+            </div>
+
+            <input type="submit" class="btn btn-danger" value="Denunciar" />
+
+        </form>
+
+
+    </div>
+
+
