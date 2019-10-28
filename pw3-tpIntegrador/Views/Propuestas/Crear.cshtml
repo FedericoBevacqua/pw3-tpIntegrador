@@ -7,6 +7,8 @@
 
 <form action="/Propuestas/Crear" method="post">
 
+    <h5 class="mt-5">Información básica</h5>
+
     <div class="form-group">
         @Html.Label("Nombre", "Nombre:")
         @Html.TextBox("Nombre", null, new { @class = "form-control" })
@@ -36,7 +38,7 @@
         </select>
     </div>
 
-    @* A continuación vienen los campos exclusivos de cada tipo de donación que deberan mostrarse dependiendo del valor del select TipoDonacion por javascript *@
+    <h5 class="mt-5">Detalles de la donación</h5>
 
     @* Exclusivo donacion monetaria *@
 
@@ -54,27 +56,29 @@
 
     @* Exclusivo donacion insumos *@
 
-    <div id="campos-exclusivos-2">
+    <div id="campos-exclusivos-2" class="d-none">
 
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                @Html.Label("CantidadInsumo", "Cantidad:")
-                @Html.TextBox("CantidadInsumo", null, new { @class = "form-control", @type = "number" })
-            </div>
-            <div class="form-group col-md-4">
-                @Html.Label("Insumo", "Nombre insumo:")
-                @Html.TextBox("Insumo", null, new { @class = "form-control" })
-            </div>
-            <div class="form-group col-md-6">
-                @Html.Label("DescripcionInsumo", "Descripción del insumo:")
-                @Html.TextBox("DescripcionInsumo", null, new { @class = "form-control" })
-            </div>
+        <div id="contenedor-insumos">
+            <div class="form-row insumo">
+                <div class="form-group col-md-2">
+                    @Html.Label("CantidadInsumo[0]", "Cantidad:")
+                    @Html.TextBox("CantidadInsumo[0]", null, new { @class = "form-control", @type = "number" })
+                </div>
+                <div class="form-group col-md-4">
+                    @Html.Label("NombreInsumo[0]", "Nombre insumo:")
+                    @Html.TextBox("NombreInsumo[0]", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.Label("DescripcionInsumo[0]", "Descripción del insumo:")
+                    @Html.TextBox("DescripcionInsumo[0]", null, new { @class = "form-control" })
+                </div>
 
+            </div>
         </div>
 
 
-        <button class="btn btn-primary mb-4">Agregar insumo</button>
-        <button class="btn btn-danger mb-4" disabled>Quitar insumo</button>
+        <button type="button" class="btn btn-primary mb-4" onclick="agregarInsumo()">Agregar insumo</button>
+        <button type="button" id="boton-quitar-insumo" class="btn btn-danger mb-4" onclick="quitarInsumo()" disabled>Quitar insumo</button>
 
 
     </div>
@@ -82,7 +86,7 @@
 
     @* Exclusivo donación horas de trabajo *@
 
-    <div id="campos-exclusivos-3">
+    <div id="campos-exclusivos-3" class="d-none">
 
         <div class="form-row">
             <div class="form-group col-md-2">
@@ -115,15 +119,15 @@
 
     @* Campos comunes a todos los tipos de donacion *@
 
+    <h5 class="mt-5">Agregar una foto para la propuesta</h5>
     <div class="form-row mt-4 mb-4">
-        <label>Agregar una foto para la propuesta:</label>
         <div class="custom-file">
             <input type="file" class="custom-file-input" id="Imagen" name="Imagen" lang="es">
             <label class="custom-file-label" for="Imagen">Seleccionar archivo</label>
         </div>
     </div>
 
-    <h5>Referencias</h5>
+    <h5 class="mt-5">Referencias</h5>
     <p class="text-muted">Se deben ingresar dos referencias de contacto que den veracidad a la propuesta</p>
 
     <div class="form-row">
@@ -152,4 +156,3 @@
     <input type="submit" class="btn btn-primary" value="Crear propuesta" />
 
 </form>
-
