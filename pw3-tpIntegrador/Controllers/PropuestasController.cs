@@ -22,5 +22,10 @@ namespace pw3_tpIntegrador.Controllers
         {
             return View();
         }
+
+        public ActionResult Donar()
+        {
+            return View();
+        }
     }
 }

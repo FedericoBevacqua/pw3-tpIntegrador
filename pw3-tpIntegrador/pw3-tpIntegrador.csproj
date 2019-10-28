@@ -185,6 +185,8 @@
     <Content Include="Views\Propuestas\_DetalleInsumos.cshtml" />
     <Content Include="Views\Propuestas\_DetalleHoras.cshtml" />
     <Content Include="Views\Propuestas\Denunciar.cshtml" />
+    <Content Include="Views\Propuestas\Donar.cshtml" />
+    <Content Include="Views\Propuestas\_DonarMonetaria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
