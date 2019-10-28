@@ -183,6 +183,7 @@
     <Content Include="Views\Propuestas\Detalle.cshtml" />
     <Content Include="Views\Propuestas\_DetalleMonetaria.cshtml" />
     <Content Include="Views\Propuestas\_DetalleInsumos.cshtml" />
+    <Content Include="Views\Propuestas\_DetalleHoras.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
