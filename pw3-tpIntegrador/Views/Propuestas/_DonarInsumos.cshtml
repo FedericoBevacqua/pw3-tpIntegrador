@@ -1,0 +1,37 @@
+﻿
+    <div class="form-row">
+
+        <div class="form-group col-md-3">
+            @Html.Label("Cantidad a donar")
+        </div>
+        <div class="form-group col-md-9">
+            @Html.Label("Descripción")
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            @Html.TextBox("Monto[0]", 0, new { @class = "form-control cantidad-insumo-donado", @type = "number" , @min="0", @max="3" })
+        </div>
+        <div class="form-group col-md-9">
+            @Html.TextBox("Insumo[0]", "Rodillo común (Faltan 3 para completar)", new { @class = "form-control", @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            @Html.TextBox("Monto[1]", 0, new { @class = "form-control cantidad-insumo-donado", @type = "number" , @min="0", @max="10" })
+        </div>
+        <div class="form-group col-md-9">
+            @Html.TextBox("Insumo[1]", "Lija madera (Faltan 10 para completar)", new { @class = "form-control", @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            @Html.TextBox("Monto[2]", 0, new { @class = "form-control cantidad-insumo-donado", @type = "number" , @min="0", @max="10" })
+        </div>
+        <div class="form-group col-md-9">
+            @Html.TextBox("Insumo[2]", "Lija madera (Faltan 10 para completar)", new { @class = "form-control", @readonly = "readonly" })
+        </div>
+    </div>

@@ -1,0 +1,26 @@
+﻿<div id="campos-exclusivos-2" class="d-none">
+
+    <div id="contenedor-insumos">
+        <div class="form-row insumo">
+            <div class="form-group col-md-2">
+                @Html.Label("CantidadInsumo[0]", "Cantidad:")
+                @Html.TextBox("CantidadInsumo[0]", null, new { @class = "form-control", @type = "number" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.Label("NombreInsumo[0]", "Nombre insumo:")
+                @Html.TextBox("NombreInsumo[0]", null, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.Label("DescripcionInsumo[0]", "Descripción del insumo:")
+                @Html.TextBox("DescripcionInsumo[0]", null, new { @class = "form-control" })
+            </div>
+
+        </div>
+    </div>
+
+
+    <button type="button" class="btn btn-primary mb-4" onclick="agregarInsumo()">Agregar insumo</button>
+    <button type="button" id="boton-quitar-insumo" class="btn btn-danger mb-4" onclick="quitarInsumo()" disabled>Quitar insumo</button>
+
+
+</div>

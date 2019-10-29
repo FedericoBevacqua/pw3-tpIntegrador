@@ -20,7 +20,8 @@ namespace pw3_tpIntegrador
                         "~/Scripts/modernizr/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/mainjs").Include(
-                         "~/Scripts/crear-propuesta.js"));
+                         "~/Scripts/crear-propuesta.js",
+                         "~/Scripts/donar.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap/bootstrap.js",
