@@ -199,6 +199,7 @@
     <Content Include="Views\Usuario\CrearPerfil.cshtml" />
     <Content Include="Views\Donacion\Historial.cshtml" />
     <Content Include="Views\Denuncias\Gestionar.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
