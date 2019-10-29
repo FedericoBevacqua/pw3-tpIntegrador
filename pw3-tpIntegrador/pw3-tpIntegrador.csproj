@@ -120,6 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DenunciasController.cs" />
+    <Compile Include="Controllers\DonacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PropuestasController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -195,6 +197,8 @@
     <Content Include="Views\Propuestas\_CamposExclusivosInsumos.cshtml" />
     <Content Include="Views\Propuestas\_CamposExclusivosHoras.cshtml" />
     <Content Include="Views\Usuario\CrearPerfil.cshtml" />
+    <Content Include="Views\Donacion\Historial.cshtml" />
+    <Content Include="Views\Denuncias\Gestionar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
