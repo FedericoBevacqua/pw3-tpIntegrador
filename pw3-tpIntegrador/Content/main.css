@@ -2,6 +2,6 @@
     margin-bottom: 20px;
 }
 
-.boton-me-gusta, .boton-no-me-gusta{
+.boton-me-gusta, .boton-no-me-gusta, .boton-bloquear-publicacion, .boton-desestimar-denuncia{
     max-width: 49%;
 }
