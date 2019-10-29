@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PropuestasController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -177,8 +178,8 @@
     <Content Include="Views\Shared\_PropuestasLayout.cshtml" />
     <Content Include="Views\Shared\_pv_Footer.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Usuario\Registro.cshtml" />
     <Content Include="Views\Home\InicioUsuarioLogueado.cshtml" />
     <Content Include="Views\Propuestas\Crear.cshtml" />
     <Content Include="Views\Propuestas\Detalle.cshtml" />
@@ -193,6 +194,7 @@
     <Content Include="Views\Propuestas\_CamposExclusivosMonetaria.cshtml" />
     <Content Include="Views\Propuestas\_CamposExclusivosInsumos.cshtml" />
     <Content Include="Views\Propuestas\_CamposExclusivosHoras.cshtml" />
+    <Content Include="Views\Usuario\CrearPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

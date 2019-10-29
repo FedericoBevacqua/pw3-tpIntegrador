@@ -19,15 +19,7 @@ namespace pw3_tpIntegrador.Controllers
             return View();
         }
 
-        public ActionResult Login()
-        {
-            return View();
-        }
 
-        public ActionResult Registro()
-        {
-            return View();
-        }
 
         [HttpPost]
         public ActionResult Buscar(String Texto)
