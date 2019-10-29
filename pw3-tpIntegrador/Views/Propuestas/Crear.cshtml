@@ -42,79 +42,16 @@
 
     @* Exclusivo donacion monetaria *@
 
-    <div id="campos-exclusivos-1">
-        <div class="form-group">
-            @Html.Label("CantidadDinero", "Cantidad de dinero necesaria (AR$):")
-            @Html.TextBox("CantidadDinero", null, new { @class = "form-control", @type = "number" })
-        </div>
-
-        <div class="form-group">
-            @Html.Label("CBU", "CBU/Alias de la cuenta donde se recibirá el dinero:")
-            @Html.TextBox("CBU", null, new { @class = "form-control" })
-        </div>
-    </div>
+    @Html.Partial("_CamposExclusivosMonetaria")
 
     @* Exclusivo donacion insumos *@
 
-    <div id="campos-exclusivos-2" class="d-none">
-
-        <div id="contenedor-insumos">
-            <div class="form-row insumo">
-                <div class="form-group col-md-2">
-                    @Html.Label("CantidadInsumo[0]", "Cantidad:")
-                    @Html.TextBox("CantidadInsumo[0]", null, new { @class = "form-control", @type = "number" })
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.Label("NombreInsumo[0]", "Nombre insumo:")
-                    @Html.TextBox("NombreInsumo[0]", null, new { @class = "form-control" })
-                </div>
-                <div class="form-group col-md-6">
-                    @Html.Label("DescripcionInsumo[0]", "Descripción del insumo:")
-                    @Html.TextBox("DescripcionInsumo[0]", null, new { @class = "form-control" })
-                </div>
-
-            </div>
-        </div>
-
-
-        <button type="button" class="btn btn-primary mb-4" onclick="agregarInsumo()">Agregar insumo</button>
-        <button type="button" id="boton-quitar-insumo" class="btn btn-danger mb-4" onclick="quitarInsumo()" disabled>Quitar insumo</button>
-
-
-    </div>
+    @Html.Partial("_CamposExclusivosInsumos")
 
 
     @* Exclusivo donación horas de trabajo *@
 
-    <div id="campos-exclusivos-3" class="d-none">
-
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                @Html.Label("CantidadHoras", "Cantidad de horas:")
-                @Html.TextBox("CantidadHoras", null, new { @class = "form-control", @type = "number" })
-            </div>
-            <div class="form-group col-md-10">
-                @Html.Label("Profesion", "Profesión:")
-                <select class="form-control" id="Profesion" name="Profesion">
-                    <option value="1">Albañil</option>
-                    <option value="2">Plomero</option>
-                    <option value="3">Electricista</option>
-                    <option value="4">Abogado</option>
-                    <option value="5">Contador</option>
-                    <option value="6">Trabajador social</option>
-                    <option value="7">Psicóloga</option>
-                    <option value="8">Psicopedagoga</option>
-                    <option value="9">Cocinero</option>
-                    <option value="10">Limpieza</option>
-                    <option value="11">Otros</option>
-
-                </select>
-            </div>
-
-        </div>
-
-
-    </div>
+    @Html.Partial("_CamposExclusivosHoras")
 
 
     @* Campos comunes a todos los tipos de donacion *@

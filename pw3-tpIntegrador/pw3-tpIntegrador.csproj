@@ -149,6 +149,7 @@
     <Content Include="Scripts\bootstrap\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\crear-propuesta.js" />
+    <Content Include="Scripts\donar.js" />
     <Content Include="Scripts\jquery\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery\jquery-3.3.1.slim.js" />
@@ -180,6 +181,18 @@
     <Content Include="Views\Home\Registro.cshtml" />
     <Content Include="Views\Home\InicioUsuarioLogueado.cshtml" />
     <Content Include="Views\Propuestas\Crear.cshtml" />
+    <Content Include="Views\Propuestas\Detalle.cshtml" />
+    <Content Include="Views\Propuestas\_DetalleMonetaria.cshtml" />
+    <Content Include="Views\Propuestas\_DetalleInsumos.cshtml" />
+    <Content Include="Views\Propuestas\_DetalleHoras.cshtml" />
+    <Content Include="Views\Propuestas\Denunciar.cshtml" />
+    <Content Include="Views\Propuestas\Donar.cshtml" />
+    <Content Include="Views\Propuestas\_DonarMonetaria.cshtml" />
+    <Content Include="Views\Propuestas\_DonarInsumos.cshtml" />
+    <Content Include="Views\Propuestas\_DonarHoras.cshtml" />
+    <Content Include="Views\Propuestas\_CamposExclusivosMonetaria.cshtml" />
+    <Content Include="Views\Propuestas\_CamposExclusivosInsumos.cshtml" />
+    <Content Include="Views\Propuestas\_CamposExclusivosHoras.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

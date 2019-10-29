@@ -1,0 +1,11 @@
+﻿<div id="campos-exclusivos-1">
+    <div class="form-group">
+        @Html.Label("CantidadDinero", "Cantidad de dinero necesaria (AR$):")
+        @Html.TextBox("CantidadDinero", null, new { @class = "form-control", @type = "number" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("CBU", "CBU/Alias de la cuenta donde se recibirá el dinero:")
+        @Html.TextBox("CBU", null, new { @class = "form-control" })
+    </div>
+</div>
