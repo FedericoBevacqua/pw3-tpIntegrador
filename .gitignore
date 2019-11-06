@@ -6,6 +6,8 @@
 # Agregados Manualmente (Archivos de configuracion, Varia depende PC)
 Data/App.Config
 pw3-tpIntegrador/Web.config
+App.Config
+Web.config
 
 # User-specific files
 *.suo
