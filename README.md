@@ -32,7 +32,7 @@ Enunciado: https://d1b10bmlvqabco.cloudfront.net/attach/jzruow7p42l2jg/h170mw24w
 
 
 Estructura de la Base de Datos:
-https://piazza.com/redirect/s3?bucket=uploads&prefix=attach%2Fjzruow7p42l2jg%2Fh170mw24wia424%2Fk1ifvvkcqy14%2Fscriptsqltp20192c.sql
+https://piazza.com/redirect/s3?bucket=uploads&prefix=attach%2Fjzruow7p42l2jg%2Fh170mw24wia424%2Fk2mfpblvupj7%2Fscriptsqltp20192c.2.sql
 
 Script de datos iniciales:
 https://piazza.com/redirect/s3?bucket=uploads&prefix=attach%2Fjzruow7p42l2jg%2Fh170mw24wia424%2Fk1igbjivh0ew%2Fscriptsqltp20192Cdatos.sql
