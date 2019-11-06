@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Agregados Manualmente (Archivos de configuracion, Varia depende PC)
+Data/App.Config
+pw3-tpIntegrador/Web.config
+
 # User-specific files
 *.suo
 *.user
