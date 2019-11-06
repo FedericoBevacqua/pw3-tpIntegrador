@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{851CE951-0B26-492A-A2B1-EB4DE0F4644E}</ProjectGuid>
+    <ProjectGuid>{413500CE-7481-4F15-A09B-9F81B8C8CCB0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Data</RootNamespace>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,7 +42,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,80 +50,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Denuncia.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DonacionesHorasTrabajo.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DonacionesInsumo.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DonacionesMonetaria.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MotivoDenuncia.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Propuesta.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PropuestasDonacionesHorasTrabajo.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PropuestasDonacionesInsumo.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PropuestasDonacionesMonetaria.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PropuestasReferencia.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PropuestasValoracione.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TP-20192C.Context.cs">
+    <Compile Include="TP-2019C.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TP-20192C.Context.tt</DependentUpon>
+      <DependentUpon>TP-2019C.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="TP-20192C.cs">
+    <Compile Include="TP-2019C.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TP-20192C.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TP-20192C.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TP-20192C.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Usuario.cs">
-      <DependentUpon>TP-20192C.tt</DependentUpon>
+      <DependentUpon>TP-2019C.edmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="TP-20192C.edmx">
+    <EntityDeploy Include="TP-2019C.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TP-20192C.Designer.cs</LastGenOutput>
+      <LastGenOutput>TP-2019C.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="TP-20192C.edmx.diagram">
-      <DependentUpon>TP-20192C.edmx</DependentUpon>
+    <None Include="TP-2019C.edmx.diagram">
+      <DependentUpon>TP-2019C.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TP-20192C.Context.tt">
+    <Content Include="TP-2019C.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TP-20192C.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="TP-20192C.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TP-20192C.cs</LastGenOutput>
+      <LastGenOutput>TP-2019C.Context.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

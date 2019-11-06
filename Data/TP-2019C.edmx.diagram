@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8b64690c888c4ebbad228af3b2eaba7d" Name="Diagram1">
+      <Diagram DiagramId="afb78f792c224a3d91aec0047a04a8f7" Name="Diagram1">
         <EntityTypeShape EntityType="Model.Denuncia" Width="1.5" PointX="5.25" PointY="18.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DonacionesHorasTrabajo" Width="1.5" PointX="7.5" PointY="18" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DonacionesInsumo" Width="1.5" PointX="7.5" PointY="21.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DonacionesMonetaria" Width="1.5" PointX="10.5" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MotivoDenuncia" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MotivoDenuncia" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Propuesta" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PropuestasDonacionesHorasTrabajo" Width="1.5" PointX="5.25" PointY="22.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PropuestasDonacionesInsumo" Width="1.5" PointX="5.25" PointY="25.75" IsExpanded="true" />
@@ -17,7 +17,7 @@
         <EntityTypeShape EntityType="Model.PropuestasReferencia" Width="1.5" PointX="5.25" PointY="31.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PropuestasValoracione" Width="1.5" PointX="8.25" PointY="24.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Usuario" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
-        <AssociationConnector Association="Model.FK_Denuncia_MotivoDenuncia" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Denuncias_MotivoDenuncia" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Denuncias_Propuestas" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Denuncias_Usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_DonacionesHorasTrabajo_PropuestasDonacionesHorasTrabajo" ManuallyRouted="false" />
