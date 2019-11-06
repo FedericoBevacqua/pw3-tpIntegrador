@@ -50,16 +50,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Denuncia.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DonacionesHorasTrabajo.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DonacionesInsumo.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DonacionesMonetaria.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MotivoDenuncia.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Propuesta.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropuestasDonacionesHorasTrabajo.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropuestasDonacionesInsumo.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropuestasDonacionesMonetaria.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropuestasReferencia.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropuestasValoracione.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
     <Compile Include="TP-2019C.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TP-2019C.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="TP-2019C.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TP-2019C.tt</DependentUpon>
+    </Compile>
     <Compile Include="TP-2019C.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TP-2019C.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>TP-2019C.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +120,12 @@
     <Content Include="TP-2019C.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>TP-2019C.Context.cs</LastGenOutput>
+      <DependentUpon>TP-2019C.edmx</DependentUpon>
+    </Content>
+    <Content Include="TP-2019C.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TP-2019C.edmx</DependentUpon>
+      <LastGenOutput>TP-2019C.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
