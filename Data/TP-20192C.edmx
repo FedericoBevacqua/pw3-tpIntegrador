@@ -460,7 +460,7 @@
             <PropertyRef Name="IdMotivoDenuncia" />
           </Key>
           <Property Name="IdMotivoDenuncia" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="true" />
           <NavigationProperty Name="Denuncia" Relationship="Self.FK_Denuncia_MotivoDenuncia" FromRole="MotivoDenuncia" ToRole="Denuncias" />
         </EntityType>
         <EntityType Name="Propuesta">
