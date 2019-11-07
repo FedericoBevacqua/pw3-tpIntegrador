@@ -1,4 +1,4 @@
-﻿
+﻿@model Data.Propuesta
 @{
     ViewBag.Title = "Crear";
 }
@@ -9,25 +9,30 @@
 
     <h5 class="mt-5">Información básica</h5>
 
-    <div class="form-group">
-        @Html.Label("Nombre", "Nombre:")
-        @Html.TextBox("Nombre", null, new { @class = "form-control" })
-    </div>
+	<div class="form-group">
+		@Html.Label("Nombre", "Nombre:")
+		@Html.EditorFor(p => p.Nombre, null, new { @class = "form-control" })
+		@Html.ValidationMessageFor(p => p.Nombre, null, new { @class = "text-danger" })
+	</div>
 
-    <div class="form-group">
-        @Html.Label("Descripcion", "Descripción:")
-        @Html.TextArea("Descripcion", null, new { @class = "form-control" })
-    </div>
+	<div class="form-group">
+		@Html.Label("Descripcion", "Descripción:")
+		@Html.EditorFor(p => p.Descripcion, null, new { @class = "form-control" })
+		@Html.ValidationMessageFor(p => p.Descripcion, null, new { @class = "text-danger" })
+	</div>
 
-    <div class="form-group">
-        @Html.Label("FechaFin", "Fecha de fin:")
-        <input type="date" name="FechaFin" class="form-control" />
-    </div>
+	<div class="form-group">
+		@Html.Label("FechaFin", "Fecha de fin:")
+		@Html.ValidationMessageFor(p => p.FechaFin, null, new { @class = "text-danger" })
+		<input type="date" name="FechaFin" class="form-control" />
+	</div>
 
-    <div class="form-group">
-        @Html.Label("Telefono", "Teléfono de contacto:")
-        @Html.TextBox("Telefono", null, new { @class = "form-control", @type = "number" })
-    </div>
+	<div class="form-group">
+		@Html.Label("TelefonoContacto", "Teléfono de contacto:")
+
+		@Html.EditorFor(p => p.TelefonoContacto, null, new { @class = "number" })
+		@Html.ValidationMessageFor(p => p.TelefonoContacto, null, new { @class = "text-danger" })
+	</div>
 
     <div class="form-group">
         @Html.Label("TipoDonacion", "Tipo de donación:")
