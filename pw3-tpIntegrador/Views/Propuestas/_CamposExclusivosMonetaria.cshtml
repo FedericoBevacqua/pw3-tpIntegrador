@@ -2,7 +2,7 @@
 	@** TODO: Fixear que no rompa *@
 <div id="campos-exclusivos-1">
 	<div class="form-group">
-		@Html.Label("CantidadDinero", "Cantidad de dinero necesaria (AR$):")
+		@Html.Label("Dinero", "Cantidad de dinero necesaria (AR$):")
 		@Html.EditorFor(pm => pm.Dinero, null, new { @class = "number" })
 		@Html.ValidationMessageFor(pm => pm.Dinero, null, new { @class = "text-danger" })
 	</div>
