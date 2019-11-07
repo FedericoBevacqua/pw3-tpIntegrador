@@ -62,6 +62,10 @@
     <Compile Include="DonacionesMonetaria.cs">
       <DependentUpon>TP-2019C.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extensiones\Propuesta.cs" />
+    <Compile Include="Extensiones\PropuestaMetadata.cs" />
+    <Compile Include="Extensiones\PropuestasDonacionesMonetarias.cs" />
+    <Compile Include="Extensiones\PropuestasDonacionesMonetariasMetadata.cs" />
     <Compile Include="Extensiones\Usuario.cs" />
     <Compile Include="Extensiones\UsuarioMetadata.cs" />
     <Compile Include="MotivoDenuncia.cs">
