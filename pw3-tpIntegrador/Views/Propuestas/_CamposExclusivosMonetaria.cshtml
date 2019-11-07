@@ -3,13 +3,13 @@
 <div id="campos-exclusivos-1">
 	<div class="form-group">
 		@Html.Label("CantidadDinero", "Cantidad de dinero necesaria (AR$):")
-		@Html.EditorFor(p => p.Dinero, null, new { @class = "number" })
-		@Html.ValidationMessageFor(p => p.Dinero, null, new { @class = "text-danger" })
+		@Html.EditorFor(pm => pm.Dinero, null, new { @class = "number" })
+		@Html.ValidationMessageFor(pm => pm.Dinero, null, new { @class = "text-danger" })
 	</div>
 
 	<div class="form-group">
 		@Html.Label("CBU", "CBU/Alias de la cuenta donde se recibirá el dinero:")
-		@Html.EditorFor(p => p.CBU, null, new { @class = "form-control" })
-		@Html.ValidationMessageFor(p => p.CBU, null, new { @class = "text-danger" })
+		@Html.EditorFor(pm => pm.CBU, null, new { @class = "form-control" })
+		@Html.ValidationMessageFor(pm => pm.CBU, null, new { @class = "text-danger" })
 	</div>
 </div>

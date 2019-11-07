@@ -2,19 +2,16 @@
 
     <div id="contenedor-insumos">
         <div class="form-row insumo">
-            <div class="form-group col-md-2">
-                @Html.Label("CantidadInsumo[0]", "Cantidad:")
-                @Html.TextBox("CantidadInsumo[0]", null, new { @class = "form-control", @type = "number" })
-            </div>
-            <div class="form-group col-md-4">
-                @Html.Label("NombreInsumo[0]", "Nombre insumo:")
-                @Html.TextBox("NombreInsumo[0]", null, new { @class = "form-control" })
-            </div>
-            <div class="form-group col-md-6">
-                @Html.Label("DescripcionInsumo[0]", "Descripción del insumo:")
-                @Html.TextBox("DescripcionInsumo[0]", null, new { @class = "form-control" })
-            </div>
-
+			<div class="form-group col-md-2">
+				@Html.Label("Cantidad[0]", "Cantidad:")
+				@Html.EditorFor(pi => pi.Cantidad, null, new { @class = "number" })
+				@Html.ValidationMessageFor(pi => pi.Cantidad, null, new { @class = "text-danger" })
+			</div>
+			<div class="form-group col-md-4">
+				@Html.Label("Nombre[0]", "Nombre insumo:")
+				@Html.EditorFor(pi => pi.Nombre, null, new { @class = "form-control" })
+				@Html.ValidationMessageFor(pi => pi.Nombre, null, new { @class = "text-danger" })
+			</div>
         </div>
     </div>
 
