@@ -73,10 +73,11 @@
     <p class="text-muted">Se deben ingresar dos referencias de contacto que den veracidad a la propuesta</p>
 
     <div class="form-row">
-        <div class="form-group col-md-6">
-            @Html.Label("NombreReferencia1", "Nombre referencia 1:")
-            @Html.TextBox("NombreReferencia1", null, new { @class = "form-control" })
-        </div>
+		<div class="form-group col-md-6">
+			@*TODO: Referencia con EditorFor*@
+			@Html.Label("NombreReferencia1", "Nombre referencia 1:")
+			@Html.TextBox("NombreReferencia1", null, new { @class = "form-control" })
+		</div>
         <div class="form-group col-md-6">
             @Html.Label("TelefonoReferencia1", "Teléfono referencia 1:")
             @Html.TextBox("TelefonoReferencia1", null, new { @class = "form-control" })
