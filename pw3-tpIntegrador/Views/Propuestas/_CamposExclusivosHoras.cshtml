@@ -1,28 +1,11 @@
 ﻿<div id="campos-exclusivos-3" class="d-none">
 
     <div class="form-row">
-        <div class="form-group col-md-2">
-            @Html.Label("CantidadHoras", "Cantidad de horas:")
-            @Html.TextBox("CantidadHoras", null, new { @class = "form-control", @type = "number" })
-        </div>
-        <div class="form-group col-md-10">
-            @Html.Label("Profesion", "Profesión:")
-            <select class="form-control" id="Profesion" name="Profesion">
-                <option value="1">Albañil</option>
-                <option value="2">Plomero</option>
-                <option value="3">Electricista</option>
-                <option value="4">Abogado</option>
-                <option value="5">Contador</option>
-                <option value="6">Trabajador social</option>
-                <option value="7">Psicóloga</option>
-                <option value="8">Psicopedagoga</option>
-                <option value="9">Cocinero</option>
-                <option value="10">Limpieza</option>
-                <option value="11">Otros</option>
-
-            </select>
-        </div>
-
+		<div class="form-group col-md-2">
+			@Html.Label("Cantidad", "Cantidad de horas:")
+			@Html.EditorFor(ph => ph.Cantidad, null, new { @class = "number" })
+			@Html.ValidationMessageFor(ph => ph.Cantidad, null, new { @class = "text-danger" })
+		</div>
     </div>
 
 
