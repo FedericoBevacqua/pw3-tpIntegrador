@@ -64,8 +64,12 @@
     </Compile>
     <Compile Include="Extensiones\Propuesta.cs" />
     <Compile Include="Extensiones\PropuestaMetadata.cs" />
+    <Compile Include="Extensiones\PropuestasDonacionesInsumos.cs" />
+    <Compile Include="Extensiones\PropuestasDonacionesInsumosMetadata.cs" />
     <Compile Include="Extensiones\PropuestasDonacionesMonetarias.cs" />
     <Compile Include="Extensiones\PropuestasDonacionesMonetariasMetadata.cs" />
+    <Compile Include="Extensiones\PropuestasReferencias.cs" />
+    <Compile Include="Extensiones\PropuestasReferenciasMetadata.cs" />
     <Compile Include="Extensiones\Usuario.cs" />
     <Compile Include="Extensiones\UsuarioMetadata.cs" />
     <Compile Include="MotivoDenuncia.cs">
