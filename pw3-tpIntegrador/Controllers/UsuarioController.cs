@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Data;
+using Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +10,30 @@ namespace pw3_tpIntegrador.Controllers
 {
     public class UsuarioController : Controller
     {
-        public ActionResult Login()
-        {
-            return View();
-        }
+		UsuarioServicio Usuarios = new UsuarioServicio();
 
-        public ActionResult Registro()
+		public ActionResult Login()
         {
             return View();
         }
-        public ActionResult CrearPerfil()
+		[HttpGet]
+		public ActionResult Registro()
+        {
+            return View();
+        }
+		[HttpPost]
+		public ActionResult Registro(Usuario u)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(u);
+			}
+
+			Usuarios.Alta(u);
+			return Redirect("/Home/Inicio");
+
+		}
+		public ActionResult CrearPerfil()
         {
             return View();
         }
