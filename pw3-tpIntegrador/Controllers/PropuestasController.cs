@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Data;
+using Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +10,26 @@ namespace pw3_tpIntegrador.Controllers
 {
     public class PropuestasController : Controller
     {
-        public ActionResult Crear()
+		PropuestaServicio Propuestas = new PropuestaServicio();
+
+		[HttpGet]
+		public ActionResult Crear()
         {
             return View();
         }
+        [HttpPost]
+		public ActionResult Crear(Propuesta p)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(p);
+			}
 
-        public ActionResult Detalle()
+			Propuestas.Alta(p);
+			return Redirect("/Home/Inicio");
+		}
+
+		public ActionResult Detalle()
         {
             return View();
         }
