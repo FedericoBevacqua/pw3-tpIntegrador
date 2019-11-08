@@ -1,4 +1,4 @@
-﻿
+﻿@model Data.Usuario
 @{
     ViewBag.Title = "Crear perfil";
 }
@@ -6,30 +6,36 @@
     <div class="container">
         <h2>Crear perfil</h2>
 
-        <form action="/Usuario/CrearPerfil" method="post">
-            <div class="form-group">
-                @Html.Label("Nombre", "Nombre:")
-                @Html.TextBox("Nombre", null, new { @class = "form-control" })
-            </div>
+		<form action="/Usuario/CrearPerfil" method="post">
 
-            <div class="form-group">
-                @Html.Label("Apellido", "Apellido:")
-                @Html.TextBox("Apellido", null, new { @class = "form-control" })
-            </div>
+			<!--TODO: Traer Id del usuario actual-->
+			<!-- <input type="hidden" name="IdUsuario" value="@*@Model.IdUsuario"*@ />-->
 
-            <div class="form-group">
-                <label>Foto de perfil:</label>
-                <div class="form-row mt-2 mb-4">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="Imagen" name="Imagen" lang="es">
-                        <label class="custom-file-label" for="Imagen">Seleccionar archivo</label>
-                    </div>
-                </div>
-            </div>
+			<div class="form-group">
+				@Html.Label("Nombre", "Nombre:")
+				@Html.EditorFor(p => p.Nombre, null, new { @class = "form-control" })
+				@Html.ValidationMessageFor(p => p.Nombre, null, new { @class = "text-danger" })
+			</div>
 
-            <input type="submit" class="btn btn-primary" name="name" value="Crear perfil" />
-        </form>
-    </div>
+			<div class="form-group">
+				@Html.Label("Apellido", "Apellido:")
+				@Html.EditorFor(p => p.Apellido, null, new { @class = "form-control" })
+				@Html.ValidationMessageFor(p => p.Apellido, null, new { @class = "text-danger" })
+			</div>
+
+			<div class="form-group">
+				<label>Foto de perfil:</label>
+				<div class="form-row mt-2 mb-4">
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="Imagen" name="Imagen" lang="es">
+						<label class="custom-file-label" for="Imagen">Seleccionar archivo</label>
+					</div>
+				</div>
+			</div>
+
+			<input type="submit" class="btn btn-primary" name="name" value="Crear perfil" />
+		</form>
+	</div>
 
 
 

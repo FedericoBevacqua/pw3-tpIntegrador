@@ -25,5 +25,30 @@ namespace Servicios
 		{
 			return ctx.Usuarios.Find(id);
 		}
+
+
+		public void CrearPerfil(Usuario p)
+		{
+			Usuario UsuarioActual = ObtenerPorId(p.IdUsuario);
+
+			if (p.UserName == null) { 
+				var NombreUsuario = p.Nombre + "." + p.Apellido;
+
+				var Consulta = ctx.Usuarios.Where(x => x.UserName == NombreUsuario).First();
+
+				if (Consulta == null)
+				{
+					UsuarioActual.UserName = NombreUsuario;
+				}
+				else
+				{
+					//TODO: Si ya existe NombreUsuario identico, se le agrega 1 numero delante. Validar que no se repita tmb infinitas veces. For?
+				}
+			}
+			UsuarioActual.Nombre = p.Nombre;
+			UsuarioActual.Apellido = p.Apellido;
+			UsuarioActual.Foto = p.Foto;
+			ctx.SaveChanges();
+		}
 	}
 }

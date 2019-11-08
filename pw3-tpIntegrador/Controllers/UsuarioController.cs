@@ -33,9 +33,21 @@ namespace pw3_tpIntegrador.Controllers
 			return Redirect("/Home/Inicio");
 
 		}
+		[HttpGet]
 		public ActionResult CrearPerfil()
         {
             return View();
         }
-    }
+		[HttpPost]
+		public ActionResult CrearPerfil(Usuario p)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(p);
+			}
+
+			Usuarios.CrearPerfil(p);
+			return Redirect("/Home/Inicio");
+		}
+	}
 }
