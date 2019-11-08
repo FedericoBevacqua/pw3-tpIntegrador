@@ -13,8 +13,8 @@ namespace Servicios
 
 		public void Alta(Propuesta p)
 		{
-			//TODO: p.IdUsuarioCreador
-			//TODO: p.Foto =;
+			//p.IdUsuarioCreador	 //TODO: Recibir IdUsuarioCreador
+
 			p.Estado = 1; // Estados: 1-Activo | 0-Inactivo
 			p.FechaCreacion = DateTime.Now;
 			ctx.Propuestas.Add(p);
@@ -24,6 +24,17 @@ namespace Servicios
 		public Propuesta ObtenerPorId(int id)
 		{
 			return ctx.Propuestas.Find(id);
+		}
+
+		public void CrearDenuncia(Denuncia d)
+		{
+			//d.IdUsuario =  ;		//TODO: Recibir IdUsuario
+			//d.IdPropuesta	=  ;	//TODO: Recibir IdPropuesta
+
+			d.FechaCreacion = DateTime.Now;
+			d.Estado = 0; //Tipos Estado: 0-Revision | 1-Aceptada
+			ctx.Denuncias.Add(d);
+			ctx.SaveChanges();
 		}
 	}
 }

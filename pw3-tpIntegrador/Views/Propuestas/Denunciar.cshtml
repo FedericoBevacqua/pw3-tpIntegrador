@@ -1,4 +1,4 @@
-﻿
+﻿@model Data.Denuncia
 @{
     ViewBag.Title = "Denunciar publicación";
     ViewBag.Img = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
@@ -18,21 +18,23 @@
             </div>
         </div>
 
-        <form action="/Propuestas/Denuncia" method="post" class="mt-4">
-            <div class="form-group">
-                @Html.Label("MotivoDenuncia", "Motivo:")
-                <select class="form-control" id="TipoDonacion" name="TipoDonacion">
-                    <option value="1">Fraude</option>
-                    <option value="2">Indebida</option>
-                    <option value="3">Violación de derechos</option>
-                    <option value="4">Contiene información política</option>
-                </select>
-            </div>
+        <form action="/Propuestas/Denunciar" method="post" class="mt-4">
+			<div class="form-group">
+				@Html.Label("IdMotivo", "Motivo:")
+				<select class="form-control" id="IdMotivo" name="IdMotivo">
+					<option value="1">Fraude</option>
+					<option value="2">Indebida</option>
+					<option value="3">Violación de derechos</option>
+					<option value="4">Contiene información política</option>
+				</select>
+				@Html.ValidationMessageFor(d => d.IdMotivo, null, new { @class = "text-danger" })
+			</div>
 
-            <div class="form-group">
-                @Html.Label("Comentarios", "Comentarios:")
-                @Html.TextArea("Comentarios", null, new { @class = "form-control" })
-            </div>
+			<div class="form-group">
+				@Html.Label("Comentarios", "Comentarios:")
+				@Html.EditorFor(d => d.Comentarios, null, new { @class = "form-control" })
+				@Html.ValidationMessageFor(d => d.Comentarios, null, new { @class = "text-danger" })
+			</div>
 
             <input type="submit" class="btn btn-danger" value="Denunciar" />
 
