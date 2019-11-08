@@ -33,13 +33,25 @@ namespace pw3_tpIntegrador.Controllers
         {
             return View();
         }
+		[HttpGet]
+		public ActionResult Denunciar()
+		{
+			return View();
+		}
+		[HttpPost]
+		public ActionResult Denunciar(Denuncia d)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(d);
+			}
 
-        public ActionResult Denunciar()
-        {
-            return View();
-        }
+			Propuestas.CrearDenuncia(d);
+			return Redirect("/Home/Inicio");
+		}
 
-        public ActionResult Donar()
+
+		public ActionResult Donar()
         {
             return View();
         }
