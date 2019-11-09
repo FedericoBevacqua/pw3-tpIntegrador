@@ -33,8 +33,7 @@ namespace pw3_tpIntegrador
 
 		protected void Session_Start(Object sender, EventArgs e)
 		{
-			Session["IdUsuario"] = String.Empty;
-			Session["Nombre"] = String.Empty;
+			Session["UserSession"] = String.Empty;
 		}
 	}
 }
