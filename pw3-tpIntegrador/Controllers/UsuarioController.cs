@@ -48,7 +48,7 @@ namespace pw3_tpIntegrador.Controllers
 				}
 				else
 				{
-					ViewData["MensajeOK"] = "Usuario o contraseña incorrecto.";
+					ViewData["MensajeError"] = "Usuario o contraseña incorrecto.";
 
 					return View("Login", l);
 				}

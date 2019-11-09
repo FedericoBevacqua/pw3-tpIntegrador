@@ -26,6 +26,14 @@
 
 	<input type="submit" class="btn btn-primary" value="Ingresar" />
 
+	@if (ViewData["MensajeError"] != null)
+	{
+	<br />
+	<div class="alert alert-danger centermsg" role="alert">
+		@ViewData["MensajeError"]
+	</div>
+	}
+
 	@if (ViewBag.msg != null)
 	{
 		<br />
