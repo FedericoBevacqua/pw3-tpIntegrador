@@ -1,26 +1,28 @@
-﻿
+﻿@model Data.Usuario
 @{
     ViewBag.Title = "Login";
 }
 
 <h2>Login</h2>
 
-<form action="/Home/Login" method="post">
+<form action="/Usuario/Login" method="post">
     @*
         De manera temporal se usan los inputs comunes. Cuando integremos la parte de validaciones hay que migrar a estos helpers
         @Html.EditorFor(o => o.UserName)
         @Html.ValidationMessageFor(o => o.UserName)
     *@
 
-    <div class="form-group">
-        @Html.Label("UserName", "Usuario:")
-        @Html.TextBox("UserName", null, new { @class = "form-control" })
-    </div>
+	<div class="form-group">
+		@Html.Label("Email", "Email:")
+		@Html.EditorFor(l => l.Email, null, new { @class = "form-control" })
+		@Html.ValidationMessageFor(l => l.Email, null, new { @class = "text-danger" })
+	</div>
     
-    <div class="form-group">
-        @Html.Label("Password", "Contraseña:")
-        @Html.Password("Password", null, new { @class = "form-control" })
-    </div>
+	<div class="form-group">
+		@Html.Label("Password", "Contraseña:")
+		@Html.EditorFor(l => l.Password, null, new { @class = "form-control" })
+		@Html.ValidationMessageFor(l => l.Password, null, new { @class = "text-danger" })
+	</div>
 
     <input type="submit" class="btn btn-primary" value="Ingresar" />
 
