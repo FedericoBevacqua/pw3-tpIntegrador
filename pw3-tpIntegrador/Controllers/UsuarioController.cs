@@ -36,7 +36,7 @@ namespace pw3_tpIntegrador.Controllers
 					//No permitiendo logearse a un user inactivo
 					if (usuario.Activo == false)
 					{
-						ViewBag.msg = "Necesitas activar tu cuenta primero.";
+						ViewBag.msg = "Su usuario está inactivo. Actívelo desde el email recibido.";
 
 						return View("Login");
 					}
