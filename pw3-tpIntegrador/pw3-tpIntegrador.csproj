@@ -205,7 +205,9 @@
     <Content Include="Views\Donacion\Historial.cshtml" />
     <Content Include="Views\Denuncias\Gestionar.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
-    <Content Include="Views\Propuestas\CrearMonetaria.cshtml" />
+    <Content Include="Views\Propuestas\CrearTipoMonetaria.cshtml" />
+    <Content Include="Views\Propuestas\CrearTipoInsumos.cshtml" />
+    <Content Include="Views\Propuestas\CrearTipoHorasTrabajo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

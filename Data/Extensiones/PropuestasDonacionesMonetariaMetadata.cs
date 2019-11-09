@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace pw3_tpIntegrador
 {
-	public class PropuestasDonacionesMonetariasMetadata
+	public class PropuestasDonacionesMonetariaMetadata
 	{
 		/*[Required(ErrorMessage = "El monto no puede estar vacio")]
 		[Range(0, 9999999999999999.99, ErrorMessage = "El monto no es valido")]

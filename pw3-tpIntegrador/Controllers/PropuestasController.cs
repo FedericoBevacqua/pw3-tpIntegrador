@@ -37,17 +37,17 @@ namespace pw3_tpIntegrador.Controllers
             if (p.TipoDonacion == 1)
             {
                 NuevaPropuesta = new PropuestasDonacionesMonetaria();
-                ViewName = "CrearMonetaria";
+                ViewName = "CrearTipoMonetaria";
             } 
             else if (p.TipoDonacion == 2)
             {
-                NuevaPropuesta = new PropuestasDonacionesInsumos();
-                ViewName = "CrearInsumos";
+                NuevaPropuesta = new Propuesta();
+                ViewName = "CrearTipoInsumos";
             } 
             else
             {
                 NuevaPropuesta = new PropuestasDonacionesHorasTrabajo();
-                ViewName = "CrearHoras";
+                ViewName = "CrearTipoHoras";
             }
 
             NuevaPropuesta.Nombre = p.Nombre;
@@ -68,9 +68,36 @@ namespace pw3_tpIntegrador.Controllers
         }
 
         [HttpPost]
-        public ActionResult ProcesarMonetaria(PropuestasDonacionesMonetaria  p)
+        public ActionResult ProcesarTipoMonetaria(PropuestasDonacionesMonetaria  p)
         {
             Propuestas.Alta(p);
+            return Redirect("/Home/Inicio");
+        }
+
+        public ActionResult ProcesarTipoInsumos(FormCollection form)
+        {
+            Propuesta p = new Propuesta();
+
+            p.Nombre = form["Nombre"];
+            p.Descripcion = form["Descripcion"];
+            p.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+            p.TelefonoContacto = form["TelefonoContacto"];
+            p.TipoDonacion = Int32.Parse(form["TipoDonacion"]);
+            p.Foto = form["Foto"];
+
+            int cantidadCompras = Int32.Parse(form["CantidadInsumos"]);
+            List<PropuestasDonacionesInsumo> listaDonaciones = new List<PropuestasDonacionesInsumo>();
+            PropuestasDonacionesInsumo donacion;
+
+            for(int i = 0; i<cantidadCompras; i++)
+            {
+                donacion = new PropuestasDonacionesInsumo();
+                donacion.Nombre = form["Nombres[" + i + "]"];
+                donacion.Cantidad = Int32.Parse(form["Cantidad[" + i + "]"]);
+                listaDonaciones.Add(donacion);
+            }
+
+            Propuestas.Alta(p, listaDonaciones);
             return Redirect("/Home/Inicio");
         }
 

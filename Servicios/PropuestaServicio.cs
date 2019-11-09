@@ -21,6 +21,19 @@ namespace Servicios
             ctx.SaveChanges();
         }
 
+        public void Alta(Propuesta p, List<PropuestasDonacionesInsumo> listaInsumos)
+        {
+            int IdPropuesta = GuardarDatosComunes(p);
+
+            foreach(PropuestasDonacionesInsumo ins in listaInsumos)
+            {
+                ins.IdPropuesta = IdPropuesta;
+                ctx.PropuestasDonacionesInsumos.Add(ins);
+            }
+
+            ctx.SaveChanges();
+        }
+
         public int GuardarDatosComunes(Propuesta p)
         {
             Propuesta Propuesta = new Propuesta();
