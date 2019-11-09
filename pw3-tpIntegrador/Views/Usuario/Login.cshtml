@@ -1,27 +1,42 @@
 ﻿
 @{
-    ViewBag.Title = "Login";
+	Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 
-<h2>Login</h2>
+@model Data.Usuario
 
-<form action="/Home/Login" method="post">
-    @*
-        De manera temporal se usan los inputs comunes. Cuando integremos la parte de validaciones hay que migrar a estos helpers
-        @Html.EditorFor(o => o.UserName)
-        @Html.ValidationMessageFor(o => o.UserName)
-    *@
+		<h2>Login</h2>
 
-    <div class="form-group">
-        @Html.Label("UserName", "Usuario:")
-        @Html.TextBox("UserName", null, new { @class = "form-control" })
-    </div>
-    
-    <div class="form-group">
-        @Html.Label("Password", "Contraseña:")
-        @Html.Password("Password", null, new { @class = "form-control" })
-    </div>
+		<form action="/Usuario/Login" method="post">
 
-    <input type="submit" class="btn btn-primary" value="Ingresar" />
+			<div class="form-group">
+				@Html.Label("Email", "Email:")
+				@Html.EditorFor(l => l.Email, null, new { @class = "form-control" })
+				@Html.ValidationMessageFor(l => l.Email, null, new { @class = "text-danger" })
+			</div>
 
-</form>
+			<div class="form-group">
+				@Html.Label("Password", "Contraseña:")
+				@Html.EditorFor(l => l.Password, null, new { @class = "form-control" })
+				@Html.ValidationMessageFor(l => l.Password, null, new { @class = "text-danger" })
+			</div>
+
+			<input type="submit" class="btn btn-primary" value="Ingresar" />
+
+			@if (ViewData["MensajeError"] != null)
+			{
+				<br />
+				<div class="alert alert-danger centermsg" role="alert">
+					@ViewData["MensajeError"]
+				</div>
+			}
+
+			@if (ViewBag.msg != null)
+			{
+				<br />
+				<div class="alert alert-info centermsg" role="alert">
+					@ViewBag.msg
+				</div>
+
+			}
+		</form>
