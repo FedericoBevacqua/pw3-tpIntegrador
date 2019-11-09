@@ -47,7 +47,7 @@ namespace pw3_tpIntegrador.Controllers
             else
             {
                 NuevaPropuesta = new PropuestasDonacionesHorasTrabajo();
-                ViewName = "CrearTipoHoras";
+                ViewName = "CrearTipoHorasTrabajo";
             }
 
             NuevaPropuesta.Nombre = p.Nombre;
@@ -98,6 +98,12 @@ namespace pw3_tpIntegrador.Controllers
             }
 
             Propuestas.Alta(p, listaDonaciones);
+            return Redirect("/Home/Inicio");
+        }
+
+        public ActionResult ProcesarTipoHorasTrabajo(PropuestasDonacionesHorasTrabajo p)
+        {
+            Propuestas.Alta(p);
             return Redirect("/Home/Inicio");
         }
 

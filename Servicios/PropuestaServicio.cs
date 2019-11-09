@@ -34,6 +34,15 @@ namespace Servicios
             ctx.SaveChanges();
         }
 
+        public void Alta(PropuestasDonacionesHorasTrabajo p)
+        {
+            int IdPropuesta = GuardarDatosComunes(p);
+
+            p.IdPropuesta = IdPropuesta;
+            ctx.PropuestasDonacionesHorasTrabajoes.Add(p);
+            ctx.SaveChanges();
+        }
+
         public int GuardarDatosComunes(Propuesta p)
         {
             Propuesta Propuesta = new Propuesta();
