@@ -1,7 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Inicio";
-    ViewBag.ImgUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0a3QyGyINLq1pkAfLB8F3oJDfaP0vg3lg_lCcjMeVNCZTMwbs&s";
+	ViewBag.Title = "Inicio";
+	ViewBag.ImgUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0a3QyGyINLq1pkAfLB8F3oJDfaP0vg3lg_lCcjMeVNCZTMwbs&s";
+	Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 
 <h2>Ayudando al prójimo</h2>
@@ -10,40 +11,40 @@
 
 <h3>Acceder al sistema</h3>
 <div class="card-columns two-columns">
-    <div class="card">
-        <div class="card-header"><h5 class="card-title">Iniciar sesión</h5></div>
-        <div class="card-body">
-            <p class="card-text">Accedé al sistema para poder utilizar todas sus funcionalidades.</p>
-            @Html.ActionLink("Login", "Login", "Usuario", new object { }, new { @class = "pull-right btn btn-primary" })
-        </div>
-    </div>
+	<div class="card">
+		<div class="card-header"><h5 class="card-title">Iniciar sesión</h5></div>
+		<div class="card-body">
+			<p class="card-text">Accedé al sistema para poder utilizar todas sus funcionalidades.</p>
+			@Html.ActionLink("Login", "Login", "Usuario", new object { }, new { @class = "pull-right btn btn-primary" })
+		</div>
+	</div>
 
-    <div class="card">
-        <div class="card-header"><h5 class="card-title">Registrarse</h5></div>
-        <div class="card-body">
-            <p class="card-text">Creá tu cuenta en pocos minutos.</p>
-            @Html.ActionLink("Registro", "Registro", "Usuario", new object { }, new { @class = "pull-right btn btn-primary" })
-        </div>
-    </div>
+	<div class="card">
+		<div class="card-header"><h5 class="card-title">Registrarse</h5></div>
+		<div class="card-body">
+			<p class="card-text">Creá tu cuenta en pocos minutos.</p>
+			@Html.ActionLink("Registro", "Registro", "Usuario", new object { }, new { @class = "pull-right btn btn-primary" })
+		</div>
+	</div>
 </div>
 
 <hr />
 
 <h3>Propuestas más populares</h3>
 <div class="card-columns">
-    @for (int i = 0; i < 5; i++)
-    {
-        <div class="card">
-            <img src="@ViewBag.ImgUrl" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Creada por juan.perez el 10/10/2019</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            <div class="card-footer">
-                <div>Aceptación: 82%</div>
-            </div>
-        </div>
-    }
+	@for (int i = 0; i < 5; i++)
+	{
+		<div class="card">
+			<img src="@ViewBag.ImgUrl" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<h6 class="card-subtitle mb-2 text-muted">Creada por juan.perez el 10/10/2019</h6>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				<a href="#" class="btn btn-primary">Go somewhere</a>
+			</div>
+			<div class="card-footer">
+				<div>Aceptación: 82%</div>
+			</div>
+		</div>
+	}
 </div>

@@ -26,6 +26,11 @@ namespace Servicios
 			return ctx.Usuarios.Find(id);
 		}
 
+		public Usuario ValidarLogin(Usuario usuario)
+		{
+			var ConsultaUsuario = ctx.Usuarios.Where(x => x.Email == usuario.Email && x.Password == usuario.Password).FirstOrDefault();
+			return ConsultaUsuario;
+		}
 
 		public void CrearPerfil(Usuario p)
 		{

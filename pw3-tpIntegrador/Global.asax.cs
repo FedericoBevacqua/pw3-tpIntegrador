@@ -30,5 +30,10 @@ namespace pw3_tpIntegrador
             Server.ClearError();
             Response.Redirect(String.Format("~/Home/Error?error={0}", error, exception.Message));
         }
-    }
+
+		protected void Session_Start(Object sender, EventArgs e)
+		{
+			Session["UserSession"] = String.Empty;
+		}
+	}
 }
