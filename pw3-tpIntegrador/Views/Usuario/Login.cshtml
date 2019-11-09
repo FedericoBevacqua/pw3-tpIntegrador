@@ -1,11 +1,10 @@
-﻿@model Data.Usuario
+﻿
 @{
-	ViewBag.Title = "Login";
+	Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 
-@{
-	if (Session["UserSession"].Equals(String.Empty))
-	{
+@model Data.Usuario
+
 		<h2>Login</h2>
 
 		<form action="/Usuario/Login" method="post">
@@ -40,15 +39,4 @@
 				</div>
 
 			}
-
 		</form>
-
-	}
-	else
-	{
-		//Mensaje: A ocurrido un error, no tiene permisos para entrar.
-		//Html.ActionLink("Volver al Home", "InicioUsuarioLogueado");
-
-		@Html.Action("InicioUsuarioLogueado", "Usuario");
-	}
-}
