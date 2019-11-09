@@ -28,6 +28,7 @@ namespace pw3_tpIntegrador.Controllers
 			{
 				Usuario usuario = Usuarios.ValidarLogin(l);
 
+
 				//Comprueba que exista el usuario con ese Email y Contraseña
 				if (usuario != null)
 				{
@@ -40,10 +41,8 @@ namespace pw3_tpIntegrador.Controllers
 						return View("Login");
 					}
 
-					//Seteando la sesión
-					Session["IdUsuario"] = usuario.IdUsuario;
-					Session["Nombre"] = usuario.UserName;
-
+					//Guardo usuario en Sesion
+					SesionServicio.UsuarioSession = usuario;
 
 					return Redirect("/Home/InicioUsuarioLogueado");
 				}
@@ -58,10 +57,7 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult LogOut()
 		{
-			if (!Session["Nombre"].Equals(String.Empty))
-			{
-				Session["Nombre"] = String.Empty;
-			}
+			SesionServicio.UsuarioSession = null;
 			return RedirectToAction("Inicio", "Home");
 		}
 		[HttpGet]
