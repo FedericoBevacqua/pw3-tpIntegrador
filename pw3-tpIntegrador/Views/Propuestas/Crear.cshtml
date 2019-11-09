@@ -5,7 +5,7 @@
 
 <h2>Crear propuesta</h2>
 
-<form action="/Propuestas/Crear" method="post">
+<form action="/Propuestas/CrearPaso2" method="post">
 
     <h5 class="mt-5">Información básica</h5>
 
@@ -43,29 +43,13 @@
         </select>
     </div>
 
-    <h5 class="mt-5">Detalles de la donación</h5>
-
-    @* Exclusivo donacion monetaria *@
-
-    @Html.Partial("_CamposExclusivosMonetaria")
-
-    @* Exclusivo donacion insumos *@
-
-    @Html.Partial("_CamposExclusivosInsumos")
-
-
-    @* Exclusivo donación horas de trabajo *@
-
-    @Html.Partial("_CamposExclusivosHoras")
-
-
     @* Campos comunes a todos los tipos de donacion *@
 
     <h5 class="mt-5">Agregar una foto para la propuesta</h5>
     <div class="form-row mt-4 mb-4">
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="Imagen" name="Imagen" lang="es">
-            <label class="custom-file-label" for="Imagen">Seleccionar archivo</label>
+            <input type="file" class="custom-file-input" id="Imagen" name="Foto" lang="es">
+            <label class="custom-file-label" for="Foto">Seleccionar archivo</label>
         </div>
     </div>
 
@@ -96,6 +80,6 @@
     </div>
 
 
-    <input type="submit" class="btn btn-primary" value="Crear propuesta" />
+    <input type="submit" class="btn btn-primary" value="Continuar" />
 
 </form>

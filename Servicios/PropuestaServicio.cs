@@ -10,16 +10,39 @@ namespace Servicios
 	public class PropuestaServicio
 	{
 		TpEntities ctx = new TpEntities();
+        UsuarioServicio Usuarios = new UsuarioServicio();
 
-		public void Alta(Propuesta p)
-		{
-			//p.IdUsuarioCreador	 //TODO: Recibir IdUsuarioCreador
+        public void Alta(PropuestasDonacionesMonetaria p)
+        {
+            int IdPropuesta = GuardarDatosComunes(p);
 
-			p.Estado = 1; // Estados: 1-Activo | 0-Inactivo
-			p.FechaCreacion = DateTime.Now;
-			ctx.Propuestas.Add(p);
-			ctx.SaveChanges();
-		}
+            p.IdPropuesta = IdPropuesta;
+            ctx.PropuestasDonacionesMonetarias.Add(p);
+            ctx.SaveChanges();
+        }
+
+        public int GuardarDatosComunes(Propuesta p)
+        {
+            Propuesta Propuesta = new Propuesta();
+            
+            Propuesta.Usuario = ctx.Usuarios.Find(3); //TODO: Recibir IdUsuarioCreador
+            Propuesta.Estado = 1; // Estados: 1-Activo | 0-Inactivo
+            Propuesta.FechaCreacion = DateTime.Now;
+
+            Propuesta.Nombre = p.Nombre;
+            Propuesta.Descripcion = p.Descripcion;
+            Propuesta.FechaFin = p.FechaFin;
+            Propuesta.TelefonoContacto = p.TelefonoContacto;
+            Propuesta.TipoDonacion = p.TipoDonacion;
+            Propuesta.Foto = p.Foto;
+
+            ctx.Propuestas.Add(Propuesta);
+            ctx.SaveChanges();
+
+            return Propuesta.IdPropuesta;
+        }
+
+        
 
 		public Propuesta ObtenerPorId(int id)
 		{

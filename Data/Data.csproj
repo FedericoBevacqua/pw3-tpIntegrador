@@ -62,13 +62,14 @@
     <Compile Include="DonacionesMonetaria.cs">
       <DependentUpon>TP-2019C.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extensiones\PropuestasDonacionesHorasTrabajo.cs" />
     <Compile Include="Extensiones\Denuncia.cs" />
     <Compile Include="Extensiones\DenunciaMetadata.cs" />
     <Compile Include="Extensiones\Propuesta.cs" />
     <Compile Include="Extensiones\PropuestaMetadata.cs" />
     <Compile Include="Extensiones\PropuestasDonacionesInsumos.cs" />
     <Compile Include="Extensiones\PropuestasDonacionesInsumosMetadata.cs" />
-    <Compile Include="Extensiones\PropuestasDonacionesMonetarias.cs" />
+    <Compile Include="Extensiones\PropuestasDonacionesMonetaria.cs" />
     <Compile Include="Extensiones\PropuestasDonacionesMonetariasMetadata.cs" />
     <Compile Include="Extensiones\PropuestasReferencias.cs" />
     <Compile Include="Extensiones\PropuestasReferenciasMetadata.cs" />
