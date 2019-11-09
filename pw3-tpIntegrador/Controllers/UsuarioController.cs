@@ -12,10 +12,58 @@ namespace pw3_tpIntegrador.Controllers
     {
 		UsuarioServicio Usuarios = new UsuarioServicio();
 
+		[HttpGet]
 		public ActionResult Login()
         {
             return View();
         }
+		[HttpPost]
+		public ActionResult Login(Usuario l)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View("Login", l);
+			}
+			else
+			{
+				Usuario usuario = Usuarios.ValidarLogin(l);
+
+				//Comprueba que exista el usuario con ese Email y Contraseña
+				if (usuario != null)
+				{
+
+					//No permitiendo logearse a un user inactivo
+					if (usuario.Activo == false)
+					{
+						ViewBag.msg = "Necesitas activar tu cuenta primero.";
+
+						return View("Login");
+					}
+
+					//Seteando la sesión
+					Session["IdUsuario"] = usuario.IdUsuario;
+					Session["Nombre"] = usuario.UserName;
+
+
+					return Redirect("/Home/InicioUsuarioLogueado");
+				}
+				else
+				{
+					ViewData["MensajeOK"] = "Usuario o contraseña incorrecto.";
+
+					return View("Login", l);
+				}
+			}
+		}
+		[HttpGet]
+		public ActionResult LogOut()
+		{
+			if (!Session["Nombre"].Equals(String.Empty))
+			{
+				Session["Nombre"] = String.Empty;
+			}
+			return RedirectToAction("Inicio", "Home");
+		}
 		[HttpGet]
 		public ActionResult Registro()
         {
