@@ -15,7 +15,14 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult Crear()
         {
-            return View();
+			if (SesionServicio.UsuarioSession == null)
+			{
+				return View("Inicio");
+			}
+			else
+			{
+				return View();
+			}
         }
         [HttpPost]
 		public ActionResult Crear(FormCollection form)
@@ -93,15 +100,29 @@ namespace pw3_tpIntegrador.Controllers
             Propuestas.Alta(p);
             return Redirect("/Home/Inicio");
         }
-
+		[HttpGet]
 		public ActionResult Detalle()
         {
-            return View();
+			if (SesionServicio.UsuarioSession == null)
+			{
+				return View("Inicio");
+			}
+			else
+			{
+				return View();
+			}
         }
 		[HttpGet]
 		public ActionResult Denunciar()
 		{
-			return View();
+			if (SesionServicio.UsuarioSession == null)
+			{
+				return View("Inicio");
+			}
+			else
+			{
+				return View();
+			}
 		}
 		[HttpPost]
 		public ActionResult Denunciar(Denuncia d)
@@ -115,17 +136,18 @@ namespace pw3_tpIntegrador.Controllers
 			return Redirect("/Home/Inicio");
 		}
 
-
+		[HttpGet]
 		public ActionResult Donar()
         {
-            return View();
+			if (SesionServicio.UsuarioSession == null)
+			{
+				return View("Inicio");
+			}
+			else
+			{
+				return View();
+			}
         }
-
-
-
-
-
-
 
 
         //Helpers privados

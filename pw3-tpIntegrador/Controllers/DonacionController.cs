@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,18 @@ namespace pw3_tpIntegrador.Controllers
 {
     public class DonacionController : Controller
     {
-        public ActionResult Historial()
+		[HttpGet]
+		public ActionResult Historial()
         {
-            return View();
+			if (SesionServicio.UsuarioSession == null)
+			{
+				return View("Inicio");
+			}
+			else
+			{
+				return View();
+			}
         }
+
     }
 }
