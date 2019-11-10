@@ -10,6 +10,7 @@ namespace pw3_tpIntegrador
 {
 	public class UsuarioMetadata
 	{
+		/*
 		[Required(ErrorMessage = "El Email no puede estar vacio")]
 		[DataType(DataType.EmailAddress, ErrorMessage = "Email no valido")]
 		[RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Email no valido")]
@@ -27,6 +28,7 @@ namespace pw3_tpIntegrador
 		[DataType(DataType.Date)]
 		//TODO: [MayorDeEdad(ErrorMessage = "Debe ser mayor a 18 años")] //Data Annotation Personalizada
 		public System.DateTime FechaNacimiento { get; set; }
+		*/
 
 		//Confirmacion Password
 		/*[Required(ErrorMessage = "La confirmación del Password no puede estar vacia")]
