@@ -87,7 +87,7 @@ namespace pw3_tpIntegrador.Controllers
 				return View(u);
 			}
 			//Validacion que no exista el mismo Email en BD
-			var email = Usuarios.FindByEmail(u);
+			var email = Usuarios.FindByEmail(u.Email);
 			if(email == null)
 			{
 				Usuarios.Alta(u);
@@ -122,5 +122,17 @@ namespace pw3_tpIntegrador.Controllers
 			Usuarios.CrearPerfil(p);
 			return Redirect("/Home/Inicio");
 		}
-	}
+
+        [HttpGet]
+        public ActionResult Activar(string token)
+        {
+            Usuario usuario = Usuarios.ActivarCuenta(token);
+            if (usuario != null)
+            {
+                return Redirect("/Usuario/Login");
+            }
+            
+            return View(); //Error
+        }
+    }
 }
