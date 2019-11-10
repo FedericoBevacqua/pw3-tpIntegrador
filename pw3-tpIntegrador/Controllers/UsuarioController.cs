@@ -63,7 +63,8 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult Registro()
         {
-            return View();
+			//TODO: Validacion IF si if (!Session["UserSession"].Equals(String.Empty)) return RedirectToAction("Index");
+			return View();
         }
 		[HttpPost]
 		public ActionResult Registro(Usuario u)
@@ -72,6 +73,7 @@ namespace pw3_tpIntegrador.Controllers
 			{
 				return View(u);
 			}
+			//Validacion que no exista el mismo Email en BD
 			var email = Usuarios.FindByEmail(u);
 			if(email == null)
 			{

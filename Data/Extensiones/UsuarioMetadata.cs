@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,17 @@ namespace pw3_tpIntegrador
 		[DataType(DataType.Date)]
 		//TODO: [MayorDeEdad(ErrorMessage = "Debe ser mayor a 18 años")] //Data Annotation Personalizada
 		public System.DateTime FechaNacimiento { get; set; }
+
+		//Confirmacion Password
+		/*[Required(ErrorMessage = "La confirmación del Password no puede estar vacia")]
+		[DataType(DataType.Password, ErrorMessage = "Password no valido")]
+		[RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Password debe contener al menos un numero, una letra mayuscula y minuscula")]
+		[MinLength(8, ErrorMessage = "Minimo 8 caracteres")]
+		[NotMapped] // Does not effect with your database
+		[Compare("Password")]
+		public string PasswordConfirmar { get; set; }
+		*/
+
 
 		/*TODO: Necesario para Validar CrearPerfil
 		[Required(ErrorMessage = "El Nombre no puede estar vacio")]
