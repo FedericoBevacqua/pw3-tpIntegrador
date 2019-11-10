@@ -6,7 +6,7 @@
 
 <h2>Crear propuesta</h2>
 
-<form action="/Propuestas/Crear" method="post">
+<form action="/Propuestas/CrearPaso2" method="post">
 
     <h5 class="mt-5">Información básica</h5>
 
@@ -44,29 +44,11 @@
         </select>
     </div>
 
-    <h5 class="mt-5">Detalles de la donación</h5>
-
-    @* Exclusivo donacion monetaria *@
-
-    @Html.Partial("_CamposExclusivosMonetaria")
-
-    @* Exclusivo donacion insumos *@
-
-    @Html.Partial("_CamposExclusivosInsumos")
-
-
-    @* Exclusivo donación horas de trabajo *@
-
-    @Html.Partial("_CamposExclusivosHoras")
-
-
-    @* Campos comunes a todos los tipos de donacion *@
-
     <h5 class="mt-5">Agregar una foto para la propuesta</h5>
     <div class="form-row mt-4 mb-4">
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="Imagen" name="Imagen" lang="es">
-            <label class="custom-file-label" for="Imagen">Seleccionar archivo</label>
+            <input type="file" class="custom-file-input" id="Imagen" name="Foto" lang="es">
+            <label class="custom-file-label" for="Foto">Seleccionar archivo</label>
         </div>
     </div>
 
@@ -75,28 +57,27 @@
 
     <div class="form-row">
 		<div class="form-group col-md-6">
-			@*TODO: Referencia con EditorFor*@
-			@Html.Label("NombreReferencia1", "Nombre referencia 1:")
-			@Html.TextBox("NombreReferencia1", null, new { @class = "form-control" })
+			@Html.Label("Referencia1Nombre", "Nombre referencia 1:")
+			@Html.TextBox("Referencia1Nombre", null, new { @class = "form-control" })
 		</div>
         <div class="form-group col-md-6">
-            @Html.Label("TelefonoReferencia1", "Teléfono referencia 1:")
-            @Html.TextBox("TelefonoReferencia1", null, new { @class = "form-control" })
+            @Html.Label("Referencia1Telefono", "Teléfono referencia 1:")
+            @Html.TextBox("Referencia1Telefono", null, new { @class = "form-control" })
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            @Html.Label("NombreReferencia2", "Nombre referencia 2:")
-            @Html.TextBox("NombreReferencia2", null, new { @class = "form-control" })
+            @Html.Label("Referencia2Nombre", "Nombre referencia 2:")
+            @Html.TextBox("Referencia2Nombre", null, new { @class = "form-control" })
         </div>
         <div class="form-group col-md-6">
-            @Html.Label("TelefonoReferencia2", "Teléfono referencia 2:")
-            @Html.TextBox("TelefonoReferencia2", null, new { @class = "form-control" })
+            @Html.Label("Referencia2Telefono", "Teléfono referencia 2:")
+            @Html.TextBox("Referencia2Telefono", null, new { @class = "form-control" })
         </div>
     </div>
 
 
-    <input type="submit" class="btn btn-primary" value="Crear propuesta" />
+    <input type="submit" class="btn btn-primary" value="Continuar" />
 
 </form>

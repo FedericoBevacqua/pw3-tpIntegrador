@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-	[MetadataType(typeof(PropuestasDonacionesInsumosMetadata))]
-	public class PropuestasDonacionesInsumos
+	[MetadataType(typeof(PropuestasReferenciaMetadata))]
+	public partial class PropuestasReferencia
 	{
 	}
 }

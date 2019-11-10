@@ -9,7 +9,7 @@ namespace pw3_tpIntegrador
 {
 	public class PropuestaMetadata
 	{
-		[Required(ErrorMessage = "El Nombre no puede estar vacio")]
+		/*[Required(ErrorMessage = "El Nombre no puede estar vacio")]
 		[MaxLength(50, ErrorMessage = "Maximo 50 caracteres")]
 		public string Nombre { get; set; }
 
@@ -28,6 +28,6 @@ namespace pw3_tpIntegrador
 
 		[Required(ErrorMessage = "Elija un tipo de donación")]
 		[Range(1, 3, ErrorMessage = "Seleccione un tipo de donacion valida")]
-		public int TipoDonacion { get; set; }
+		public int TipoDonacion { get; set; }*/
 	}
 }
