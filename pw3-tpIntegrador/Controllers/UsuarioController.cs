@@ -108,6 +108,11 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult CrearPerfil()
         {
+			if(SesionServicio.UsuarioSession.UserName != null)
+			{
+				return View("InicioUsuarioLogueado");
+			}
+
 			if (SesionServicio.UsuarioSession == null)
 			{
 				return View("Inicio");
