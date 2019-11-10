@@ -1,17 +1,16 @@
 ﻿using Data;
 using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Servicios
 {
-	public class UsuarioServicio
+    public class UsuarioServicio
 	{
-		TpEntities ctx = new TpEntities();
+        readonly TpEntities ctx = new TpEntities();
 
 		public void Alta(Usuario u)
 		{
@@ -37,23 +36,36 @@ namespace Servicios
 
 		public void CrearPerfil(Usuario p)
 		{
-			//TODO: Obtener id del usuario logueado
 			Usuario UsuarioActual = ObtenerPorId(p.IdUsuario);
 
-			if (p.UserName == null) { 
-				var NombreUsuario = p.Nombre + "." + p.Apellido;
+			if (String.IsNullOrEmpty(p.UserName)) {
+				var NombreUsuario = $"{p.Nombre}.{p.Apellido}";
 
-				var Consulta = ctx.Usuarios.Where(x => x.UserName == NombreUsuario).FirstOrDefault();
+				bool usuarioExiste = ctx.Usuarios.Where(x => x.UserName == NombreUsuario).FirstOrDefault() != null;
 
-				if (Consulta == null)
+                // Si el nombre de usuario ya existe
+				if (usuarioExiste)
 				{
-					UsuarioActual.UserName = NombreUsuario;
-				}
-				else
-				{
-					//TODO: Si ya existe NombreUsuario identico, se le agrega 1 numero delante. Validar que no se repita tmb infinitas veces. For?
-				}
-			}
+                    // Obtiene el ultimo usuario creado que tenga el mismo nombre y apellido
+                    Usuario ultimoUsuarioRepetido = ctx.Usuarios.Where(x => x.UserName.StartsWith(NombreUsuario)).OrderByDescending(u => u.IdUsuario).FirstOrDefault();
+
+                    int numeroUsuarioConcatenado;
+                    try
+                    {
+                        // Obtiene el numero al final del nombre del usuario y le suma 1
+                        numeroUsuarioConcatenado = int.Parse(Regex.Match(ultimoUsuarioRepetido.UserName, @"\d+").Value, NumberFormatInfo.InvariantInfo) + 1;
+                    }
+                    // Si el usuario esta repetido pero no tiene un numero al final, debo asignarle el numero 1
+                    catch (FormatException)
+                    {
+                        numeroUsuarioConcatenado = 1;
+                    }
+                    NombreUsuario += numeroUsuarioConcatenado;
+                }
+
+                UsuarioActual.UserName = NombreUsuario;
+            }
+
 			UsuarioActual.Nombre = p.Nombre;
 			UsuarioActual.Apellido = p.Apellido;
 			UsuarioActual.Foto = p.Foto;
