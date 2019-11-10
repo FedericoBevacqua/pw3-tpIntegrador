@@ -133,7 +133,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
 
 			Propuestas.CrearDenuncia(d);
-			return Redirect("/Home/Inicio");
+			return Redirect("/Home/InicioUsuarioLogueado");
 		}
 
 		[HttpGet]

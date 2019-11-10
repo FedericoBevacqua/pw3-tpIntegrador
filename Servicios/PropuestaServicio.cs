@@ -74,8 +74,13 @@ namespace Servicios
 
 		public void CrearDenuncia(Denuncia d)
 		{
-			//d.IdUsuario =  ;		//TODO: Recibir IdUsuario
-			//d.IdPropuesta	=  ;	//TODO: Recibir IdPropuesta
+			//Denuncia denuncia = ObtenerPorId(d.IdPropuesta);
+
+			//var iduser = ;
+			//var idprop = ;
+
+			//d.IdUsuario = iduser;	//TODO: Recibir IdUsuario de Usuario
+			//d.IdPropuesta = idprop;	//TODO: Recibir IdPropuesta de Propuesta
 
 			d.FechaCreacion = DateTime.Now;
 			d.Estado = 0; //Tipos Estado: 0-Revision | 1-Aceptada

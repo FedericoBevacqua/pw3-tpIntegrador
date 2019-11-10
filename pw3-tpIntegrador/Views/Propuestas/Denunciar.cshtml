@@ -19,7 +19,10 @@
             </div>
         </div>
 
-        <form action="/Propuestas/Denunciar" method="post" class="mt-4">
+		<form action="/Propuestas/Denunciar" method="post" class="mt-4">
+			<input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+			<input type="hidden" name="IdUsuario" value="@Model.IdUsuario" />
+
 			<div class="form-group">
 				@Html.Label("IdMotivo", "Motivo:")
 				<select class="form-control" id="IdMotivo" name="IdMotivo">
@@ -37,9 +40,9 @@
 				@Html.ValidationMessageFor(d => d.Comentarios, null, new { @class = "text-danger" })
 			</div>
 
-            <input type="submit" class="btn btn-danger" value="Denunciar" />
+			<input type="submit" class="btn btn-danger" value="Denunciar" />
 
-        </form>
+		</form>
 
 
     </div>
