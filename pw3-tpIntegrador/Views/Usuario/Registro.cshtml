@@ -3,49 +3,44 @@
 	Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 
-<h2>Registro</h2>
+<form class="border border-light p-5 align-items-center col col-md-6 offset-md-3" action="/Usuario/Registro" method="post">
 
-<form action="/Usuario/Registro" method="post">
-	@*
-		TODO: Arreglar que tome el css en los EditorFor
-	*@
+    <p class="h4 mb-4">Registro</p>
 
-	<div class="form-group">
-		@Html.Label("Email", "Dirección de correo electrónico:")
-		@Html.EditorFor(u => u.Email, null, new { @class = "form-control" })
-		@Html.ValidationMessageFor(u => u.Email, null, new { @class = "text-danger" })
-	</div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">E-mail</label>
+        <input type="email" class="form-control" name="Email" placeholder="E-mail">
+    </div>
 
-	<div class="form-group">
+    <div class="form-group">
+        <label for="exampleInputPassword1">Contraseña</label>
+        <input type="password" class="form-control" name="Password" placeholder="Contraseña">
+    </div>
 
-		@Html.Label("Password", "Contraseña:")
-		@Html.EditorFor(u => u.Password, null, new { @class = "form-control" })
-		@Html.ValidationMessageFor(u => u.Password, null, new { @class = "text-danger" })
+    @*TODO: Arreglar que valide el PasswordConfirm*@
+    <div class="form-group">
+        <label for="exampleInputPassword1">Repetir Contraseña</label>
+        <input type="password" class="form-control" name="PasswordConfirm" placeholder="Repetir Contraseña">
+    </div>
 
-	</div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Fecha de nacimiento</label>
+        <input type="date" class="form-control" name="FechaNacimiento" placeholder="Fecha de nacimiento">
+    </div>
 
-	<div class="form-group">
-		@*TODO: Arreglar que valide el PasswordConfirm*@
-		@Html.Label("PasswordConfirm", "Vuelva a introducir la contraseña:")
-		@Html.Password("PasswordConfirm", null, new { @class = "form-control" })
-		@Html.ValidationMessage("PasswordConfirm", null, new { @class = "text-danger" })
-	</div>
+    <button class="btn btn-primary btn-block my-4" type="submit">Registrarse</button>
 
-	<div class="form-group">
-		@Html.Label("FechaNacimiento", "Fecha de nacimiento:")
-		@Html.ValidationMessageFor(u => u.FechaNacimiento, null, new { @class = "text-danger" })
-		<input type="date" name="FechaNacimiento" class="form-control" />
-	</div>
+    <p>
+        ¿Ya tienes una cuenta?
+        <a href="/Usuario/Login">Iniciar Sesión</a>
+    </p>
 
-	<input type="submit" class="btn btn-primary" value="Registrarse" />
+    @if (ViewData["MensajeErrorEmail"] != null)
+    {
+        <br />
+        <div class="alert alert-danger centermsg" role="alert">
+            @ViewData["MensajeErrorEmail"]
+        </div>
+    }
 
 </form>
-
-
-@if (ViewData["MensajeErrorEmail"] != null)
-{
-	<br />
-	<div class="alert alert-danger centermsg" role="alert">
-		@ViewData["MensajeErrorEmail"]
-	</div>
-}
