@@ -61,15 +61,13 @@ namespace Servicios
 			Random random = new Random();
 			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-			string clave = new string(Enumerable.Repeat(chars, 8)
-				.Select(s => s[random.Next(s.Length)]).ToArray()) + "-" +
+			string clave = new string(Enumerable.Repeat(chars, 4)
+				.Select(s => s[random.Next(s.Length)]).ToArray()) +
 				 new string(Enumerable.Repeat(chars, 4)
-				.Select(s => s[random.Next(s.Length)]).ToArray()) + "-" +
+				.Select(s => s[random.Next(s.Length)]).ToArray()) +
 				 new string(Enumerable.Repeat(chars, 4)
-				.Select(s => s[random.Next(s.Length)]).ToArray()) + "-" +
+				.Select(s => s[random.Next(s.Length)]).ToArray()) +
 				 new string(Enumerable.Repeat(chars, 4)
-				.Select(s => s[random.Next(s.Length)]).ToArray()) + "-" +
-				 new string(Enumerable.Repeat(chars, 12)
 				.Select(s => s[random.Next(s.Length)]).ToArray());
 
 			return clave;
