@@ -106,5 +106,23 @@ namespace Servicios
 			smtp.Send(email);
 			email.Dispose();
 		}
+		/*public Usuario ActivarCuenta(Usuario cda)
+		{
+			Usuario usuario = FindByEmail(cda.Email);
+			//HAGO ESTO PARA PODER ACTUALIZAR EL USUARIO EN EL MISMO CONTEXTO DEL QUE SE BUSCA, SI NO TIRA ERROR MULTIPLES INSTANCIAS
+			var user = usuario.IdUsuario;
+
+			if (usuario.Token == cda.Token)
+			{
+
+				if (usuario.Activo == 1) return usuario;
+
+				usuario.Activo = 1;
+
+				_generalRepository.Update(usuario);
+			}
+
+			return usuario;
+		}*/
 	}
 }
