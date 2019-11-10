@@ -12,13 +12,18 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult Gestionar()
         {
+
 			if (SesionServicio.UsuarioSession == null)
 			{
 				return View("Inicio");
 			}
-			else
+			else if (SesionServicio.UsuarioSession.TipoUsuario == 1)
 			{
 				return View();
+			}
+			else
+			{
+				return View("InicioUsuarioLogueado");
 			}
         }
 
