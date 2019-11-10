@@ -13,7 +13,7 @@ namespace Servicios
 
 		public void Alta(Usuario u)
 		{
-			u.Token = "12345"; //TODO: Token Autogenerado
+			u.Token = NuevoCodigoDeActivacion(); //Token autogenerado
 			u.FechaCracion = DateTime.Now;
 			u.Activo = false;
 			u.TipoUsuario = 0; // 0 = Normal | 1 = Administrador 
@@ -54,6 +54,25 @@ namespace Servicios
 			UsuarioActual.Apellido = p.Apellido;
 			UsuarioActual.Foto = p.Foto;
 			ctx.SaveChanges();
+		}
+
+		private string NuevoCodigoDeActivacion()
+		{
+			Random random = new Random();
+			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+			string clave = new string(Enumerable.Repeat(chars, 8)
+				.Select(s => s[random.Next(s.Length)]).ToArray()) + "-" +
+				 new string(Enumerable.Repeat(chars, 4)
+				.Select(s => s[random.Next(s.Length)]).ToArray()) + "-" +
+				 new string(Enumerable.Repeat(chars, 4)
+				.Select(s => s[random.Next(s.Length)]).ToArray()) + "-" +
+				 new string(Enumerable.Repeat(chars, 4)
+				.Select(s => s[random.Next(s.Length)]).ToArray()) + "-" +
+				 new string(Enumerable.Repeat(chars, 12)
+				.Select(s => s[random.Next(s.Length)]).ToArray());
+
+			return clave;
 		}
 	}
 }
