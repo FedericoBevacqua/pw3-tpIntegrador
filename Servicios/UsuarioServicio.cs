@@ -21,6 +21,7 @@ namespace Servicios
 			u.TipoUsuario = 0; // 0 = Normal | 1 = Administrador 
 			ctx.Usuarios.Add(u);
 			ctx.SaveChanges();
+            EnviarEmailToken(u);
 		}
 
 		public Usuario ObtenerPorId(int id)
@@ -75,54 +76,52 @@ namespace Servicios
 			return clave;
 		}
 
-		public Usuario FindByEmail(Usuario email)
+		public Usuario FindByEmail(String email)
 		{
-			var ConsultaEmail = ctx.Usuarios.Where(x => x.Email == email.Email).First();
-			return ConsultaEmail;
+            var usuario = ctx.Usuarios.Where(x => x.Email == email).FirstOrDefault();
+            return usuario;
 		}
 
-		public void EnviarEmailToken(Usuario usuario)
+        public Usuario FindByToken(String token)
+        {
+            var usuario = ctx.Usuarios.Where(x => x.Token == token).FirstOrDefault();
+            return usuario;
+        }
+
+        public void EnviarEmailToken(Usuario usuario)
 		{
 			MailMessage email = new MailMessage();
 
 			email.To.Add(new MailAddress(usuario.Email));
 			email.From = new MailAddress("pw3tpayudaprojimo@gmail.com");
-			email.Subject = "Asunto (Validar Cuenta)";
-			email.Body = "Usuario: " + usuario.Nombre + "  Codigo de activacion: " + usuario.Token + "   active su cuenta aquí: http://localhost:49525/Usuario/activar?token=" + usuario.Token;
-			email.IsBodyHtml = true;
-			email.Priority = MailPriority.Normal;
+			email.Subject = "Ayudando al prójimo - Activar Cuenta";
+            email.Body = $"Usuario: {usuario.Nombre} Código de activación: {usuario.Token} Active su cuenta aquí: http://localhost:52413/Usuario/activar?token={usuario.Token}";
+            email.IsBodyHtml = true;
+			email.Priority = MailPriority.High;
 
-			SmtpClient smtp = new SmtpClient();
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(email.From.Address, "pw3tpfededani")
+            };
 
-
-			smtp.Host = "smtp.gmail.com";
-			smtp.Port = 587;
-
-			smtp.EnableSsl = true;
-			smtp.UseDefaultCredentials = false;
-
-			smtp.Credentials = new NetworkCredential(email.From.Address, "pw3tpfededani");
-
-			smtp.Send(email);
+            smtp.Send(email);
 			email.Dispose();
 		}
-		/*public Usuario ActivarCuenta(Usuario cda)
+
+		public Usuario ActivarCuenta(string token)
 		{
-			Usuario usuario = FindByEmail(cda.Email);
-			//HAGO ESTO PARA PODER ACTUALIZAR EL USUARIO EN EL MISMO CONTEXTO DEL QUE SE BUSCA, SI NO TIRA ERROR MULTIPLES INSTANCIAS
-			var user = usuario.IdUsuario;
+			Usuario usuario = FindByToken(token);
+            if (usuario != null)
+            {
+                usuario.Activo = true;
+                ctx.SaveChanges();
+            }
 
-			if (usuario.Token == cda.Token)
-			{
-
-				if (usuario.Activo == 1) return usuario;
-
-				usuario.Activo = 1;
-
-				_generalRepository.Update(usuario);
-			}
-
-			return usuario;
-		}*/
+            return usuario;
+		}
 	}
 }
