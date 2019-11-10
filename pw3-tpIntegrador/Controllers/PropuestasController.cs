@@ -116,9 +116,25 @@ namespace pw3_tpIntegrador.Controllers
 		}
 
 
-		public ActionResult Donar()
+		public ActionResult Donar(int Id)
         {
-            return View();
+            Propuesta p = Propuestas.ObtenerPorId(Id);
+
+            if(p.TipoDonacion == 1)
+            {
+                ViewBag.RecaudacionParcial = "6";
+                ViewBag.DineroRestante = "4";
+                ViewBag.PorcentajeCompleto = "60";
+                return View("DonarTipoMonetaria", p);
+            }
+            else if (p.TipoDonacion == 2)
+            {
+                return View("DonarTipoInsumos", p);
+            }
+            else
+            {
+                return View("DonarTipoHorasTrabajo", p);
+            }
         }
 
 

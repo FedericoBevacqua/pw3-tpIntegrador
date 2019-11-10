@@ -1,4 +1,6 @@
-﻿<span class="font-weight-bold">$2.500</span> de $10.000 ($7.500 restantes)
-<div class="progress">
-    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+﻿@model Data.PropuestasDonacionesMonetaria
+
+<span class="font-weight-bold">$@ViewBag.RecaudacionParcial</span> de $@Model.Dinero ($@ViewBag.DineroRestante restantes)
+<div class="progress mt-2">
+    <div class="progress-bar bg-success" role="progressbar" style="width: @ViewBag.PorcentajeCompleto%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>

@@ -1,8 +1,12 @@
-﻿
+﻿@model List<Data.PropuestasDonacionesInsumo>
     <h6>Lista de elementos solicitados:</h6>
     <ul class="list-group">
-        <li class="list-group-item list-group-item-success"><span class="font-weight-bold">10 x Barniz madera exterior 4 lts.</span> (Completo)</li>
-        <li class="list-group-item list-group-item-warning"><span class="font-weight-bold">5 x Rodillo común</span> (Faltan 3 para completar)</li>
-        <li class="list-group-item list-group-item-warning"><span class="font-weight-bold">20 x Lija madera</span> (Faltan 10 para completar)</li>
-        <li class="list-group-item list-group-item-danger"><span class="font-weight-bold">10 x Pincel</span> (Faltan 10 para completar)</li>
+        <li class="list-group-item list-group-item-success"><span class="font-weight-bold">COLOR DE ITEM COMPLETO</span> (Completo)</li>
+
+        @foreach (var p in @Model)
+        {
+            <li class="list-group-item list-group-item-warning"><span class="font-weight-bold">@p.Cantidad x @p.Nombre</span> (Faltan ??? para completar)</li>
+        }
+
+        <li class="list-group-item list-group-item-danger"><span class="font-weight-bold">COLOR ITEM SIN DONACIONES</span> (Faltan 10 para completar)</li>
     </ul>

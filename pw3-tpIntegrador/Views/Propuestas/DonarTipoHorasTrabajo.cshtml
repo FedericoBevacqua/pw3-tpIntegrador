@@ -1,0 +1,39 @@
+﻿@model Data.Propuesta
+
+@{
+    ViewBag.Title = "Donar";
+    ViewBag.Img = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
+    Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+}
+
+<div class="container">
+    <h2>Donar horas de trabajo</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@ViewBag.Img" alt="..." class="img-thumbnail">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            Estás por donar en la publicación <span class="font-weight-bold">@Model.Nombre</span> del usuario <span class="font-weight-bold">@Model.Usuario.Nombre.@Model.Usuario.Apellido</span>. A continuación mostramos un resumen del estado actual de la publicación para que puedas hacer tu donación.
+
+            <h5 class="mt-5">Estado actual</h5>
+            @Html.Partial("_DetalleHoras", Model.PropuestasDonacionesHorasTrabajoes.First())
+
+            <h5 class="mt-5">Tu donación</h5>
+
+            <form action="/Propuestas/Donar" method="post" class="mt-2" id="donar-formulario">
+
+                <div class="form-group">
+                    @Html.Label("CantidadHoras", "Horas a donar:")
+                    @Html.TextBox("CantidadHoras", 0, new { @class = "form-control", @type = "number" })
+                </div>
+
+                <input type="submit" class="btn btn-success mt-3" value="Donar" id="donar-submit" />
+
+            </form>
+        </div>
+    </div>
+
+
+</div>

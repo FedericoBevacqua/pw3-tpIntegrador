@@ -1,0 +1,58 @@
+﻿@model Data.Propuesta
+
+@{
+    ViewBag.Title = "Donar";
+    ViewBag.Img = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
+    Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+}
+
+<div class="container">
+    <h2>Donar insumos</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@ViewBag.Img" alt="..." class="img-thumbnail">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            Estás por donar en la publicación <span class="font-weight-bold">@Model.Nombre</span> del usuario <span class="font-weight-bold">@Model.Usuario.Nombre.ToLower().@Model.Usuario.Apellido.ToLower()</span>. A continuación mostramos un resumen del estado actual de la publicación para que puedas hacer tu donación.
+
+            <h5 class="mt-5">Estado actual</h5>
+            @Html.Partial("_DetalleInsumos", Model.PropuestasDonacionesInsumos.ToList())
+
+            <h5 class="mt-5">Tu donación</h5>
+
+            <form action="/Propuestas/Donar" method="post" class="mt-2" id="donar-formulario">
+
+                <div class="form-row">
+
+                    <div class="form-group col-md-3">
+                        @Html.Label("Cantidad a donar")
+                    </div>
+                    <div class="form-group col-md-9">
+                        @Html.Label("Descripción")
+                    </div>
+                </div>
+
+                @foreach (var p in Model.PropuestasDonacionesInsumos)
+                {
+                    int currentIndex = Model.PropuestasDonacionesInsumos.ToList().IndexOf(p);
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            @Html.TextBox("Monto[" +@currentIndex +"]", 0, new { @class = "form-control cantidad-insumo-donado", @type = "number", @min = "0", @max = "3" })
+                        </div>
+                        <div class="form-group col-md-9">
+                            @Html.TextBox("Insumo[" + @currentIndex + "]", @p.Nombre + " (Faltan ??? para completar)", new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                }
+
+                <input type="submit" class="btn btn-success mt-3" value="Donar" id="donar-submit" />
+
+            </form>
+        </div>
+    </div>
+
+
+</div>
