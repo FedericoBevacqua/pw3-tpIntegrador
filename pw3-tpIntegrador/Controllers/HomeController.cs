@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,16 +11,28 @@ namespace pw3_tpIntegrador.Controllers
 	{
 		public ActionResult Inicio()
 		{
-			return View();
+			if (SesionServicio.UsuarioSession == null)
+			{
+				return View();
+			}
+			else
+			{
+				return View("InicioUsuarioLogueado");
+			}
 		}
 
         //Eliminar este action cuando se agregue la logica que hace el redirect desde el action Inicio()
         public ActionResult InicioUsuarioLogueado()
         {
-            return View();
+			if (SesionServicio.UsuarioSession == null)
+			{
+				return View("Inicio");
+			}
+			else
+			{
+				return View();
+			}
         }
-
-
 
         [HttpPost]
         public ActionResult Buscar(String Texto)
