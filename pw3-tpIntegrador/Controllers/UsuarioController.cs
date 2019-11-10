@@ -41,12 +41,18 @@ namespace pw3_tpIntegrador.Controllers
 				{
 
 					//No permitiendo logearse a un user inactivo
-					if (usuario.Activo == false)
+					if (!usuario.Activo)
 					{
 						ViewBag.msg = "Su usuario está inactivo. Actívelo desde el email recibido.";
 
 						return View("Login");
 					}
+
+                    // El usuario tiene que crear su perfil
+                    if (String.IsNullOrEmpty(usuario.UserName)) 
+                    {
+                        return View("CrearPerfil", usuario);
+                    }
 
 					//Guardo usuario en Sesion
 					SesionServicio.UsuarioSession = usuario;
@@ -129,7 +135,8 @@ namespace pw3_tpIntegrador.Controllers
             Usuario usuario = Usuarios.ActivarCuenta(token);
             if (usuario != null)
             {
-                return Redirect("/Usuario/Login");
+                ViewBag.msg = "Su usuario ha sido activado con éxito. Por favor, inicie sesión.";
+                return View("Login");
             }
             
             return View(); //Error
