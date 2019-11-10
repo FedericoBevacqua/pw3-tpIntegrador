@@ -72,5 +72,11 @@ namespace Servicios
 
 			return clave;
 		}
+
+		public Usuario FindByEmail(Usuario email)
+		{
+			var ConsultaEmail = ctx.Usuarios.Where(x => x.Email == email.Email).First();
+			return ConsultaEmail;
+		}
 	}
 }

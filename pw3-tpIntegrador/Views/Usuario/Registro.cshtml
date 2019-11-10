@@ -40,3 +40,12 @@
 	<input type="submit" class="btn btn-primary" value="Registrarse" />
 
 </form>
+
+
+@if (ViewData["MensajeErrorEmail"] != null)
+{
+	<br />
+	<div class="alert alert-danger centermsg" role="alert">
+		@ViewData["MensajeErrorEmail"]
+	</div>
+}

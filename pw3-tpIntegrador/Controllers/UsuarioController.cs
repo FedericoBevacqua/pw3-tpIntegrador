@@ -72,10 +72,17 @@ namespace pw3_tpIntegrador.Controllers
 			{
 				return View(u);
 			}
-
-			Usuarios.Alta(u);
-			return Redirect("/Home/Inicio");
-
+			var email = Usuarios.FindByEmail(u);
+			if(email == null)
+			{
+				Usuarios.Alta(u);
+				return Redirect("/Home/Inicio"); //TODO: Hacer vista, se ha registrado con exito, recibira el email de activacion
+			}
+			else
+			{
+				ViewData["MensajeErrorEmail"] = "El Email ya esta en uso.";
+				return View("Registro", u);
+			}
 		}
 		[HttpGet]
 		public ActionResult CrearPerfil()
