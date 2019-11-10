@@ -57,6 +57,7 @@ namespace Servicios
             Propuesta.TelefonoContacto = p.TelefonoContacto;
             Propuesta.TipoDonacion = p.TipoDonacion;
             Propuesta.Foto = p.Foto;
+            Propuesta.PropuestasReferencias = p.PropuestasReferencias;
 
             ctx.Propuestas.Add(Propuesta);
             ctx.SaveChanges();

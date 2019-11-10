@@ -71,8 +71,8 @@
     <Compile Include="Extensiones\PropuestasDonacionesInsumosMetadata.cs" />
     <Compile Include="Extensiones\PropuestasDonacionesMonetaria.cs" />
     <Compile Include="Extensiones\PropuestasDonacionesMonetariaMetadata.cs" />
-    <Compile Include="Extensiones\PropuestasReferencias.cs" />
-    <Compile Include="Extensiones\PropuestasReferenciasMetadata.cs" />
+    <Compile Include="Extensiones\PropuestasReferencia.cs" />
+    <Compile Include="Extensiones\PropuestasReferenciaMetadata.cs" />
     <Compile Include="Extensiones\Usuario.cs" />
     <Compile Include="Extensiones\UsuarioMetadata.cs" />
     <Compile Include="MotivoDenuncia.cs">

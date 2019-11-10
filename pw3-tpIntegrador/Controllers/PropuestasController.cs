@@ -18,28 +18,29 @@ namespace pw3_tpIntegrador.Controllers
             return View();
         }
         [HttpPost]
-		public ActionResult Crear(Propuesta p)
+		public ActionResult Crear(FormCollection form)
 		{
-			if (!ModelState.IsValid)
+			/*if (!ModelState.IsValid)
 			{
-				return View(p);
-			}
+				return View(form);
+			}*/
 
-			return CrearPaso2(p);
+			return CrearPaso2(form);
 		}
 
         [HttpPost]
-        public ActionResult CrearPaso2(Propuesta p)
+        public ActionResult CrearPaso2(FormCollection form)
         {
+            int TipoDonacion = Int32.Parse(form["TipoDonacion"]);
             Propuesta NuevaPropuesta;
             String ViewName;
 
-            if (p.TipoDonacion == 1)
+            if (TipoDonacion == 1)
             {
                 NuevaPropuesta = new PropuestasDonacionesMonetaria();
                 ViewName = "CrearTipoMonetaria";
             } 
-            else if (p.TipoDonacion == 2)
+            else if (TipoDonacion == 2)
             {
                 NuevaPropuesta = new Propuesta();
                 ViewName = "CrearTipoInsumos";
@@ -50,26 +51,48 @@ namespace pw3_tpIntegrador.Controllers
                 ViewName = "CrearTipoHorasTrabajo";
             }
 
-            NuevaPropuesta.Nombre = p.Nombre;
-            NuevaPropuesta.Descripcion = p.Descripcion;
-            NuevaPropuesta.FechaFin = p.FechaFin;
-            NuevaPropuesta.TelefonoContacto = p.TelefonoContacto;
-            NuevaPropuesta.TipoDonacion = p.TipoDonacion;
-            NuevaPropuesta.Foto = p.Foto;
+            NuevaPropuesta.Nombre = form["Nombre"];
+            NuevaPropuesta.Descripcion = form["Descripcion"];
+            NuevaPropuesta.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+            NuevaPropuesta.TelefonoContacto = form["TelefonoContacto"];
+            NuevaPropuesta.TipoDonacion = Int32.Parse(form["TipoDonacion"]);
+            NuevaPropuesta.Foto = form["Foto"];
 
-            /*
-            NuevaPropuesta.NombreReferencia1 = p.NombreReferencia1;
-            NuevaPropuesta.TelefonoReferencia1 = p.TelefonoReferencia1;
-            NuevaPropuesta.NombreReferencia2 = p.NombreReferencia2;
-            NuevaPropuesta.TelefonoReferencia2 = p.TelefonoReferencia2;
-            */
+            ViewBag.Referencia1Nombre = form["Referencia1Nombre"];
+            ViewBag.Referencia1Telefono = form["Referencia1Telefono"];
+
+            ViewBag.Referencia2Nombre = form["Referencia2Nombre"];
+            ViewBag.Referencia2Telefono = form["Referencia2Telefono"];
 
             return View(ViewName, NuevaPropuesta);
         }
 
         [HttpPost]
-        public ActionResult ProcesarTipoMonetaria(PropuestasDonacionesMonetaria  p)
+        public ActionResult ProcesarTipoMonetaria(FormCollection form)
         {
+            PropuestasDonacionesMonetaria p = new PropuestasDonacionesMonetaria();
+
+            p.Nombre = form["Nombre"];
+            p.Descripcion = form["Descripcion"];
+            p.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+            p.TelefonoContacto = form["TelefonoContacto"];
+            p.TipoDonacion = Int32.Parse(form["TipoDonacion"]);
+            p.Foto = form["Foto"];
+
+            p.Dinero = Decimal.Parse(form["Dinero"]);
+            p.CBU = form["CBU"];
+
+            PropuestasReferencia referencia1 = new PropuestasReferencia();
+            referencia1.Nombre = form["Referencia1Nombre"];
+            referencia1.Telefono = form["Referencia1Telefono"];
+
+            PropuestasReferencia referencia2 = new PropuestasReferencia();
+            referencia2.Nombre = form["Referencia2Nombre"];
+            referencia2.Telefono = form["Referencia2Telefono"];
+
+            p.PropuestasReferencias.Add(referencia1);
+            p.PropuestasReferencias.Add(referencia2);
+
             Propuestas.Alta(p);
             return Redirect("/Home/Inicio");
         }
@@ -97,12 +120,46 @@ namespace pw3_tpIntegrador.Controllers
                 listaDonaciones.Add(donacion);
             }
 
+            PropuestasReferencia referencia1 = new PropuestasReferencia();
+            referencia1.Nombre = form["Referencia1Nombre"];
+            referencia1.Telefono = form["Referencia1Telefono"];
+
+            PropuestasReferencia referencia2 = new PropuestasReferencia();
+            referencia2.Nombre = form["Referencia2Nombre"];
+            referencia2.Telefono = form["Referencia2Telefono"];
+
+            p.PropuestasReferencias.Add(referencia1);
+            p.PropuestasReferencias.Add(referencia2);
+
             Propuestas.Alta(p, listaDonaciones);
             return Redirect("/Home/Inicio");
         }
 
-        public ActionResult ProcesarTipoHorasTrabajo(PropuestasDonacionesHorasTrabajo p)
+        public ActionResult ProcesarTipoHorasTrabajo(FormCollection form)
         {
+            PropuestasDonacionesHorasTrabajo p = new PropuestasDonacionesHorasTrabajo();
+
+            p.Nombre = form["Nombre"];
+            p.Descripcion = form["Descripcion"];
+            p.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+            p.TelefonoContacto = form["TelefonoContacto"];
+            p.TipoDonacion = Int32.Parse(form["TipoDonacion"]);
+            p.Foto = form["Foto"];
+
+            p.CantidadHoras = Int32.Parse(form["CantidadHoras"]);
+            p.Profesion = form["Profesion"];
+
+            PropuestasReferencia referencia1 = new PropuestasReferencia();
+            referencia1.Nombre = form["Referencia1Nombre"];
+            referencia1.Telefono = form["Referencia1Telefono"];
+
+            PropuestasReferencia referencia2 = new PropuestasReferencia();
+            referencia2.Nombre = form["Referencia2Nombre"];
+            referencia2.Telefono = form["Referencia2Telefono"];
+
+            p.PropuestasReferencias.Add(referencia1);
+            p.PropuestasReferencias.Add(referencia2);
+
             Propuestas.Alta(p);
             return Redirect("/Home/Inicio");
         }

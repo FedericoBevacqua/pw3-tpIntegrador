@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace pw3_tpIntegrador
 {
-	public class PropuestasReferenciasMetadata
+	public class PropuestasReferenciaMetadata
 	{
 		/*[Required(ErrorMessage = "El Nombre no puede estar vacio")]
 		[MaxLength(50, ErrorMessage = "Maximo 50 caracteres")]
