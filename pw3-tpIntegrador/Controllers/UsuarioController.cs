@@ -15,7 +15,14 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult Login()
         {
-            return View();
+			if (SesionServicio.UsuarioSession == null)
+			{
+				return View();
+			}
+			else
+			{
+				return View("InicioUsuarioLogueado");
+			}
         }
 		[HttpPost]
 		public ActionResult Login(Usuario l)
@@ -63,8 +70,14 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult Registro()
         {
-			//TODO: Validacion IF si if (!Session["UserSession"].Equals(String.Empty)) return RedirectToAction("Index");
-			return View();
+			if (SesionServicio.UsuarioSession == null)
+			{
+				return View();
+			}
+			else
+			{
+				return View("InicioUsuarioLogueado");
+			}
         }
 		[HttpPost]
 		public ActionResult Registro(Usuario u)
@@ -89,7 +102,14 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult CrearPerfil()
         {
-            return View();
+			if (SesionServicio.UsuarioSession == null)
+			{
+				return View("Inicio");
+			}
+			else
+			{
+				return View();
+			}
         }
 		[HttpPost]
 		public ActionResult CrearPerfil(Usuario p)
