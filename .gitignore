@@ -4,8 +4,9 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Agregados Manualmente (Archivos de configuracion, Varia depende PC)
-Data/App.Config
-pw3-tpIntegrador/Web.config
+#Data/App.Config
+#pw3-tpIntegrador/Web.config
+#Quitados al poner source=LocalHost
 
 # User-specific files
 *.suo
