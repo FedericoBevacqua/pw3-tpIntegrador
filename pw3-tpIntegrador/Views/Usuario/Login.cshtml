@@ -1,42 +1,39 @@
 ﻿
 @{
-	Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
+    Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 
 @model Data.Usuario
 
-		<h2>Login</h2>
+<form class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3" action="/Usuario/Login" method="post">
 
-		<form action="/Usuario/Login" method="post">
+    <p class="h4 mb-4">Iniciar sesión</p>
 
-			<div class="form-group">
-				@Html.Label("Email", "Email:")
-				@Html.EditorFor(l => l.Email, null, new { @class = "form-control" })
-				@Html.ValidationMessageFor(l => l.Email, null, new { @class = "text-danger" })
-			</div>
+    <input type="email" name="Email" class="form-control mb-4" placeholder="E-mail">
+    <input type="password" name="Password" class="form-control mb-4" placeholder="Contraseña">
 
-			<div class="form-group">
-				@Html.Label("Password", "Contraseña:")
-				@Html.EditorFor(l => l.Password, null, new { @class = "form-control" })
-				@Html.ValidationMessageFor(l => l.Password, null, new { @class = "text-danger" })
-			</div>
+    <button class="btn btn-primary btn-block my-4" type="submit">Ingresar</button>
 
-			<input type="submit" class="btn btn-primary" value="Ingresar" />
+    <p>
+        ¿No estás registrado?
+        <a href="/Usuario/Registro">Registrarse</a>
+    </p>
 
-			@if (ViewData["MensajeError"] != null)
-			{
-				<br />
-				<div class="alert alert-danger centermsg" role="alert">
-					@ViewData["MensajeError"]
-				</div>
-			}
+    @if (ViewData["MensajeError"] != null)
+    {
+        <br />
+        <div class="alert alert-danger centermsg" role="alert">
+            @ViewData["MensajeError"]
+        </div>
+    }
 
-			@if (ViewBag.msg != null)
-			{
-				<br />
-				<div class="alert alert-info centermsg" role="alert">
-					@ViewBag.msg
-				</div>
+    @if (ViewBag.msg != null)
+    {
+        <br />
+        <div class="alert alert-info centermsg" role="alert">
+            @ViewBag.msg
+        </div>
+    }
 
-			}
-		</form>
+</form>
+
