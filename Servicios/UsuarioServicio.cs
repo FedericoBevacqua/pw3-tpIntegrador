@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -77,6 +79,32 @@ namespace Servicios
 		{
 			var ConsultaEmail = ctx.Usuarios.Where(x => x.Email == email.Email).First();
 			return ConsultaEmail;
+		}
+
+		public void EnviarEmailToken(Usuario usuario)
+		{
+			MailMessage email = new MailMessage();
+
+			email.To.Add(new MailAddress(usuario.Email));
+			email.From = new MailAddress("pw3tpayudaprojimo@gmail.com");
+			email.Subject = "Asunto (Validar Cuenta)";
+			email.Body = "Usuario: " + usuario.Nombre + "  Codigo de activacion: " + usuario.Token + "   active su cuenta aquí: http://localhost:49525/Usuario/activar?token=" + usuario.Token;
+			email.IsBodyHtml = true;
+			email.Priority = MailPriority.Normal;
+
+			SmtpClient smtp = new SmtpClient();
+
+
+			smtp.Host = "smtp.gmail.com";
+			smtp.Port = 587;
+
+			smtp.EnableSsl = true;
+			smtp.UseDefaultCredentials = false;
+
+			smtp.Credentials = new NetworkCredential(email.From.Address, "pw3tpfededani");
+
+			smtp.Send(email);
+			email.Dispose();
 		}
 	}
 }
