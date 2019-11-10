@@ -37,12 +37,13 @@ namespace Servicios
 
 		public void CrearPerfil(Usuario p)
 		{
+			//TODO: Obtener id del usuario logueado
 			Usuario UsuarioActual = ObtenerPorId(p.IdUsuario);
 
 			if (p.UserName == null) { 
 				var NombreUsuario = p.Nombre + "." + p.Apellido;
 
-				var Consulta = ctx.Usuarios.Where(x => x.UserName == NombreUsuario).First();
+				var Consulta = ctx.Usuarios.Where(x => x.UserName == NombreUsuario).FirstOrDefault();
 
 				if (Consulta == null)
 				{
