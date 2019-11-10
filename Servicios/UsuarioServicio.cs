@@ -75,10 +75,10 @@ namespace Servicios
 			return clave;
 		}
 
-		public Usuario FindByEmail(Usuario email)
+		public Usuario FindByEmail(String email)
 		{
-			var ConsultaEmail = ctx.Usuarios.Where(x => x.Email == email.Email).First();
-			return ConsultaEmail;
+            var usuario = ctx.Usuarios.Where(x => x.Email == email).FirstOrDefault();
+            return usuario;
 		}
 
 		public void EnviarEmailToken(Usuario usuario)
