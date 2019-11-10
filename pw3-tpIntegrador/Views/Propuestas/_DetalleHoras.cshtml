@@ -1,8 +1,14 @@
 ﻿@model Data.PropuestasDonacionesHorasTrabajo
 
+@{
+    ViewBag.HorasCubiertas = Model.DonacionesHorasTrabajoes.Where(x => x.IdPropuestaDonacionHorasTrabajo == Model.IdPropuestaDonacionHorasTrabajo).Sum(x => x.Cantidad);
+    ViewBag.Restante = (0 > (Model.CantidadHoras - ViewBag.HorasCubiertas)) ? 0 : Model.CantidadHoras - ViewBag.HorasCubiertas;
+    ViewBag.Porcentaje = ViewBag.Restante == 0 ? 100 : Decimal.ToInt32(ViewBag.HorasCubiertas * 100 / Model.CantidadHoras);
+}
+
 <h6>Profesión solicitada: @Model.Profesion</h6>
-<span class="font-weight-bold">??</span> de @Model.CantidadHoras horas cubiertas (?? horas restantes)
+<span class="font-weight-bold">@ViewBag.HorasCubiertas</span> de @Model.CantidadHoras horas cubiertas (@ViewBag.Restante horas restantes)
 <div class="progress">
-    <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar bg-success" role="progressbar" style="width: @ViewBag.Porcentaje%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 

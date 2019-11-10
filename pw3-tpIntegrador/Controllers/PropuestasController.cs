@@ -94,14 +94,16 @@ namespace pw3_tpIntegrador.Controllers
             return Redirect("/Home/Inicio");
         }
 
-		public ActionResult Detalle()
+		public ActionResult Detalle(int Id)
         {
-            return View();
+            Propuesta p = Propuestas.ObtenerPorId(Id);
+
+            return View(p);
         }
 		[HttpGet]
-		public ActionResult Denunciar()
+		public ActionResult Denunciar(int Id)
 		{
-			return View();
+			return View(Propuestas.ObtenerPorId(Id));
 		}
 		[HttpPost]
 		public ActionResult Denunciar(Denuncia d)
@@ -122,9 +124,6 @@ namespace pw3_tpIntegrador.Controllers
 
             if(p.TipoDonacion == 1)
             {
-                ViewBag.RecaudacionParcial = "6";
-                ViewBag.DineroRestante = "4";
-                ViewBag.PorcentajeCompleto = "60";
                 return View("DonarTipoMonetaria", p);
             }
             else if (p.TipoDonacion == 2)
@@ -135,6 +134,19 @@ namespace pw3_tpIntegrador.Controllers
             {
                 return View("DonarTipoHorasTrabajo", p);
             }
+        }
+
+        [HttpPost]
+        public ActionResult DonarMonetaria(DonacionesMonetaria d)
+        {
+            Propuestas.GuardarDonacion(d);
+            return Redirect("/Home/Inicio");
+        }
+
+        public ActionResult DonarHorasTrabajo(DonacionesHorasTrabajo d)
+        {
+            Propuestas.GuardarDonacion(d);
+            return Redirect("/Home/Inicio");
         }
 
 

@@ -22,11 +22,14 @@
 
             <h5 class="mt-5">Tu donación</h5>
 
-            <form action="/Propuestas/Donar" method="post" class="mt-2" id="donar-formulario">
+            <form action="/Propuestas/DonarHorasTrabajo" method="post" class="mt-2" id="donar-formulario">
+
+                <input type="hidden" name="IdPropuestaDonacionHorasTrabajo" value="@Model.PropuestasDonacionesHorasTrabajoes.First().IdPropuestaDonacionHorasTrabajo" />
+                <input type="hidden" name="IdUsuario" value="@Model.IdUsuarioCreador" />
 
                 <div class="form-group">
-                    @Html.Label("CantidadHoras", "Horas a donar:")
-                    @Html.TextBox("CantidadHoras", 0, new { @class = "form-control", @type = "number" })
+                    @Html.Label("Cantidad", "Horas a donar:")
+                    @Html.TextBox("Cantidad", 0, new { @class = "form-control", @type = "number" })
                 </div>
 
                 <input type="submit" class="btn btn-success mt-3" value="Donar" id="donar-submit" />
