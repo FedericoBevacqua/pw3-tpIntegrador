@@ -1,11 +1,11 @@
 ﻿@model Data.PropuestasDonacionesMonetaria
 @{
-    ViewBag.Title = "CrearMontaria";
+    ViewBag.Title = "CrearTipoMonetaria";
 }
 
-<h2>CrearMontaria</h2>
+<form action="/Propuestas/ProcesarTipoMonetaria" method="post" class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3">
 
-<form action="/Propuestas/ProcesarTipoMonetaria" method="post">
+    <p class="h4 mb-4">Propuesta Monetaria</p>
 
     <input type="hidden" name="Nombre" value="@Model.Nombre" />
     <input type="hidden" name="Descripcion" value="@Model.Descripcion" />
@@ -19,7 +19,7 @@
     <input type="hidden" name="Referencia2Telefono" value="@ViewBag.Referencia2Telefono" />
 
     <div class="form-group">
-        @Html.Label("Dinero", "Cantidad de dinero necesaria (AR$):")
+        @Html.Label("Dinero", "Cantidad de dinero necesaria (ARS $):")
         @Html.EditorFor(pm => pm.Dinero, null, new { @class = "number" })
         @Html.ValidationMessageFor(pm => pm.Dinero, null, new { @class = "text-danger" })
     </div>
@@ -30,6 +30,6 @@
         @Html.ValidationMessageFor(pm => pm.CBU, null, new { @class = "text-danger" })
     </div>
 
-    <input type="submit" value="Crear propuesta" />
+    <input type="submit" value="Crear propuesta" class="btn btn-primary btn-block my-4" />
 </form>
 
