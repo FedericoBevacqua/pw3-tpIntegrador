@@ -11,5 +11,20 @@ namespace Data
 	[MetadataType(typeof(PropuestaMetadata))]
 	public partial class Propuesta
 	{
-	}
+        public String TipoDonacionString()
+        {
+            if (this.TipoDonacion == 1)
+            {
+                return "dinero";
+            }
+            else if (this.TipoDonacion == 2)
+            {
+                return "insumos";
+            }
+            else
+            {
+                return "horas de trabajo";
+            }
+        }
+    }
 }

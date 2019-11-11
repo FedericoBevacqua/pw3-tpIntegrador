@@ -1,4 +1,5 @@
-﻿
+﻿@model Data.Propuesta
+
 @{
 	ViewBag.Title = "Detalle";
 	ViewBag.Img = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
@@ -6,30 +7,45 @@
 }
 
 <div class="container">
-    <h2>Pinta mi cerca</h2>
+    <h2>@Model.Nombre</h2>
     <div class="row">
         <div class="col-md-6">
             <img src="@ViewBag.Img" alt="..." class="img-thumbnail">
-            <div class="text-muted mt-2"><small>Pedido de insumos - Creado por nariyoshi.miyagi el 10/10/2019</small></div>
-            <div class="text-muted"><small>Abierto hasta el 12/11/2019</small></div>
-            <p class="mt-2">El Sr. Miyagi consiguió la ayuda de un joven vecino para pintar su cerca a cambio de unas lecciones de karate. Sin embargo, necesita de nuestra ayuda para conseguir los siguientes materiales</p>
+            <div class="text-muted mt-2"><small>Pedido de @Model.TipoDonacionString() - Creado por @Model.Usuario.Nombre.ToLower().@Model.Usuario.Apellido.ToLower() el @Model.FechaCreacion.ToShortDateString()</small></div>
+            <div class="text-muted"><small>Abierto hasta el @Model.FechaFin.ToShortDateString()</small></div>
+            <p class="mt-2">@Model.Descripcion</p>
         </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    @Html.Partial("_DetalleInsumos")
+                    @if (Model.TipoDonacion == 1)
+                    {
+                        @Html.Partial("_DetalleMonetaria", Model.PropuestasDonacionesMonetarias.First())
+                    }
+                    else if (Model.TipoDonacion == 2)
+                    {
+                        @Html.Partial("_DetalleInsumos", Model.PropuestasDonacionesInsumos.ToList())
+                    }
+                    else
+                    {
+                        @Html.Partial("_DetalleHoras", Model.PropuestasDonacionesHorasTrabajoes.First())
+                    }
+
                     <p class="mt-2 text-muted">Aceptación: 92%</p>
-                    <a href="#" class="btn btn-block btn-success mt-3 font-weight-bold">Donar</a>
+                    <a href="/Propuestas/Donar/@Model.IdPropuesta" class="btn btn-block btn-success mt-3 font-weight-bold">Donar</a>
 
                     <div class="d-flex justify-content-between">
                         <a href="#" class="btn btn-primary mt-3 font-weight-bold flex-fill boton-me-gusta">Me gusta</a>
                         <a href="#" class="btn btn-secondary mt-3 font-weight-bold flex-fill boton-no-me-gusta">No me gusta</a>
                     </div>
 
-                    <a href="#" class="btn btn-block btn-danger mt-3 font-weight-bold">Denunciar</a>
-                    <div class="mt-4 font-weight-bold">Referentes:</div>
-                    <div class="mt-2">Daniel Larusso: <span class="text-muted">11-3326-5698</span></div>
-                    <div>Lucille Larusso: <span class="text-muted">11-2654-1038</span></div>
+                    <a href="/Propuestas/Denunciar/@Model.IdPropuesta" class="btn btn-block btn-danger mt-3 font-weight-bold">Denunciar</a>
+
+                    <div class="mt-4 mb-2 font-weight-bold">Referencias:</div>
+                    @foreach (var r in Model.PropuestasReferencias)
+                    {
+                        <div>@r.Nombre: <span class="text-muted">@r.Telefono</span></div>
+                    }
                 </div>
             </div>
         </div>

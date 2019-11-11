@@ -94,14 +94,16 @@ namespace pw3_tpIntegrador.Controllers
             return Redirect("/Home/Inicio");
         }
 
-		public ActionResult Detalle()
+		public ActionResult Detalle(int Id)
         {
-            return View();
+            Propuesta p = Propuestas.ObtenerPorId(Id);
+
+            return View(p);
         }
 		[HttpGet]
-		public ActionResult Denunciar()
+		public ActionResult Denunciar(int Id)
 		{
-			return View();
+			return View(Propuestas.ObtenerPorId(Id));
 		}
 		[HttpPost]
 		public ActionResult Denunciar(Denuncia d)
@@ -116,9 +118,56 @@ namespace pw3_tpIntegrador.Controllers
 		}
 
 
-		public ActionResult Donar()
+		public ActionResult Donar(int Id)
         {
-            return View();
+            Propuesta p = Propuestas.ObtenerPorId(Id);
+
+            if(p.TipoDonacion == 1)
+            {
+                return View("DonarTipoMonetaria", p);
+            }
+            else if (p.TipoDonacion == 2)
+            {
+                return View("DonarTipoInsumos", p);
+            }
+            else
+            {
+                return View("DonarTipoHorasTrabajo", p);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DonarMonetaria(DonacionesMonetaria d)
+        {
+            Propuestas.GuardarDonacion(d);
+            return Redirect("/Home/Inicio");
+        }
+
+        [HttpPost]
+        public ActionResult DonarInsumos(FormCollection form)
+        {
+            List<DonacionesInsumo> donaciones = new List<DonacionesInsumo>();
+            DonacionesInsumo d;
+
+            for(int i=0; i< Int32.Parse(form["CantidadInsumos"]); i++)
+            {
+                d = new DonacionesInsumo();
+                d.Cantidad = Int32.Parse(form["Cantidad[" + i + "]"]);           
+                d.IdUsuario = Int32.Parse(form["IdUsuario"]);
+                d.IdPropuestaDonacionInsumo = Int32.Parse(form["IdPropuestaDonacionInsumo[" + i + "]"]);
+
+                donaciones.Add(d);
+            }
+
+            Propuestas.GuardarDonacion(donaciones);
+            return Redirect("/Home/Inicio");
+        }
+
+        [HttpPost]
+        public ActionResult DonarHorasTrabajo(DonacionesHorasTrabajo d)
+        {
+            Propuestas.GuardarDonacion(d);
+            return Redirect("/Home/Inicio");
         }
 
 
