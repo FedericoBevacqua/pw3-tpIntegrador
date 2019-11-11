@@ -21,7 +21,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado");
+				return View("/Home/InicioUsuarioLogueado");
 			}
         }
 		[HttpPost]
@@ -82,7 +82,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado");
+				return View("/Home/InicioUsuarioLogueado");
 			}
         }
 		[HttpPost]
