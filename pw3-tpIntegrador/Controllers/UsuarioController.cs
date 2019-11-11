@@ -146,7 +146,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
 
 			Usuarios.CrearPerfil(p);
-			return Redirect("/Home/InicioUsuarioLogueado");
+			return View("InicioUsuarioLogueado");
 		}
 
         [HttpGet]
