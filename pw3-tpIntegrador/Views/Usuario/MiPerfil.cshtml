@@ -5,37 +5,21 @@
 
 <div class="container">
     <!--TODO: Actualizar datos-->
-    <form action="/Usuario/ActualizarPerfil" method="post" class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3">
+	<form action="/Usuario/ActualizarPerfil" method="post" class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3">
 
-        <p class="h4 mb-4">Mi Perfil</p>
+		<p class="h4 mb-4">Mi Perfil</p>
 
-        <input type="hidden" name="IdUsuario" value="@Model.IdUsuario" />
+		<input type="hidden" name="IdUsuario" value="@Model.IdUsuario" />
 
-        <div class="form-group">
-            @Html.Label("Nombre", "Nombre:")
-            @Html.EditorFor(p => p.Nombre, null, new { @class = "form-control" })
-            @Html.ValidationMessageFor(p => p.Nombre, null, new { @class = "text-danger" })
-        </div>
+		<div class="form-group">
+			@Html.Label("Nombre", "Nombre:")
+			@Html.TextBoxFor(p => p.Nombre, new { disabled = "disabled" })
+		</div>
 
-        <div class="form-group">
-            @Html.Label("Apellido", "Apellido:")
-            @Html.EditorFor(p => p.Apellido, null, new { @class = "form-control" })
-            @Html.ValidationMessageFor(p => p.Apellido, null, new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            <label>Foto de perfil:</label>
-            <div class="form-row mt-2 mb-4">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="Imagen" name="Imagen" lang="es">
-                    <label class="custom-file-label" for="Imagen">Seleccionar archivo</label>
-                </div>
-            </div>
-        </div>
-
-        <input type="submit" class="btn btn-primary" name="name" value="Guardar Cambios" />
-    </form>
+		<div class="form-group">
+			@Html.Label("Apellido", "Apellido:")
+			@Html.TextBoxFor(p => p.Apellido, new { disabled = "disabled" })
+		</div>
+		<a href="/Home/InicioUsuarioLogueado" class="btn btn-primary">Volver al Home</a>
+	</form>
 </div>
-
-
-
