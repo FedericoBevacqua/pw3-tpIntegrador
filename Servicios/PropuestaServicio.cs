@@ -80,10 +80,7 @@ namespace Servicios
 		}
 		public List<Propuesta> ObtenerCincoMejoresActivas()
 		{
-			//Falta logica 5 
-			//Count? .Count();
-			//return ctx.Propuestas.Where(x => x.Estado == 1).OrderByDescending(x => x.Valoracion).Take(5);
-			return ctx.Propuestas.Where(x => x.Estado == 1).OrderByDescending(x => x.Valoracion).ToList();
+			return ctx.Propuestas.Where(x => x.Estado == 1).OrderByDescending(x => x.Valoracion).Take(5).ToList();
 		}
 		public void CrearDenuncia(Denuncia d)
         {
