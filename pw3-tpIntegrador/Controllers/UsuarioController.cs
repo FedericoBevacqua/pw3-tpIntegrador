@@ -1,16 +1,13 @@
 using Data;
 using Servicios;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace pw3_tpIntegrador.Controllers
 {
     public class UsuarioController : Controller
     {
-		UsuarioServicio Usuarios = new UsuarioServicio();
+        readonly UsuarioServicio Usuarios = new UsuarioServicio();
 
 		[HttpGet]
 		public ActionResult Login()
@@ -21,15 +18,15 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado");
-			}
+				return Redirect("/Home/Inicio");
+            }
         }
 		[HttpPost]
 		public ActionResult Login(Usuario l)
 		{
 			if (!ModelState.IsValid)
 			{
-				return View("Login", l);
+				return View(l);
 			}
 			else
 			{
@@ -45,25 +42,25 @@ namespace pw3_tpIntegrador.Controllers
 					{
 						ViewBag.msg = "Su usuario está inactivo. Actívelo desde el email recibido.";
 
-						return View("Login");
+						return View();
 					}
+
+                    //Guardo usuario en Sesion
+                    SesionServicio.UsuarioSession = usuario;
 
                     // El usuario tiene que crear su perfil
                     if (String.IsNullOrEmpty(usuario.UserName)) 
                     {
-                        return View("CrearPerfil", usuario);
+                        return Redirect("/Usuario/CrearPerfil");
                     }
-
-					//Guardo usuario en Sesion
-					SesionServicio.UsuarioSession = usuario;
-
-					return Redirect("/Home/InicioUsuarioLogueado");
+                    
+					return Redirect("/Home/Inicio");
 				}
 				else
 				{
 					ViewData["MensajeError"] = "Usuario o contraseña incorrecto.";
 
-					return View("Login", l);
+					return View(l);
 				}
 			}
 		}
@@ -82,8 +79,8 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado");
-			}
+				return Redirect("/Home/Inicio");
+            }
         }
 		[HttpPost]
 		public ActionResult Registro(Usuario u)
@@ -102,7 +99,7 @@ namespace pw3_tpIntegrador.Controllers
 			else
 			{
 				ViewData["MensajeErrorEmail"] = "El Email ya esta en uso.";
-				return View("Registro", u);
+				return View(u);
 			}
 		}
 
@@ -113,28 +110,25 @@ namespace pw3_tpIntegrador.Controllers
 
             if (usuario != null)
             {
-                return View("MiPerfil", SesionServicio.UsuarioSession);
+                return View(usuario);
             } else
             {
-                return View("Login");
+                return Redirect("/Usuario/Login");
             }
         }
 
         [HttpGet]
 		public ActionResult CrearPerfil()
         {
-			if(SesionServicio.UsuarioSession.UserName != null)
-			{
-				return View("InicioUsuarioLogueado");
-			}
+            Usuario usuario = SesionServicio.UsuarioSession;
 
-			if (SesionServicio.UsuarioSession == null)
+            if (usuario == null || usuario.UserName != null)
 			{
-				return View("Inicio");
-			}
-			else
+				return Redirect("/Home/Inicio");
+            }
+            else
 			{
-				return View();
+				return View(usuario);
 			}
         }
 		[HttpPost]
@@ -146,8 +140,8 @@ namespace pw3_tpIntegrador.Controllers
 			}
 
 			Usuarios.CrearPerfil(p);
-			return View("InicioUsuarioLogueado");
-		}
+			return Redirect("/Home/Inicio");
+        }
 
         [HttpGet]
         public ActionResult Activar(string token)
@@ -155,8 +149,9 @@ namespace pw3_tpIntegrador.Controllers
             Usuario usuario = Usuarios.ActivarCuenta(token);
             if (usuario != null)
             {
+                //TODO: Agregar mensaje al redirigir o pantalla intermedia
                 ViewBag.msg = "Su usuario ha sido activado con éxito. Por favor, inicie sesión.";
-                return View("Login");
+                return Redirect("/Usuario/Login");
             }
             
             return View(); //Error
