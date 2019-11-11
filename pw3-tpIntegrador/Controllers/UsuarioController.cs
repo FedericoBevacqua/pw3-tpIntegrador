@@ -21,7 +21,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado");
+				return Redirect("/Home/InicioUsuarioLogueado");
 			}
         }
 		[HttpPost]

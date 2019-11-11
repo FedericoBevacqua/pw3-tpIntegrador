@@ -26,13 +26,15 @@ namespace pw3_tpIntegrador.Controllers
         //Eliminar este action cuando se agregue la logica que hace el redirect desde el action Inicio()
         public ActionResult InicioUsuarioLogueado()
         {
-			if (SesionServicio.UsuarioSession == null)
+            List<Propuesta> Todas = Propuestas.ObtenerTodas();
+
+            if (SesionServicio.UsuarioSession == null)
 			{
-				return View("Inicio");
+				return View("Inicio", Todas);
 			}
 			else
 			{
-				return View();
+				return View(Todas);
 			}
         }
 
