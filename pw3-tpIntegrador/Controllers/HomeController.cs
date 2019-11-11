@@ -11,6 +11,8 @@ namespace pw3_tpIntegrador.Controllers
 	public class HomeController : Controller
 	{
         private PropuestaServicio Propuestas = new PropuestaServicio();
+
+        [HttpGet]
         public ActionResult Inicio()
 		{
 			if (SesionServicio.UsuarioSession == null)
@@ -19,22 +21,10 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado");
+                //List<Propuesta> propuestas = Propuestas.ObtenerTodas();
+				return View("InicioUsuarioLogueado"/*, propuestas*/);
 			}
 		}
-
-        //Eliminar este action cuando se agregue la logica que hace el redirect desde el action Inicio()
-        public ActionResult InicioUsuarioLogueado()
-        {
-			if (SesionServicio.UsuarioSession == null)
-			{
-				return View("Inicio");
-			}
-			else
-			{
-				return View();
-			}
-        }
 
         public ActionResult Error(int error = 0)
         {

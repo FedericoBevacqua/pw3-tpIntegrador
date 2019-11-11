@@ -1,8 +1,4 @@
 ﻿using Servicios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace pw3_tpIntegrador.Controllers
@@ -12,18 +8,14 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult Gestionar()
         {
-
-			if (SesionServicio.UsuarioSession == null)
-			{
-				return View("Inicio");
-			}
-			else if (SesionServicio.UsuarioSession.TipoUsuario == 1)
+            // Si el usuario es Admin
+			if (SesionServicio.UsuarioSession.TipoUsuario == 1)
 			{
 				return View();
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado");
+				return Redirect("/Home/Inicio");
 			}
         }
 

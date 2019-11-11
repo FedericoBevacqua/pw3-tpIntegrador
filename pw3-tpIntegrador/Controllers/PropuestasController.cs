@@ -15,8 +15,8 @@ namespace pw3_tpIntegrador.Controllers
         {
 			if (SesionServicio.UsuarioSession == null)
 			{
-				return View("Inicio");
-			}
+				return Redirect("/Home/Inicio");
+            }
 			else
 			{
 				return View();

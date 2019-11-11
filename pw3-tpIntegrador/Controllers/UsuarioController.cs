@@ -1,16 +1,13 @@
 using Data;
 using Servicios;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace pw3_tpIntegrador.Controllers
 {
     public class UsuarioController : Controller
     {
-		UsuarioServicio Usuarios = new UsuarioServicio();
+        readonly UsuarioServicio Usuarios = new UsuarioServicio();
 
 		[HttpGet]
 		public ActionResult Login()
@@ -21,8 +18,8 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado");
-			}
+				return Redirect("/Home/Inicio");
+            }
         }
 		[HttpPost]
 		public ActionResult Login(Usuario l)
@@ -57,7 +54,7 @@ namespace pw3_tpIntegrador.Controllers
 					//Guardo usuario en Sesion
 					SesionServicio.UsuarioSession = usuario;
 
-					return Redirect("/Home/InicioUsuarioLogueado");
+					return Redirect("/Home/Inicio");
 				}
 				else
 				{
@@ -82,8 +79,8 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado");
-			}
+				return Redirect("/Home/Inicio");
+            }
         }
 		[HttpPost]
 		public ActionResult Registro(Usuario u)
@@ -123,16 +120,11 @@ namespace pw3_tpIntegrador.Controllers
         [HttpGet]
 		public ActionResult CrearPerfil()
         {
-			if(SesionServicio.UsuarioSession.UserName != null)
+			if(SesionServicio.UsuarioSession == null || SesionServicio.UsuarioSession.UserName != null)
 			{
-				return View("InicioUsuarioLogueado");
-			}
-
-			if (SesionServicio.UsuarioSession == null)
-			{
-				return View("Inicio");
-			}
-			else
+				return Redirect("/Home/Inicio");
+            }
+            else
 			{
 				return View();
 			}
@@ -146,8 +138,8 @@ namespace pw3_tpIntegrador.Controllers
 			}
 
 			Usuarios.CrearPerfil(p);
-			return View("InicioUsuarioLogueado");
-		}
+			return Redirect("/Home/Inicio");
+        }
 
         [HttpGet]
         public ActionResult Activar(string token)
