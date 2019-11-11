@@ -223,5 +223,12 @@ namespace pw3_tpIntegrador.Controllers
 
             return listaInsumos;
         }
+
+        [HttpPost]
+        public ActionResult Buscar(string keyword)
+        {
+            var resultado = Propuestas.BuscarPorNombreYUsuario(keyword);
+            return View("Buscar", resultado);
+        }
     }
 }

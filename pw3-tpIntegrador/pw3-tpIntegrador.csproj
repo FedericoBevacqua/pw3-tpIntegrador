@@ -208,6 +208,7 @@
     <Content Include="Views\Propuestas\DonarTipoInsumos.cshtml" />
     <Content Include="Views\Propuestas\DonarTipoHorasTrabajo.cshtml" />
     <Content Include="Views\Usuario\MiPerfil.cshtml" />
+    <Content Include="Views\Propuestas\Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

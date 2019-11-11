@@ -36,12 +36,6 @@ namespace pw3_tpIntegrador.Controllers
 			}
         }
 
-        [HttpPost]
-        public ActionResult Buscar(String Texto)
-        {
-            return View();
-        }
-
         public ActionResult Error(int error = 0)
         {
             switch (error)

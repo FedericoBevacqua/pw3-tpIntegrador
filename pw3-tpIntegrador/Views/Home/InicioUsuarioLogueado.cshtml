@@ -15,9 +15,9 @@
     <div class="card">
         <div class="card-header"><h5 class="card-title">Buscar propuestas</h5></div>
         <div class="card-body">
-            <form action="/Home/Buscar" method="post">
+            <form action="/Propuestas/Buscar" method="post">
                 <div class="form-group">
-                    @Html.TextBox("Texto", null, new { @class = "form-control", @placeholder = "Ingresá el nombre del usuario o la propuesta que estás buscando" })
+                    @Html.TextBox("keyword", null, new { @class = "form-control", @placeholder = "Ingresá el nombre del usuario o la propuesta que estás buscando" })
                 </div>
 
                 <input type="submit" class="btn btn-primary" value="Buscar" />

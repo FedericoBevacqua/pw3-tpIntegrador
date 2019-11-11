@@ -1,0 +1,10 @@
+﻿@model List<Data.Propuesta>
+
+    <h6>Resultado de Búsqueda:</h6>
+    <ul class="list-group">
+
+        @foreach (var p in @Model)
+        {
+            <li class="list-group-item"><span class="font-weight-bold">@p.Nombre</span> (@p.FechaCreacion)</li>
+        }
+    </ul>

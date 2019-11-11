@@ -6,7 +6,7 @@ using System.Linq;
 namespace Servicios
 {
     public class PropuestaServicio
-	{
+    {
         readonly TpEntities ctx = new TpEntities();
         readonly UsuarioServicio Usuarios = new UsuarioServicio();
 
@@ -23,7 +23,7 @@ namespace Servicios
         {
             int IdPropuesta = GuardarDatosComunes(p);
 
-            foreach(PropuestasDonacionesInsumo ins in listaInsumos)
+            foreach (PropuestasDonacionesInsumo ins in listaInsumos)
             {
                 ins.IdPropuesta = IdPropuesta;
                 ctx.PropuestasDonacionesInsumos.Add(ins);
@@ -65,31 +65,31 @@ namespace Servicios
             return Propuesta.IdPropuesta;
         }
 
-		public Propuesta ObtenerPorId(int id)
-		{
-			return ctx.Propuestas.Find(id);
-		}
+        public Propuesta ObtenerPorId(int id)
+        {
+            return ctx.Propuestas.Find(id);
+        }
 
         public List<Propuesta> ObtenerTodas()
         {
             return ctx.Propuestas.ToList();
         }
 
-		public void CrearDenuncia(Denuncia d)
-		{
-			//Denuncia denuncia = ObtenerPorId(d.IdPropuesta);
+        public void CrearDenuncia(Denuncia d)
+        {
+            //Denuncia denuncia = ObtenerPorId(d.IdPropuesta);
 
-			//var iduser = ;
-			//var idprop = ;
+            //var iduser = ;
+            //var idprop = ;
 
-			//d.IdUsuario = iduser;	//TODO: Recibir IdUsuario de Usuario
-			//d.IdPropuesta = idprop;	//TODO: Recibir IdPropuesta de Propuesta
+            //d.IdUsuario = iduser;	//TODO: Recibir IdUsuario de Usuario
+            //d.IdPropuesta = idprop;	//TODO: Recibir IdPropuesta de Propuesta
 
-			d.FechaCreacion = DateTime.Now;
-			d.Estado = 0; //Tipos Estado: 0-Revision | 1-Aceptada
-			ctx.Denuncias.Add(d);
-			ctx.SaveChanges();
-		}
+            d.FechaCreacion = DateTime.Now;
+            d.Estado = 0; //Tipos Estado: 0-Revision | 1-Aceptada
+            ctx.Denuncias.Add(d);
+            ctx.SaveChanges();
+        }
 
         public void GuardarDonacion(DonacionesMonetaria d)
         {
@@ -100,9 +100,9 @@ namespace Servicios
 
         public void GuardarDonacion(List<DonacionesInsumo> donaciones)
         {
-            foreach(var d in donaciones)
+            foreach (var d in donaciones)
             {
-                if(d.Cantidad > 0)
+                if (d.Cantidad > 0)
                 {
                     ctx.DonacionesInsumos.Add(d);
                 }
@@ -114,6 +114,14 @@ namespace Servicios
         {
             ctx.DonacionesHorasTrabajoes.Add(d);
             ctx.SaveChanges();
+        }
+
+        public List<Propuesta> BuscarPorNombreYUsuario(string keyword)
+        {
+            var resultados = ctx.Propuestas
+                .Where(p => string.Equals(p.Usuario.UserName, keyword) || p.Nombre.Contains(keyword))
+                .ToList();
+            return resultados;
         }
 
     }
