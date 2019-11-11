@@ -119,7 +119,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
 
 			Propuestas.CrearDenuncia(d);
-			return Redirect("/Home/InicioUsuarioLogueado");
+			return Redirect("/Home/Inicio");
 		}
 
 
@@ -228,7 +228,7 @@ namespace pw3_tpIntegrador.Controllers
         public ActionResult Buscar(string keyword)
         {
             var resultado = Propuestas.BuscarPorNombreYUsuario(keyword);
-            return View("Buscar", resultado);
+            return View(resultado);
         }
     }
 }
