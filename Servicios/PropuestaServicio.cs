@@ -1,16 +1,13 @@
 ﻿using Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Servicios
 {
-	public class PropuestaServicio
+    public class PropuestaServicio
 	{
-		TpEntities ctx = new TpEntities();
-        UsuarioServicio Usuarios = new UsuarioServicio();
+        readonly TpEntities ctx = new TpEntities();
+        readonly UsuarioServicio Usuarios = new UsuarioServicio();
 
         public void Alta(PropuestasDonacionesMonetaria p)
         {
@@ -45,27 +42,27 @@ namespace Servicios
 
         public int GuardarDatosComunes(Propuesta p)
         {
-            Propuesta Propuesta = new Propuesta();
-            
-            Propuesta.Usuario = ctx.Usuarios.Find(3); //TODO: Recibir IdUsuarioCreador
-            Propuesta.Estado = 1; // Estados: 1-Activo | 0-Inactivo
-            Propuesta.FechaCreacion = DateTime.Now;
+            int idUsuario = SesionServicio.UsuarioSession.IdUsuario;
+            Propuesta Propuesta = new Propuesta
+            {
+                Usuario = ctx.Usuarios.Find(idUsuario),
+                Estado = 1, // Estados: 1-Activo | 0-Inactivo
+                FechaCreacion = DateTime.Now,
 
-            Propuesta.Nombre = p.Nombre;
-            Propuesta.Descripcion = p.Descripcion;
-            Propuesta.FechaFin = p.FechaFin;
-            Propuesta.TelefonoContacto = p.TelefonoContacto;
-            Propuesta.TipoDonacion = p.TipoDonacion;
-            Propuesta.Foto = p.Foto;
-            Propuesta.PropuestasReferencias = p.PropuestasReferencias;
+                Nombre = p.Nombre,
+                Descripcion = p.Descripcion,
+                FechaFin = p.FechaFin,
+                TelefonoContacto = p.TelefonoContacto,
+                TipoDonacion = p.TipoDonacion,
+                Foto = p.Foto,
+                PropuestasReferencias = p.PropuestasReferencias
+            };
 
             ctx.Propuestas.Add(Propuesta);
             ctx.SaveChanges();
 
             return Propuesta.IdPropuesta;
         }
-
-        
 
 		public Propuesta ObtenerPorId(int id)
 		{

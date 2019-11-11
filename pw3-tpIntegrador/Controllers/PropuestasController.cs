@@ -1,16 +1,14 @@
-﻿using Data;
+using Data;
 using Servicios;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace pw3_tpIntegrador.Controllers
 {
     public class PropuestasController : Controller
     {
-		PropuestaServicio Propuestas = new PropuestaServicio();
+        readonly PropuestaServicio Propuestas = new PropuestaServicio();
 
 		[HttpGet]
 		public ActionResult Crear()
@@ -42,20 +40,20 @@ namespace pw3_tpIntegrador.Controllers
             Propuesta NuevaPropuesta;
             String ViewName;
 
-            if (TipoDonacion == 1)
+            switch(TipoDonacion)
             {
-                NuevaPropuesta = new PropuestasDonacionesMonetaria();
-                ViewName = "CrearTipoMonetaria";
-            } 
-            else if (TipoDonacion == 2)
-            {
-                NuevaPropuesta = new Propuesta();
-                ViewName = "CrearTipoInsumos";
-            } 
-            else
-            {
-                NuevaPropuesta = new PropuestasDonacionesHorasTrabajo();
-                ViewName = "CrearTipoHorasTrabajo";
+                case 1:
+                    NuevaPropuesta = new PropuestasDonacionesMonetaria();
+                    ViewName = "CrearTipoMonetaria";
+                    break;
+                case 2:
+                    NuevaPropuesta = new Propuesta();
+                    ViewName = "CrearTipoInsumos";
+                    break;
+                default:
+                    NuevaPropuesta = new PropuestasDonacionesHorasTrabajo();
+                    ViewName = "CrearTipoHorasTrabajo";
+                    break;
             }
 
             NuevaPropuesta = ExtraerInformacionComun(form, NuevaPropuesta);
