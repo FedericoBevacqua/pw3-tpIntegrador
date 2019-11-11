@@ -125,9 +125,10 @@ namespace Servicios
 
         public List<Propuesta> BuscarPorNombreYUsuario(string keyword)
         {
-            var resultados = ctx.Propuestas
-                .Where(p => string.Equals(p.Usuario.UserName, keyword) || p.Nombre.Contains(keyword))
-                .ToList();
+			int idUsuario = SesionServicio.UsuarioSession.IdUsuario;
+			var resultados = ctx.Propuestas
+                .Where(p => string.Equals(p.Usuario.UserName, keyword) || p.Nombre.Contains(keyword) && p.IdUsuarioCreador != idUsuario).OrderBy(x => x.FechaFin).ThenByDescending(x => x.Valoracion)
+				.ToList();
             return resultados;
         }
 
