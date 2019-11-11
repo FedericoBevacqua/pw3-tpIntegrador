@@ -143,6 +143,27 @@ namespace pw3_tpIntegrador.Controllers
             return Redirect("/Home/Inicio");
         }
 
+        [HttpPost]
+        public ActionResult DonarInsumos(FormCollection form)
+        {
+            List<DonacionesInsumo> donaciones = new List<DonacionesInsumo>();
+            DonacionesInsumo d;
+
+            for(int i=0; i< Int32.Parse(form["CantidadInsumos"]); i++)
+            {
+                d = new DonacionesInsumo();
+                d.Cantidad = Int32.Parse(form["Cantidad[" + i + "]"]);           
+                d.IdUsuario = Int32.Parse(form["IdUsuario"]);
+                d.IdPropuestaDonacionInsumo = Int32.Parse(form["IdPropuestaDonacionInsumo[" + i + "]"]);
+
+                donaciones.Add(d);
+            }
+
+            Propuestas.GuardarDonacion(donaciones);
+            return Redirect("/Home/Inicio");
+        }
+
+        [HttpPost]
         public ActionResult DonarHorasTrabajo(DonacionesHorasTrabajo d)
         {
             Propuestas.GuardarDonacion(d);

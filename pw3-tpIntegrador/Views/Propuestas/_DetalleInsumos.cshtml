@@ -1,12 +1,15 @@
 ﻿@model List<Data.PropuestasDonacionesInsumo>
+
     <h6>Lista de elementos solicitados:</h6>
     <ul class="list-group">
-        <li class="list-group-item list-group-item-success"><span class="font-weight-bold">COLOR DE ITEM COMPLETO</span> (Completo)</li>
 
         @foreach (var p in @Model)
         {
-            <li class="list-group-item list-group-item-warning"><span class="font-weight-bold">@p.Cantidad x @p.Nombre</span> (Faltan ??? para completar)</li>
+            int Donados = p.DonacionesInsumos.Where(x => x.IdPropuestaDonacionInsumo == p.IdPropuestaDonacionInsumo).Sum(x=>x.Cantidad);
+            int Restante = 0 > p.Cantidad - Donados ? 0 : p.Cantidad - Donados;
+            String Texto = Restante == 0 ? "Completo" : "Faltan " + Restante + " para completar";
+            String ClaseColor = Restante == 0 ? "list-group-item-success" : Restante == p.Cantidad ? "list-group-item-danger" : "list-group-item-warning";
+ 
+            <li class="list-group-item @ClaseColor"><span class="font-weight-bold">@p.Cantidad x @p.Nombre</span> (@Texto)</li>
         }
-
-        <li class="list-group-item list-group-item-danger"><span class="font-weight-bold">COLOR ITEM SIN DONACIONES</span> (Faltan 10 para completar)</li>
     </ul>

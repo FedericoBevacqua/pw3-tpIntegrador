@@ -95,6 +95,18 @@ namespace Servicios
             ctx.SaveChanges();
         }
 
+        public void GuardarDonacion(List<DonacionesInsumo> donaciones)
+        {
+            foreach(var d in donaciones)
+            {
+                if(d.Cantidad > 0)
+                {
+                    ctx.DonacionesInsumos.Add(d);
+                }
+            }
+            ctx.SaveChanges();
+        }
+
         public void GuardarDonacion(DonacionesHorasTrabajo d)
         {
             ctx.DonacionesHorasTrabajoes.Add(d);

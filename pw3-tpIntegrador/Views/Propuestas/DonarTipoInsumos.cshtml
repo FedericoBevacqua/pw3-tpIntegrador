@@ -22,7 +22,10 @@
 
             <h5 class="mt-5">Tu donación</h5>
 
-            <form action="/Propuestas/Donar" method="post" class="mt-2" id="donar-formulario">
+            <form action="/Propuestas/DonarInsumos" method="post" class="mt-2" id="donar-formulario">
+
+                <input type="hidden" name="IdUsuario" value="@Model.IdUsuarioCreador" />
+                <input type="hidden" name="CantidadInsumos" value="@Model.PropuestasDonacionesInsumos.Count()" />
 
                 <div class="form-row">
 
@@ -40,11 +43,13 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            @Html.TextBox("Monto[" +@currentIndex +"]", 0, new { @class = "form-control cantidad-insumo-donado", @type = "number", @min = "0", @max = "3" })
+                            @Html.TextBox("Cantidad[" + @currentIndex + "]", 0, new { @class = "form-control cantidad-insumo-donado", @type = "number", @min = "0", @max = "3" })
                         </div>
                         <div class="form-group col-md-9">
-                            @Html.TextBox("Insumo[" + @currentIndex + "]", @p.Nombre + " (Faltan ??? para completar)", new { @class = "form-control", @readonly = "readonly" })
+                            @Html.TextBox("Nombre", @p.Nombre, new { @class = "form-control", @readonly = "readonly" })
                         </div>
+
+                        <input type="hidden" name="IdPropuestaDonacionInsumo[@currentIndex]" value="@p.IdPropuestaDonacionInsumo" />
                     </div>
                 }
 
