@@ -24,13 +24,12 @@
                         @Html.ActionLink("Mi perfil", "MiPerfil", "Usuario", new object { }, new { @class = "nav-link" })
                     </li>
 
-
                     @{
                         // Muestro la opcion de Gestion de Denuncias solo si es Admin el usuario
                         if (((Data.Usuario)Session["UserSession"]).TipoUsuario == 1)
                         {
                             <li class="nav-item">
-                                @Html.ActionLink("Denuncias", "Denuncias", "Propuestas", new object { }, new { @class = "nav-link" })
+                                @Html.ActionLink("Denuncias", "Gestionar", "Denuncias", new object { }, new { @class = "nav-link" })
                             </li>
                         }
                     }
