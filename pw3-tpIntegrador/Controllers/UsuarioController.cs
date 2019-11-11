@@ -125,12 +125,12 @@ namespace pw3_tpIntegrador.Controllers
         {
 			if(SesionServicio.UsuarioSession.UserName != null)
 			{
-				return View("InicioUsuarioLogueado");
+				return View("/Home/InicioUsuarioLogueado");
 			}
 
 			if (SesionServicio.UsuarioSession == null)
 			{
-				return View("Inicio");
+				return View("/Home/Inicio");
 			}
 			else
 			{
@@ -146,7 +146,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
 
 			Usuarios.CrearPerfil(p);
-			return View("InicioUsuarioLogueado");
+			return View("/Home/InicioUsuarioLogueado");
 		}
 
         [HttpGet]
