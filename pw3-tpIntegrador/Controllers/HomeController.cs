@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Data;
 
 namespace pw3_tpIntegrador.Controllers
 {
 	public class HomeController : Controller
 	{
-		public ActionResult Inicio()
+        private PropuestaServicio Propuestas = new PropuestaServicio();
+        public ActionResult Inicio()
 		{
 			if (SesionServicio.UsuarioSession == null)
 			{
-				return View();
+				return View(Propuestas.ObtenerTodas());
 			}
 			else
 			{

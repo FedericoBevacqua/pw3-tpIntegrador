@@ -40,7 +40,7 @@ namespace Servicios
             ctx.SaveChanges();
         }
 
-        public int GuardarDatosComunes(Propuesta p)
+        private int GuardarDatosComunes(Propuesta p)
         {
             int idUsuario = SesionServicio.UsuarioSession.IdUsuario;
             Propuesta Propuesta = new Propuesta
@@ -69,6 +69,11 @@ namespace Servicios
 			return ctx.Propuestas.Find(id);
 		}
 
+        public List<Propuesta> ObtenerTodas()
+        {
+            return ctx.Propuestas.ToList();
+        }
+
 		public void CrearDenuncia(Denuncia d)
 		{
 			//Denuncia denuncia = ObtenerPorId(d.IdPropuesta);
@@ -84,5 +89,31 @@ namespace Servicios
 			ctx.Denuncias.Add(d);
 			ctx.SaveChanges();
 		}
-	}
+
+        public void GuardarDonacion(DonacionesMonetaria d)
+        {
+            d.FechaCreacion = DateTime.Now;
+            ctx.DonacionesMonetarias.Add(d);
+            ctx.SaveChanges();
+        }
+
+        public void GuardarDonacion(List<DonacionesInsumo> donaciones)
+        {
+            foreach(var d in donaciones)
+            {
+                if(d.Cantidad > 0)
+                {
+                    ctx.DonacionesInsumos.Add(d);
+                }
+            }
+            ctx.SaveChanges();
+        }
+
+        public void GuardarDonacion(DonacionesHorasTrabajo d)
+        {
+            ctx.DonacionesHorasTrabajoes.Add(d);
+            ctx.SaveChanges();
+        }
+
+    }
 }

@@ -194,10 +194,7 @@
     <Content Include="Views\Propuestas\_DetalleInsumos.cshtml" />
     <Content Include="Views\Propuestas\_DetalleHoras.cshtml" />
     <Content Include="Views\Propuestas\Denunciar.cshtml" />
-    <Content Include="Views\Propuestas\Donar.cshtml" />
-    <Content Include="Views\Propuestas\_DonarMonetaria.cshtml" />
-    <Content Include="Views\Propuestas\_DonarInsumos.cshtml" />
-    <Content Include="Views\Propuestas\_DonarHoras.cshtml" />
+    <Content Include="Views\Propuestas\DonarTipoMonetaria.cshtml" />
     <Content Include="Views\Propuestas\_CamposExclusivosMonetaria.cshtml" />
     <Content Include="Views\Propuestas\_CamposExclusivosInsumos.cshtml" />
     <Content Include="Views\Propuestas\_CamposExclusivosHoras.cshtml" />
@@ -208,6 +205,8 @@
     <Content Include="Views\Propuestas\CrearTipoMonetaria.cshtml" />
     <Content Include="Views\Propuestas\CrearTipoInsumos.cshtml" />
     <Content Include="Views\Propuestas\CrearTipoHorasTrabajo.cshtml" />
+    <Content Include="Views\Propuestas\DonarTipoInsumos.cshtml" />
+    <Content Include="Views\Propuestas\DonarTipoHorasTrabajo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

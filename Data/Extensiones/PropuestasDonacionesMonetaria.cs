@@ -11,5 +11,5 @@ namespace Data
 	[MetadataType(typeof(PropuestasDonacionesMonetariaMetadata))]
 	public partial class PropuestasDonacionesMonetaria : Propuesta
 	{
-	}
+    }
 }
