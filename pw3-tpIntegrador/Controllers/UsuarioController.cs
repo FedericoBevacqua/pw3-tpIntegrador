@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using Servicios;
 using System;
 using System.Collections.Generic;
@@ -105,7 +105,22 @@ namespace pw3_tpIntegrador.Controllers
 				return View("Registro", u);
 			}
 		}
-		[HttpGet]
+
+        [HttpGet]
+        public ActionResult MiPerfil()
+        {
+            Usuario usuario = SesionServicio.UsuarioSession;
+
+            if (usuario != null)
+            {
+                return View("MiPerfil", SesionServicio.UsuarioSession);
+            } else
+            {
+                return View("Login");
+            }
+        }
+
+        [HttpGet]
 		public ActionResult CrearPerfil()
         {
 			if(SesionServicio.UsuarioSession.UserName != null)
