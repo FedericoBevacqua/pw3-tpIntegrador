@@ -102,9 +102,21 @@ namespace pw3_tpIntegrador.Controllers
 
 		public ActionResult Detalle(int Id)
         {
-            Propuesta p = Propuestas.ObtenerPorId(Id);
+            if (SesionServicio.UsuarioSession == null)
+            {
+                return RedirectToAction("Login", "Usuario", new
+                {
+                    Redirigir = "/Propuestas/Detalle/" + Id.ToString(),
+                    MensajeError = "Debés iniciar sesión para continuar"
+                }); ;
+            } else
+            {
+                Propuesta p = Propuestas.ObtenerPorId(Id);
+                return View(p);
+            }
+                
 
-            return View(p);
+            
         }
 		[HttpGet]
 		public ActionResult Denunciar(int Id)
@@ -123,23 +135,29 @@ namespace pw3_tpIntegrador.Controllers
 			return Redirect("/Home/Inicio");
 		}
 
-
 		public ActionResult Donar(int Id)
         {
             Propuesta p = Propuestas.ObtenerPorId(Id);
+            Usuario usuario = SesionServicio.UsuarioSession;
 
-            if(p.TipoDonacion == 1)
+            // Si el usuario no es el mismo que creo la propuesta o es Admin puede donar
+            if (usuario != null && usuario.IdUsuario != p.IdUsuarioCreador || SesionServicio.IsAdmin)
             {
-                return View("DonarTipoMonetaria", p);
+                switch(p.TipoDonacion)
+                {
+                    case 1:
+                        return View("DonarTipoMonetaria", p);
+
+                    case 2:
+                        return View("DonarTipoInsumos", p);
+
+                    case 3:
+                        return View("DonarTipoHorasTrabajo", p);
+                }
+
             }
-            else if (p.TipoDonacion == 2)
-            {
-                return View("DonarTipoInsumos", p);
-            }
-            else
-            {
-                return View("DonarTipoHorasTrabajo", p);
-            }
+
+            return Redirect("/Home/Inicio");
         }
 
         [HttpPost]

@@ -149,23 +149,12 @@ namespace Servicios
 			int idUsuario = SesionServicio.UsuarioSession.IdUsuario;
 			var PropuestaActual = ObtenerPorId(Id);
 
-			Valoracion.IdPropuesta = PropuestaActual.IdPropuesta;
-			Valoracion.IdUsuario = idUsuario;
-			Valoracion.Valoracion = false;
-			ctx.PropuestasValoraciones.Add(Valoracion);
-			ctx.SaveChanges();
-		}
-		public void CalcularValoracionTotal(int Id)
-		{
-			var PropuestaActual = ObtenerPorId(Id);
-			var cantidadMeGusta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta && x.Valoracion == true).Count();
-			var cantidadTotal = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta).Count();
+        public void Bloquear(int id)
+        {
+            Propuesta propuesta = ctx.Propuestas.Find(id);
+            propuesta.Estado = 0;
+            ctx.SaveChanges();
+        }
 
-			PropuestaActual.Valoracion = (decimal) cantidadMeGusta / cantidadTotal * 100;
-			//ctx.Propuestas.Add(PropuestaActual);
-			ctx.SaveChanges();
-
-
-		}
-	}
+    }
 }

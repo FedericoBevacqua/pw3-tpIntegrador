@@ -24,13 +24,13 @@
                     </li>
 
                     @{
-                        // Muestro la opcion de Gestion de Denuncias solo si es Admin el usuario
+                        @*// Muestro la opcion de Gestion de Denuncias solo si es Admin el usuario
                         if (((Data.Usuario)Session["UserSession"]).TipoUsuario == 1)
                         {
                             <li class="nav-item">
                                 @Html.ActionLink("Denuncias", "Gestionar", "Denuncias", new object { }, new { @class = "nav-link" })
                             </li>
-                        }
+                        }*@
                     }
 
                     <li class="nav-item">
