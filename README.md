@@ -5,11 +5,7 @@
 ## Grupo de Trabajo:
   * Federico Bevacqua (https://github.com/FedericoBevacqua)
 
-  * Ezequiel Luque (https://github.com/quelo777)
-
   * Daniel Marconi (https://github.com/daniel-marconi)
-
-  * Pablo Rearte ()
 
 ## Profesores:
  * Mariano Juiz (https://github.com/juizmariano)
