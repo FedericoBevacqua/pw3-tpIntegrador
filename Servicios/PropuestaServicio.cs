@@ -187,7 +187,8 @@ namespace Servicios
 			var cantidadTotal = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta).Count();
 
             decimal Valoracion = (decimal)cantidadMeGusta / cantidadTotal * 100;
-            PropuestaActual.Valoracion = Valoracion;
+            decimal Resultado = Math.Round(Valoracion, 2);
+            PropuestaActual.Valoracion = Resultado;
 			ctx.SaveChanges();
 
             return Valoracion;
