@@ -84,18 +84,18 @@ namespace Servicios
 		}
 		public void CrearDenuncia(Denuncia d)
         {
-            //Denuncia denuncia = ObtenerPorId(d.IdPropuesta);
-
-            //var iduser = ;
-            //var idprop = ;
-
-            //d.IdUsuario = iduser;	//TODO: Recibir IdUsuario de Usuario
-            //d.IdPropuesta = idprop;	//TODO: Recibir IdPropuesta de Propuesta
-
             d.FechaCreacion = DateTime.Now;
-            d.Estado = 0; //Tipos Estado: 0-Revision | 1-Aceptada
+            d.Estado = 0; //Tipos Estado: 0-Revision | 1-Aceptada | 2-Desestimada
             ctx.Denuncias.Add(d);
             ctx.SaveChanges();
+
+            if(ctx.Denuncias.Where(x=>x.IdPropuesta == d.IdPropuesta).Where(x=>x.Estado != 2).Count() >= 5)
+            {
+                //Si hay 5 denuncias sobre esta publicación en revisión o aceptadas se bloquea la publicación
+                Propuesta p = ctx.Propuestas.Find(d.Propuesta.IdPropuesta);
+                p.Estado = 0; //Estado inactivo
+                ctx.SaveChanges();
+            }
         }
 
         public void GuardarDonacion(DonacionesMonetaria d)
