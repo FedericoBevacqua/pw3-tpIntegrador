@@ -14,7 +14,7 @@ namespace pw3_tpIntegrador
 		public int IdMotivo { get; set; }
 
 		[Required(ErrorMessage = "El Comentario no puede estar vacio")]
-		[MaxLength(50, ErrorMessage = "Maximo 300 caracteres")]
+		[MaxLength(300, ErrorMessage = "Maximo 300 caracteres")]
 		public string Comentarios { get; set; }
 	}
 }
