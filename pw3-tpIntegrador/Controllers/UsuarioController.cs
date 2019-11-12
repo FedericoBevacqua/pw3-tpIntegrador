@@ -27,7 +27,7 @@ namespace pw3_tpIntegrador.Controllers
 
         }
 		[HttpPost]
-		public ActionResult Login(Usuario l)
+		public ActionResult Login(Usuario l, string url)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -58,7 +58,12 @@ namespace pw3_tpIntegrador.Controllers
                     {
                         return Redirect("/Usuario/CrearPerfil");
                     }
-                    
+					if (!string.IsNullOrEmpty(url))
+					{
+						//Si la url no es nula redirigue donde deseaba ir anteriormente.
+						return Redirect(url);
+					}
+
 					return Redirect("/Home/Inicio");
 				}
 				else
