@@ -110,19 +110,14 @@ namespace pw3_tpIntegrador.Controllers
         {
             if (SesionServicio.UsuarioSession == null)
             {
-                return RedirectToAction("Login", "Usuario", new
-                {
-                    Redirigir = "/Propuestas/Detalle/" + Id.ToString(),
-                    MensajeError = "Debés iniciar sesión para continuar"
-                }); ;
+				//Guarda url donde se desea ingresar, y se envia a la vista Login como hidden
+				string url = Url.Content(Request.Url.PathAndQuery);
+				return RedirectToAction("Login", "Usuario", new { url, MensajeError = "Debés iniciar sesión para continuar" });
             } else
             {
                 Propuesta p = Propuestas.ObtenerPorId(Id);
                 return View(p);
             }
-                
-
-            
         }
 		
 		public ActionResult Denunciar(int Id)
