@@ -136,8 +136,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DenunciasController.cs" />
     <Compile Include="Controllers\DonacionController.cs" />
+    <Compile Include="Controllers\HistorialDonacionesApiWeb.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PropuestasController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
