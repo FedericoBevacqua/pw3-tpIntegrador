@@ -15,7 +15,7 @@
 			<div class="card-body">
 				<h5 class="card-title">@p.Nombre</h5>
 				<div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
-				<div class="mb-4"><small>Creado por @p.Usuario.Nombre.ToLower().@p.Usuario.Apellido.ToLower() el @p.FechaCreacion.Date.ToShortDateString()</small></div>
+				<div class="mb-4"><small>Creado por @p.Usuario.Nombre.ToLower().@p.Usuario.Apellido.ToLower() y finaliza el: @p.FechaFin.Date.ToShortDateString()</small></div>
 
 				<p class="card-text">@p.Descripcion</p>
 				<a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver publicación</a>
