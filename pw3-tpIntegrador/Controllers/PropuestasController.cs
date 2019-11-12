@@ -268,12 +268,28 @@ namespace pw3_tpIntegrador.Controllers
 
             return listaInsumos;
         }
-
         [HttpPost]
         public ActionResult Buscar(string keyword)
         {
             var resultado = Propuestas.BuscarPorNombreYUsuario(keyword);
             return View(resultado);
         }
-    }
+		[HttpGet]
+		public ActionResult MeGusta(int Id)
+		{
+			Propuestas.ValorarMeGusta(Id);
+			Propuestas.CalcularValoracionTotal(Id);
+
+			return Redirect("/Home/Inicio");
+		}
+
+		[HttpGet]
+		public ActionResult NoMeGusta(int Id)
+		{
+			Propuestas.ValorarNoMeGusta(Id);
+			Propuestas.CalcularValoracionTotal(Id);
+
+			return Redirect("/Home/Inicio");
+		}
+	}
 }
