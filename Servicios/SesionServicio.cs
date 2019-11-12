@@ -1,14 +1,9 @@
 ﻿using Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace Servicios
 {
-	public static class SesionServicio
+    public static class SesionServicio
 	{
 		internal static readonly object UsuarioLogin;
 
@@ -23,5 +18,7 @@ namespace Servicios
 				HttpContext.Current.Session["UserSession"] = value;
 			}
 		}
-	}
+
+        public static bool IsAdmin => UsuarioSession != null && UsuarioSession.TipoUsuario == 1;
+    }
 }
