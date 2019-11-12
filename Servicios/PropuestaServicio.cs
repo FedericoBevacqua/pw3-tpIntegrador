@@ -198,5 +198,35 @@ namespace Servicios
             return ctx.Propuestas.Where(p => p.IdUsuarioCreador == id).Count();
         }
 
+        public void Modificar(int idPropuesta, Propuesta propuesta)
+        {
+            Propuesta propuestaAModificar = ObtenerPorId(idPropuesta);
+            propuestaAModificar.Nombre = propuesta.Nombre;
+            propuestaAModificar.Descripcion = propuesta.Descripcion;
+            propuestaAModificar.FechaFin = propuesta.FechaFin;
+            propuestaAModificar.TelefonoContacto = propuesta.TelefonoContacto;
+            propuestaAModificar.TipoDonacion = propuesta.TipoDonacion;
+
+            propuestaAModificar.Foto = !string.IsNullOrEmpty(propuesta.Foto) ? propuesta.Foto : string.Empty;
+            switch (propuestaAModificar.TipoDonacion)
+            {
+                case 1: //TipoMonetaria
+                    propuestaAModificar.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero = (propuesta as PropuestasDonacionesMonetaria).Dinero;
+                    propuestaAModificar.PropuestasDonacionesMonetarias.FirstOrDefault().CBU = (propuesta as PropuestasDonacionesMonetaria).CBU;
+                    break;
+                case 2: //TipoInsumos
+                    //TODO: Copiar lista de insumos modificada
+                    //List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
+                    //((PropuestasDonacionesInsumo)propuestaAModificar).DonacionesInsumos = listaInsumos;
+                    break;
+                case 3: //TipoHorasTrabajo
+                    propuestaAModificar.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().CantidadHoras = (propuesta as PropuestasDonacionesHorasTrabajo).CantidadHoras;
+                    propuestaAModificar.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().Profesion = (propuesta as PropuestasDonacionesHorasTrabajo).Profesion;
+                    break;
+            }
+
+            ctx.SaveChanges();
+        }
+
 	}
 }

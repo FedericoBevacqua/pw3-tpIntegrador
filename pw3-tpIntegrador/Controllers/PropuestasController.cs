@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using pw3_tpIntegrador.Utils;
+using System.Linq;
 
 namespace pw3_tpIntegrador.Controllers
 {
@@ -29,6 +30,7 @@ namespace pw3_tpIntegrador.Controllers
                 return Redirect("/Home/Inicio");
             }
         }
+
         [HttpPost]
 		public ActionResult Crear(FormCollection form)
 		{
@@ -39,6 +41,91 @@ namespace pw3_tpIntegrador.Controllers
 
 			return CrearPaso2(form);
 		}
+
+        [HttpGet]
+        public ActionResult Modificar(int id)
+        {
+            if (SesionServicio.UsuarioSession == null)
+            {
+                return Redirect("/Home/Inicio");
+            }
+            else
+            {
+                // TODO: Solo puedo editar mis propuestas o ser Admin
+                return View(Propuestas.ObtenerPorId(id));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Modificar(FormCollection form)
+        {
+            int idPropuesta = int.Parse(form["idPropuesta"]);
+            int tipoDonacion = int.Parse(form["TipoDonacion"]);
+
+            Propuesta propuestaAModificar = Propuestas.ObtenerPorId(idPropuesta);
+
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                string nombreSignificativo = form["Nombre"] + DateTime.Now.ToString();
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                propuestaAModificar.Foto = pathRelativoImagen;
+            }
+
+            switch (tipoDonacion)
+            {
+                case 1: //TipoMonetaria
+                    PropuestasDonacionesMonetaria pam = propuestaAModificar.PropuestasDonacionesMonetarias.FirstOrDefault();
+
+                    pam.Nombre = form["Nombre"];
+                    pam.Descripcion = form["Descripcion"];
+                    pam.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+                    pam.TelefonoContacto = form["TelefonoContacto"];
+                    pam.TipoDonacion = int.Parse(form["TipoDonacion"]);
+                    pam.Foto = propuestaAModificar.Foto;
+
+                    pam.Dinero = decimal.Parse(form["Dinero"]);
+                    pam.CBU = form["CBU"];
+
+                    Propuestas.Modificar(idPropuesta, pam);
+                    break;
+
+                case 2: //TipoInsumos
+                    PropuestasDonacionesInsumo pi = propuestaAModificar.PropuestasDonacionesInsumos.FirstOrDefault();
+
+                    pi.Nombre = form["Nombre"];
+                    pi.Descripcion = form["Descripcion"];
+                    pi.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+                    pi.TelefonoContacto = form["TelefonoContacto"];
+                    pi.TipoDonacion = int.Parse(form["TipoDonacion"]);
+                    pi.Foto = propuestaAModificar.Foto;
+
+                    //TODO: Copiar lista de insumos modificada
+                    //List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
+                    //((PropuestasDonacionesInsumo)propuestaAModificar).DonacionesInsumos = listaInsumos;
+                    Propuestas.Modificar(idPropuesta, pi);
+                    break;
+
+                case 3: //TipoHorasTrabajo
+                    PropuestasDonacionesHorasTrabajo pdt = propuestaAModificar.PropuestasDonacionesHorasTrabajoes.FirstOrDefault();
+
+                    pdt.Nombre = form["Nombre"];
+                    pdt.Descripcion = form["Descripcion"];
+                    pdt.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+                    pdt.TelefonoContacto = form["TelefonoContacto"];
+                    pdt.TipoDonacion = int.Parse(form["TipoDonacion"]);
+                    pdt.Foto = propuestaAModificar.Foto;
+
+                    pdt.CantidadHoras = int.Parse(form["CantidadHoras"]);
+                    pdt.Profesion = form["Profesion"];
+
+                    Propuestas.Modificar(idPropuesta, pdt);
+                    break;
+            }
+
+            //TODO: Modificar Referencias 1 y 2
+            return Redirect("/Home/Inicio");
+        }
 
         [HttpPost]
         public ActionResult CrearPaso2(FormCollection form)
@@ -105,8 +192,8 @@ namespace pw3_tpIntegrador.Controllers
             Propuestas.Alta(p);
             return Redirect("/Home/Inicio");
         }
-
-		public ActionResult Detalle(int Id)
+       
+        public ActionResult Detalle(int Id)
         {
             Usuario Usuario = SesionServicio.UsuarioSession;
             if (Usuario == null)
