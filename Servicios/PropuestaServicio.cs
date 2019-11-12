@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -153,7 +153,12 @@ namespace Servicios
 				ctx.PropuestasValoraciones.Add(Valoracion);
 				ctx.SaveChanges();
 			}
-		}
+            else
+            {
+                consulta.Valoracion = true;
+                ctx.SaveChanges();
+            }
+        }
 		public void ValorarNoMeGusta(int Id)
 		{
 			PropuestasValoracione Valoracion = new PropuestasValoracione();
@@ -169,6 +174,11 @@ namespace Servicios
 			ctx.PropuestasValoraciones.Add(Valoracion);
 			ctx.SaveChanges();
 			}
+            else
+            {
+                consulta.Valoracion = false;
+                ctx.SaveChanges();
+            }
 		}
 		public void CalcularValoracionTotal(int Id)
 		{
