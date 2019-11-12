@@ -5,3 +5,19 @@
 .boton-me-gusta, .boton-no-me-gusta, .boton-bloquear-publicacion, .boton-desestimar-denuncia{
     max-width: 49%;
 }
+
+.card-deck{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-deck .card {
+    flex: 0 0 29%;
+    margin-top: 25px;
+}
+
+@media (min-width: 1000px){
+    .card-deck .card {
+        flex: 0 0 30%;
+    }
+}

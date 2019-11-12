@@ -50,7 +50,7 @@
         <label class="custom-control-label" for="customSwitch1">Sólo visualizar activas</label>
     </div>
 
-    <div class="card-columns">
+    <div class="card-deck">
         @foreach (var p in @Model.Where(p => p.Usuario.IdUsuario == ((Data.Usuario)Session["UserSession"]).IdUsuario))
         {
             <div class="card">
@@ -88,7 +88,7 @@
 <hr />
 
 <h3>Propuestas de otros usuarios</h3>
-<div class="card-columns">
+<div class="card-deck">
     <!-- Solo se muestran las propuetas activas que no sean del usuario actual -->
     @foreach (var p in @Model.Where(p => p.IdUsuarioCreador != ((Data.Usuario)Session["UserSession"]).IdUsuario && p.Estado == 1))
     {
