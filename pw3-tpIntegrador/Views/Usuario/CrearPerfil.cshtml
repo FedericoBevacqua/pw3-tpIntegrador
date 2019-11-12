@@ -6,7 +6,7 @@
 <div class="container">
 	<h2>Crear perfil</h2>
 
-    <form action="/Usuario/CrearPerfil" method="post">
+    <form action="/Usuario/CrearPerfil" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="IdUsuario" value="@Model.IdUsuario" />
 
@@ -26,8 +26,8 @@
             <label>Foto de perfil:</label>
             <div class="form-row mt-2 mb-4">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="Imagen" name="Imagen" lang="es">
-                    <label class="custom-file-label" for="Imagen">Seleccionar archivo</label>
+                    <input type="file" class="custom-file-input" id="Foto" name="Foto" lang="es">
+                    <label class="custom-file-label" for="Foto">Seleccionar archivo</label>
                 </div>
             </div>
         </div>

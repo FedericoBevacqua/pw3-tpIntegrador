@@ -14,7 +14,7 @@ namespace pw3_tpIntegrador.Controllers
 		{
 			if (SesionServicio.UsuarioSession == null)
 			{
-				return View(Propuestas.ObtenerActivas());
+				return View(Propuestas.ObtenerCincoMejoresActivas());
 			}
 			else
 			{

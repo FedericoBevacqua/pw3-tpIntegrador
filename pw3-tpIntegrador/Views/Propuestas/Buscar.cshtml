@@ -1,10 +1,29 @@
 ﻿@model List<Data.Propuesta>
 
-    <h6>Resultado de Búsqueda:</h6>
-    <ul class="list-group">
+@{
+	ViewBag.Title = "Buscar";
+	ViewBag.ImgUrl = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
+	Layout = "~/Views/Shared/_PropuestasLayout.cshtml"; //TODO: Implementar Layout del navbar. Tira error
+}
 
-        @foreach (var p in @Model)
-        {
-            <li class="list-group-item"><span class="font-weight-bold">@p.Nombre</span> (@p.FechaCreacion)</li>
-        }
-    </ul>
+<h6>Resultado de Búsqueda:</h6>
+<div class="card-columns">
+
+	@foreach (var p in @Model)
+	{
+		<div class="card">
+			<img src="@ViewBag.ImgUrl" class="card-img-top" alt="@p.Nombre">
+			<div class="card-body">
+				<h5 class="card-title">@p.Nombre</h5>
+				<div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
+				<div class="mb-4"><small>Creado por @p.Usuario.Nombre.ToLower().@p.Usuario.Apellido.ToLower() el @p.FechaCreacion.Date.ToShortDateString()</small></div>
+
+				<p class="card-text">@p.Descripcion</p>
+				<a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver publicación</a>
+			</div>
+			<div class="card-footer">
+				<div>Aceptación: @p.Valoracion??%</div>
+			</div>
+		</div>
+	}
+</div>

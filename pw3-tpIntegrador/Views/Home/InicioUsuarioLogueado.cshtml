@@ -57,7 +57,7 @@
             <div class="card">
                 @if (!String.IsNullOrEmpty(p.Foto))
                 {
-                    <img src="@p.Foto" class="card-img-top" alt="Foto Propuesta">
+                    <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
                 }
                 else
                 {
@@ -66,7 +66,8 @@
                 }
                 <div class="card-body">
                     <h5 class="card-title">@p.Nombre</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Creada por @p.Usuario.UserName el @p.FechaCreacion</h6>
+                    <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
+                    <div class="mb-4"><small>Creada por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</small></div>
                     <p class="card-text">@p.Descripcion</p>
                     <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-info">Ver Detalle</a>
 
@@ -102,7 +103,7 @@
         <div class="card">
             @if (!String.IsNullOrEmpty(p.Foto))
             {
-                <img src="@p.Foto" class="card-img-top" alt="Foto Propuesta">
+                <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
             }
             else
             {
@@ -111,10 +112,9 @@
             }
                 <div class="card-body">
                     <h5 class="card-title">@p.Nombre</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Creada por @p.Usuario.UserName el @p.FechaCreacion</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Creada por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</h6>
                     <p class="card-text">@p.Descripcion</p>
                     <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-info">Ver Detalle</a>
-                    <a href="/Propuestas/Modificar/@p.IdPropuesta" class="btn btn-danger">Editar Propuesta</a>
                 </div>
             <div class="card-footer">
                 @if (p.Valoracion != null)
