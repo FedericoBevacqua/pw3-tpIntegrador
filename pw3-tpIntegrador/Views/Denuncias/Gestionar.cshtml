@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Data.Denuncia>
 @{
 	ViewBag.Title = "Gestionar";
 	ViewBag.Img = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
@@ -9,22 +9,31 @@
 <div class="container">
     <h2>Gestionar denuncias</h2>
     <div class="card-columns mt-4">
-        @for (int i = 0; i < 5; i++)
+        @foreach (var d in @Model)
         {
-            <div class="card">
-                <img src="@ViewBag.Img" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Pinta mi cerca</h5>
-                    <div class="card-subtitle text-muted mb-3"><small>Denuncia hecha por abraham.simpson el 12/10/2019</small></div>
-                    <div class="card-subtitle">Motivo: Fraude</div>
-                    <div class="card-text">El usuario escribió: <span class="font-italic text-muted">Sabía que conocía a ese tal Sr. Miyagi. Le di un plato de avena en 1947 para que pintara mi cocina y nunca la terminó. NO LE DONEN NADA A ESTE ESTAFADOR.</span></div>
-                    <a href="#" class="btn btn-primary btn-block mt-4">Ver publicación denunciada</a>
-                    <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-danger mt-3 flex-fill boton-bloquear-publicacion">Bloquear</a>
-                        <a href="#" class="btn btn-secondary mt-3 flex-fill boton-desestimar-denuncia">Desestimar</a>
-                    </div>
+        <div class="card">
+            @if (!String.IsNullOrEmpty(d.Propuesta.Foto))
+            {
+                <img src="@d.Propuesta.Foto" class="card-img-top" alt="@d.Propuesta.Nombre">
+            }
+            else
+            {
+                // TODO: Modificar Imagen por default
+                <img src="@ViewBag.Img" class="card-img-top" alt="@d.Propuesta.Nombre">
+            }
+
+            <div class="card-body">
+                <h5 class="card-title">@d.Propuesta.Nombre</h5>
+                <div class="card-subtitle text-muted mb-3"><small>Denuncia hecha por @d.Usuario.UserName el @d.FechaCreacion</small></div>
+                <div class="card-subtitle">Motivo: @d.MotivoDenuncia.Descripcion</div>
+                <div class="card-text">El usuario escribió: <span class="font-italic text-muted">@d.Comentarios</span></div>
+                <a href="/Propuestas/Detalle/@d.IdPropuesta" class="btn btn-primary btn-block mt-4">Ver publicación denunciada</a>
+                <div class="d-flex justify-content-between">
+                    <a href="/Denuncias/Aceptar/@d.IdDenuncia" class="btn btn-danger mt-3 flex-fill boton-bloquear-publicacion">Aceptar</a>
+                    <a href="/Denuncias/Desestimar/@d.IdDenuncia" class="btn btn-secondary mt-3 flex-fill boton-desestimar-denuncia">Desestimar</a>
                 </div>
             </div>
+        </div>
         }
     </div>
 </div>

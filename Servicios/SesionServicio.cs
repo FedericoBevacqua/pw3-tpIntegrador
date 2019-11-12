@@ -23,5 +23,7 @@ namespace Servicios
 				HttpContext.Current.Session["UserSession"] = value;
 			}
 		}
-	}
+
+        public static bool IsAdmin => UsuarioSession != null && UsuarioSession.TipoUsuario == 1;
+    }
 }

@@ -132,5 +132,12 @@ namespace Servicios
             return resultados;
         }
 
+        public void Bloquear(int id)
+        {
+            Propuesta propuesta = ctx.Propuestas.Find(id);
+            propuesta.Estado = 0;
+            ctx.SaveChanges();
+        }
+
     }
 }
