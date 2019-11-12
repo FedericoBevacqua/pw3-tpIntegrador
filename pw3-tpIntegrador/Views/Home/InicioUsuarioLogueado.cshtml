@@ -39,24 +39,25 @@
 
 <h3>Tus propuestas</h3>
 
-<div class="custom-control custom-switch">
-    <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
-    <label class="custom-control-label" for="customSwitch1">Sólo visualizar activas</label>
+<div class="custom-control custom-switch mt-4 mb-2">
+	@*TODO: Checkbox activo: Muestra propuestas activas, sino, muestra todas. (act e inac)*@
+	<input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+	<label class="custom-control-label" for="customSwitch1">Sólo visualizar activas</label>
 </div>
 <div class="card-columns">
-    @foreach (var p in @Model)
+    @foreach (var p in Model)
     {
         <div class="card">
             <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
             <div class="card-body">
                 <h5 class="card-title">@p.Nombre</h5>
                 <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
-                <div class="mb-4"><small>Creado por @p.Usuario.Nombre.ToLower().@p.Usuario.Apellido.ToLower() el @p.FechaCreacion.Date.ToShortDateString()</small></div>
-
-
+                <div class="mb-4"><small>Creado por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</small></div>
                 <p class="card-text">@p.Descripcion</p>
-                <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver publicación</a>
+                <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver Detalle</a>
+                <a href="/Propuestas/Modificar/@p.IdPropuesta" class="btn btn-primary">Editar Propuesta</a>
             </div>
+
             <div class="card-footer">
                 <div>Aceptación: ??%</div>
             </div>
@@ -69,18 +70,15 @@
 
 <h3>Propuestas de otros usuarios</h3>
 <div class="card-columns">
-    @foreach (var p in @Model)
+    @foreach (var p in Model)
     {
         <div class="card">
             <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
             <div class="card-body">
                 <h5 class="card-title">@p.Nombre</h5>
-                <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
-                <div class="mb-4"><small>Creado por @p.Usuario.Nombre.ToLower().@p.Usuario.Apellido.ToLower() el @p.FechaCreacion.Date.ToShortDateString()</small></div>
-
-
+                <h6 class="card-subtitle mb-2 text-muted">Creada por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</h6>
                 <p class="card-text">@p.Descripcion</p>
-                <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver publicación</a>
+				<a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver Detalle</a>
             </div>
             <div class="card-footer">
                 <div>Aceptación: ??%</div>

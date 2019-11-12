@@ -1,16 +1,15 @@
-﻿using Servicios;
-using System;
+﻿using Data;
+using Servicios;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Data;
 
 namespace pw3_tpIntegrador.Controllers
 {
-	public class HomeController : Controller
+    public class HomeController : Controller
 	{
         private PropuestaServicio Propuestas = new PropuestaServicio();
+
+        [HttpGet]
         public ActionResult Inicio()
 		{
 			if (SesionServicio.UsuarioSession == null)
@@ -19,24 +18,9 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado");
+				return View("InicioUsuarioLogueado", Propuestas.ObtenerTodas());
 			}
 		}
-
-        //Eliminar este action cuando se agregue la logica que hace el redirect desde el action Inicio()
-        public ActionResult InicioUsuarioLogueado()
-        {
-            List<Propuesta> Todas = Propuestas.ObtenerTodas();
-
-            if (SesionServicio.UsuarioSession == null)
-			{
-				return View("Inicio", Todas);
-			}
-			else
-			{
-				return View(Todas);
-			}
-        }
 
         public ActionResult Error(int error = 0)
         {

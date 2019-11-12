@@ -16,8 +16,8 @@ namespace pw3_tpIntegrador.Controllers
         {
 			if (SesionServicio.UsuarioSession == null)
 			{
-				return View("Inicio");
-			}
+				return Redirect("/Home/Inicio");
+            }
 			else
 			{
 				return View();
@@ -120,7 +120,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
 
 			Propuestas.CrearDenuncia(d);
-			return Redirect("/Home/InicioUsuarioLogueado");
+			return Redirect("/Home/Inicio");
 		}
 
 
@@ -145,7 +145,16 @@ namespace pw3_tpIntegrador.Controllers
         [HttpPost]
         public ActionResult DonarMonetaria(DonacionesMonetaria d)
         {
+
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && Request.Files[0].ContentType.Contains("image"))
+            {
+                string nombreSignificativo = d.ArchivoTransferencia + DateTime.Now.ToString();
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                d.ArchivoTransferencia = pathRelativoImagen;
+            }
+
             Propuestas.GuardarDonacion(d);
+
             return Redirect("/Home/Inicio");
         }
 
@@ -239,7 +248,7 @@ namespace pw3_tpIntegrador.Controllers
         public ActionResult Buscar(string keyword)
         {
             var resultado = Propuestas.BuscarPorNombreYUsuario(keyword);
-            return View("Buscar", resultado);
+            return View(resultado);
         }
     }
 }

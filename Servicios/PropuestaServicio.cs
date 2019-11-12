@@ -74,8 +74,15 @@ namespace Servicios
         {
             return ctx.Propuestas.Where(x=>x.IdPropuesta>33).ToList();
         }
-
-        public void CrearDenuncia(Denuncia d)
+		public List<Propuesta> ObtenerActivas()
+		{
+			return ctx.Propuestas.Where(x => x.Estado == 1).ToList();
+		}
+		public List<Propuesta> ObtenerCincoMejoresActivas()
+		{
+			return ctx.Propuestas.Where(x => x.Estado == 1).OrderByDescending(x => x.Valoracion).Take(5).ToList();
+		}
+		public void CrearDenuncia(Denuncia d)
         {
             //Denuncia denuncia = ObtenerPorId(d.IdPropuesta);
 
