@@ -144,8 +144,7 @@ namespace Servicios
 			int idUsuario = SesionServicio.UsuarioSession.IdUsuario;
 			var PropuestaActual = ObtenerPorId(Id);
 
-			//Fixear
-			var consulta = ctx.PropuestasValoraciones.Where(x => x.IdUsuario == idUsuario).First();
+			var consulta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta && idUsuario == x.IdUsuario).FirstOrDefault();
 			if (consulta == null)
 			{
 				Valoracion.IdPropuesta = PropuestaActual.IdPropuesta;
@@ -161,11 +160,15 @@ namespace Servicios
 			int idUsuario = SesionServicio.UsuarioSession.IdUsuario;
 			var PropuestaActual = ObtenerPorId(Id);
 
+			var consulta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta && idUsuario == x.IdUsuario).FirstOrDefault();
+			if (consulta == null)
+			{
 			Valoracion.IdPropuesta = PropuestaActual.IdPropuesta;
 			Valoracion.IdUsuario = idUsuario;
 			Valoracion.Valoracion = false;
 			ctx.PropuestasValoraciones.Add(Valoracion);
 			ctx.SaveChanges();
+			}
 		}
 		public void CalcularValoracionTotal(int Id)
 		{
