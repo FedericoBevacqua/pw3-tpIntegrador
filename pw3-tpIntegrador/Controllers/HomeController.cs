@@ -1,23 +1,25 @@
-﻿using Servicios;
+﻿using Data;
+using Servicios;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace pw3_tpIntegrador.Controllers
 {
     public class HomeController : Controller
 	{
-        private PropuestaServicio Propuestas = new PropuestaServicio();
+        private readonly PropuestaServicio Propuestas = new PropuestaServicio();
 
         [HttpGet]
-        public ActionResult Inicio()
+        public ActionResult Inicio(bool mostrarPropuestasInactivas = false)
 		{
 			if (SesionServicio.UsuarioSession == null)
 			{
-				return View(Propuestas.ObtenerTodas());
+				return View(Propuestas.ObtenerActivas());
 			}
 			else
 			{
-                //List<Propuesta> propuestas = Propuestas.ObtenerTodas();
-				return View("InicioUsuarioLogueado"/*, propuestas*/);
+                List<Propuesta> propuestas = mostrarPropuestasInactivas ? Propuestas.ObtenerTodas() : Propuestas.ObtenerActivas();
+				return View("InicioUsuarioLogueado", propuestas);
 			}
 		}
 
