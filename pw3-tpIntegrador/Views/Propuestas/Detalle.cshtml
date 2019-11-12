@@ -48,8 +48,9 @@
                         <p class="mt-2 text-muted">Aceptación: 0%</p>
                     }
 
-                    
-                    @if (Model.Estado == 1) // Muestro los botones solo si la propuesta esta activa
+
+                    @if (Model.Estado == 1 && (Model.IdUsuarioCreador != ((Data.Usuario)Session["UserSession"]).IdUsuario || ((Data.Usuario)Session["UserSession"]).TipoUsuario == 1))
+                    // Muestro los botones solo si la propuesta esta activa y no es el usuario creador o es Admin
                     {
                         <a href="/Propuestas/Donar/@Model.IdPropuesta" class="btn btn-block btn-success mt-3 font-weight-bold">Donar</a>
 
@@ -60,11 +61,12 @@
 
                         <a href="/Propuestas/Denunciar/@Model.IdPropuesta" class="btn btn-block btn-danger mt-3 font-weight-bold">Denunciar</a>
                     }
-                    else
+
+                    @if (Model.Estado == 0)
                     {
-                        <div class="alert alert-warning" role="alert">
-                            Atención: La propuesta está inactiva!
-                        </div>
+                    <div class="alert alert-warning" role="alert">
+                        Atención: La propuesta está inactiva!
+                    </div>
                     }
 
                     <div class="mt-4 mb-2 font-weight-bold">Referencias:</div>

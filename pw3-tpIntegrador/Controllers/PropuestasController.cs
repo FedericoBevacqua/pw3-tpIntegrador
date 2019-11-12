@@ -135,23 +135,29 @@ namespace pw3_tpIntegrador.Controllers
 			return Redirect("/Home/Inicio");
 		}
 
-
 		public ActionResult Donar(int Id)
         {
             Propuesta p = Propuestas.ObtenerPorId(Id);
+            Usuario usuario = SesionServicio.UsuarioSession;
 
-            if(p.TipoDonacion == 1)
+            // Si el usuario no es el mismo que creo la propuesta o es Admin puede donar
+            if (usuario != null && usuario.IdUsuario != p.IdUsuarioCreador || SesionServicio.IsAdmin)
             {
-                return View("DonarTipoMonetaria", p);
+                switch(p.TipoDonacion)
+                {
+                    case 1:
+                        return View("DonarTipoMonetaria", p);
+
+                    case 2:
+                        return View("DonarTipoInsumos", p);
+
+                    case 3:
+                        return View("DonarTipoHorasTrabajo", p);
+                }
+
             }
-            else if (p.TipoDonacion == 2)
-            {
-                return View("DonarTipoInsumos", p);
-            }
-            else
-            {
-                return View("DonarTipoHorasTrabajo", p);
-            }
+
+            return Redirect("/Home/Inicio");
         }
 
         [HttpPost]
