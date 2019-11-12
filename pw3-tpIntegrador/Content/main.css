@@ -13,11 +13,5 @@
 
 .card-deck .card {
     flex: 0 0 32%;
-    margin: 25px 0.5% 0;
-}
-
-@media (min-width: 1000px){
-    .card-deck .card {
-        flex: 0 0 32%;
-    }
+    margin: 25px 0 0 1%;
 }
