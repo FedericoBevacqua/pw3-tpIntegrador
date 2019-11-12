@@ -131,6 +131,41 @@ namespace Servicios
 				.ToList();
             return resultados;
         }
+		public void ValorarMeGusta(int Id)
+		{
+			PropuestasValoracione Valoracion = new PropuestasValoracione();
+			int idUsuario = SesionServicio.UsuarioSession.IdUsuario;
+			var PropuestaActual = ObtenerPorId(Id);
 
-    }
+			Valoracion.IdPropuesta = PropuestaActual.IdPropuesta;
+			Valoracion.IdUsuario = idUsuario;
+			Valoracion.Valoracion = true;
+			ctx.PropuestasValoraciones.Add(Valoracion);
+			ctx.SaveChanges();
+		}
+		public void ValorarNoMeGusta(int Id)
+		{
+			PropuestasValoracione Valoracion = new PropuestasValoracione();
+			int idUsuario = SesionServicio.UsuarioSession.IdUsuario;
+			var PropuestaActual = ObtenerPorId(Id);
+
+			Valoracion.IdPropuesta = PropuestaActual.IdPropuesta;
+			Valoracion.IdUsuario = idUsuario;
+			Valoracion.Valoracion = false;
+			ctx.PropuestasValoraciones.Add(Valoracion);
+			ctx.SaveChanges();
+		}
+		public void CalcularValoracionTotal(int Id)
+		{
+			var PropuestaActual = ObtenerPorId(Id);
+			var cantidadMeGusta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta && x.Valoracion == true).Count();
+			var cantidadTotal = ctx.Propuestas.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta).Count();
+
+			PropuestaActual.Valoracion = cantidadMeGusta / cantidadTotal * 100;
+			//ctx.Propuestas.Add(PropuestaActual);
+			ctx.SaveChanges();
+
+
+		}
+	}
 }
