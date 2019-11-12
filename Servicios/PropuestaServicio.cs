@@ -72,7 +72,7 @@ namespace Servicios
 
         public List<Propuesta> ObtenerTodas()
         {
-            return ctx.Propuestas.ToList();
+            return ctx.Propuestas.Where(x=>x.IdPropuesta>33).ToList();
         }
 		public List<Propuesta> ObtenerActivas()
 		{

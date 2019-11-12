@@ -7,6 +7,7 @@
 #Data/App.Config
 #pw3-tpIntegrador/Web.config
 #Quitados al poner source=LocalHost
+pw3-tpIntegrador/Imagenes/
 
 # User-specific files
 *.suo

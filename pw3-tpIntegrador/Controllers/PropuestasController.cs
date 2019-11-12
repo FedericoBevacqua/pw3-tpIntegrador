@@ -3,6 +3,7 @@ using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using pw3_tpIntegrador.Utils;
 
 namespace pw3_tpIntegrador.Controllers
 {
@@ -144,7 +145,16 @@ namespace pw3_tpIntegrador.Controllers
         [HttpPost]
         public ActionResult DonarMonetaria(DonacionesMonetaria d)
         {
+
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && Request.Files[0].ContentType.Contains("image"))
+            {
+                string nombreSignificativo = d.ArchivoTransferencia + DateTime.Now.ToString();
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                d.ArchivoTransferencia = pathRelativoImagen;
+            }
+
             Propuestas.GuardarDonacion(d);
+
             return Redirect("/Home/Inicio");
         }
 
@@ -191,6 +201,16 @@ namespace pw3_tpIntegrador.Controllers
             p.TelefonoContacto = form["TelefonoContacto"];
             p.TipoDonacion = Int32.Parse(form["TipoDonacion"]);
             p.Foto = form["Foto"];
+
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                string nombreSignificativo = form["Nombre"] + DateTime.Now.ToString();
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                p.Foto = pathRelativoImagen;
+            }
+
+            
 
             PropuestasReferencia referencia1 = new PropuestasReferencia();
             referencia1.Nombre = form["Referencia1Nombre"];

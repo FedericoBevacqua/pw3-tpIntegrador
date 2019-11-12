@@ -1,4 +1,4 @@
-﻿@model Data.Usuario
+﻿@*@model Data.Usuario*@
 @{
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
 }
@@ -24,7 +24,7 @@
                         @Html.ActionLink("Mi perfil", "MiPerfil", "Usuario", new object { }, new { @class = "nav-link" })
                     </li>
 
-                    @{
+                    @*{
                         // Muestro la opcion de Gestion de Denuncias solo si es Admin el usuario
                         if (((Data.Usuario)Session["UserSession"]).TipoUsuario == 1)
                         {
@@ -32,7 +32,7 @@
                                 @Html.ActionLink("Denuncias", "Gestionar", "Denuncias", new object { }, new { @class = "nav-link" })
                             </li>
                         }
-                    }
+                    }*@
 
                     <li class="nav-item">
                         @Html.ActionLink("Acerca de", "Ver", "AcercaDe", new object { }, new { @class = "nav-link" })

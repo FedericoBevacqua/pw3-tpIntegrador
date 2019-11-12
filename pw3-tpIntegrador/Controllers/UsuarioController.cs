@@ -1,4 +1,5 @@
 using Data;
+using pw3_tpIntegrador.Utils;
 using Servicios;
 using System;
 using System.Web.Mvc;
@@ -20,6 +21,7 @@ namespace pw3_tpIntegrador.Controllers
 			{
 				return Redirect("/Home/Inicio");
             }
+
         }
 		[HttpPost]
 		public ActionResult Login(Usuario l)
@@ -139,7 +141,14 @@ namespace pw3_tpIntegrador.Controllers
 				return View(p);
 			}
 
-			Usuarios.CrearPerfil(p);
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && Request.Files[0].ContentType.Contains("image"))
+            {
+                string nombreSignificativo = p.UserName + DateTime.Now.ToString();
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                p.Foto = pathRelativoImagen;
+            }
+
+            Usuarios.CrearPerfil(p);
 			return Redirect("/Home/Inicio");
         }
 

@@ -22,7 +22,7 @@
 
 			<h5 class="mt-5">Tu donación</h5>
 
-			<form action="/Propuestas/DonarMonetaria" method="post" class="mt-2" id="donar-formulario">
+			<form action="/Propuestas/DonarMonetaria" method="post" class="mt-2" id="donar-formulario" enctype = "multipart/form-data">
 
                 <div class="form-row">
                     <input type="hidden" name="IdPropuestaDonacionMonetaria" value="@Model.PropuestasDonacionesMonetarias.First().IdPropuestaDonacionMonetaria" />

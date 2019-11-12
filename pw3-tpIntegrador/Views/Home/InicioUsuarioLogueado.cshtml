@@ -1,4 +1,5 @@
-﻿
+﻿@model List<Data.Propuesta>
+
 @{
 	ViewBag.Title = "Inicio";
 	ViewBag.TusPropuestasImgUrl = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
@@ -38,26 +39,27 @@
 
 <h3>Tus propuestas</h3>
 
-<div class="custom-control custom-switch">
+<div class="custom-control custom-switch mt-4 mb-2">
 	@*TODO: Checkbox activo: Muestra propuestas activas, sino, muestra todas. (act e inac)*@
 	<input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
 	<label class="custom-control-label" for="customSwitch1">Sólo visualizar activas</label>
 </div>
 <div class="card-columns">
-    @for (int i = 0; i < 2; i++)
+    @foreach (var p in Model)
     {
         <div class="card">
-            <img src="@ViewBag.TusPropuestasImgUrl" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<h6 class="card-subtitle mb-2 text-muted">Creada por juan.perez el 10/10/2019</h6>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				<a href="/Propuestas/Detalle/(Id)" class="btn btn-primary">Ver Detalle</a>
-				<a href="/Propuestas/Modificar" class="btn btn-primary">Editar Propuesta</a>
-			</div>
+            <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
+            <div class="card-body">
+                <h5 class="card-title">@p.Nombre</h5>
+                <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
+                <div class="mb-4"><small>Creado por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</small></div>
+                <p class="card-text">@p.Descripcion</p>
+                <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver Detalle</a>
+                <a href="/Propuestas/Modificar/@p.IdPropuesta" class="btn btn-primary">Editar Propuesta</a>
+            </div>
+
             <div class="card-footer">
-                <div>Aceptación: 82%</div>
-                <div class="text-muted">Finaliza el 22/11/2019</div>
+                <div>Aceptación: ??%</div>
             </div>
         </div>
     }
@@ -68,19 +70,18 @@
 
 <h3>Propuestas de otros usuarios</h3>
 <div class="card-columns">
-    @for (int i = 0; i < 8; i++)
+    @foreach (var p in Model)
     {
         <div class="card">
-            <img src="@ViewBag.ImgUrl" class="card-img-top" alt="...">
+            <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Creada por juan.perez el 10/10/2019</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				<a href="/Propuestas/Detalle/(Id)" class="btn btn-primary">Ver Detalle</a>
+                <h5 class="card-title">@p.Nombre</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Creada por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</h6>
+                <p class="card-text">@p.Descripcion</p>
+				<a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver Detalle</a>
             </div>
             <div class="card-footer">
-                <div>Aceptación: 82%</div>
-                <div class="text-muted">Finaliza el 22/11/2019</div>
+                <div>Aceptación: ??%</div>
             </div>
         </div>
     }

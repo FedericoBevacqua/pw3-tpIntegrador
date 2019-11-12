@@ -1,4 +1,6 @@
-﻿using Servicios;
+﻿using Data;
+using Servicios;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace pw3_tpIntegrador.Controllers
@@ -16,8 +18,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-                //List<Propuesta> propuestas = Propuestas.ObtenerTodas();
-				return View("InicioUsuarioLogueado"/*, propuestas*/);
+				return View("InicioUsuarioLogueado", Propuestas.ObtenerTodas());
 			}
 		}
 
