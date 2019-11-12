@@ -195,5 +195,36 @@ namespace Servicios
             return ctx.Propuestas.Where(p => p.IdUsuarioCreador == id).Count();
         }
 
+        public void Modificar(int idPropuesta, Propuesta propuesta)
+        {
+
+            Propuesta propuestaAModificar = ObtenerPorId(idPropuesta);
+            propuestaAModificar.Nombre = propuesta.Nombre;
+            propuestaAModificar.Descripcion = propuesta.Descripcion;
+            propuestaAModificar.FechaFin = propuesta.FechaFin;
+            propuestaAModificar.TelefonoContacto = propuesta.TelefonoContacto;
+            propuestaAModificar.TipoDonacion = propuesta.TipoDonacion;
+            propuestaAModificar.Foto = propuesta.Foto;
+
+            switch (propuestaAModificar.TipoDonacion)
+            {
+                case 1: //TipoMonetaria
+                    ((PropuestasDonacionesMonetaria)propuestaAModificar).Dinero = ((PropuestasDonacionesMonetaria)propuesta).Dinero;
+                    ((PropuestasDonacionesMonetaria)propuestaAModificar).CBU = ((PropuestasDonacionesMonetaria)propuesta).CBU;
+                    break;
+                case 2: //TipoInsumos
+
+                    //List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
+                    //((PropuestasDonacionesInsumo)propuestaAModificar).DonacionesInsumos = listaInsumos;
+                    break;
+                case 3: //TipoHorasTrabajo
+                    ((PropuestasDonacionesHorasTrabajo)propuestaAModificar).CantidadHoras = ((PropuestasDonacionesHorasTrabajo)propuesta).CantidadHoras;
+                    ((PropuestasDonacionesHorasTrabajo)propuestaAModificar).Profesion = ((PropuestasDonacionesHorasTrabajo)propuesta).Profesion;
+                    break;
+            }
+
+            ctx.SaveChanges();
+        }
+
 	}
 }

@@ -29,6 +29,7 @@ namespace pw3_tpIntegrador.Controllers
                 return Redirect("/Home/Inicio");
             }
         }
+
         [HttpPost]
 		public ActionResult Crear(FormCollection form)
 		{
@@ -39,6 +40,72 @@ namespace pw3_tpIntegrador.Controllers
 
 			return CrearPaso2(form);
 		}
+
+        [HttpGet]
+        public ActionResult Modificar(int id)
+        {
+            if (SesionServicio.UsuarioSession == null)
+            {
+                return Redirect("/Home/Inicio");
+            }
+            else
+            {
+                // TODO: Solo puedo editar mis propuestas o ser Admin
+                return View(Propuestas.ObtenerPorId(id));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Modificar(FormCollection form)
+        {
+            int idPropuesta = int.Parse(form["idPropuesta"]);
+            Propuesta propuestaAModificar = Propuestas.ObtenerPorId(idPropuesta);
+
+
+
+            propuestaAModificar.Nombre = form["Nombre"];
+            propuestaAModificar.Descripcion = form["Descripcion"];
+            propuestaAModificar.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+            propuestaAModificar.TelefonoContacto = form["TelefonoContacto"];
+            propuestaAModificar.TipoDonacion = int.Parse(form["TipoDonacion"]);
+            propuestaAModificar.Foto = form["Foto"];
+
+            //TODO: Modificar Referencias 1 y 2
+
+            //TODO: ctx.SaveChanges();
+
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                string nombreSignificativo = form["Nombre"] + DateTime.Now.ToString();
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                propuestaAModificar.Foto = pathRelativoImagen;
+            }
+
+            switch (propuestaAModificar.TipoDonacion)
+            {
+                case 1: //TipoMonetaria
+                    ((PropuestasDonacionesMonetaria)propuestaAModificar).Dinero = decimal.Parse(form["Dinero"]);
+                    ((PropuestasDonacionesMonetaria)propuestaAModificar).CBU = form["CBU"];
+                    break;
+                case 2: //TipoInsumos
+                    
+                    //List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
+                    //((PropuestasDonacionesInsumo)propuestaAModificar).DonacionesInsumos = listaInsumos;
+                    break;
+                case 3: //TipoHorasTrabajo
+                    ((PropuestasDonacionesHorasTrabajo)propuestaAModificar).CantidadHoras = int.Parse(form["CantidadHoras"]);
+                    ((PropuestasDonacionesHorasTrabajo)propuestaAModificar).Profesion = form["Profesion"];
+                    break;
+            }
+
+            Propuestas.Modificar(idPropuesta, propuestaAModificar);
+
+            //TODO: Actualizar Propuesta con sus modificaciones...
+
+            //return CrearPaso2(form);
+            return Redirect("/Home/Inicio");
+        }
 
         [HttpPost]
         public ActionResult CrearPaso2(FormCollection form)
@@ -106,7 +173,42 @@ namespace pw3_tpIntegrador.Controllers
             return Redirect("/Home/Inicio");
         }
 
-		public ActionResult Detalle(int Id)
+        [HttpPost]
+        public ActionResult ModificarTipoMonetaria(FormCollection form)
+        {
+            PropuestasDonacionesMonetaria p = (PropuestasDonacionesMonetaria)ExtraerInformacionComun(form, new PropuestasDonacionesMonetaria());
+
+            p.Dinero = Decimal.Parse(form["Dinero"]);
+            p.CBU = form["CBU"];
+
+            //TODO: Editar
+            //Propuestas.Alta(p);
+            return Redirect("/Home/Inicio");
+        }
+
+        public ActionResult ModificarTipoInsumos(FormCollection form)
+        {
+            Propuesta p = ExtraerInformacionComun(form, new Propuesta());
+            List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
+
+            //TODO: Editar
+            // Propuestas.Alta(p, listaInsumos);
+            return Redirect("/Home/Inicio");
+        }
+
+        public ActionResult ModificarTipoHorasTrabajo(FormCollection form)
+        {
+            PropuestasDonacionesHorasTrabajo p = (PropuestasDonacionesHorasTrabajo)ExtraerInformacionComun(form, new PropuestasDonacionesHorasTrabajo());
+
+            p.CantidadHoras = Int32.Parse(form["CantidadHoras"]);
+            p.Profesion = form["Profesion"];
+            
+            //TODO: Editar
+            //Propuestas.Alta(p);
+            return Redirect("/Home/Inicio");
+        }
+
+        public ActionResult Detalle(int Id)
         {
             if (SesionServicio.UsuarioSession == null)
             {
