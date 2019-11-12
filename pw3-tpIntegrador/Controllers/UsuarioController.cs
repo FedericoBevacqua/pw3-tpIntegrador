@@ -11,15 +11,18 @@ namespace pw3_tpIntegrador.Controllers
         readonly UsuarioServicio Usuarios = new UsuarioServicio();
 
 		[HttpGet]
-		public ActionResult Login()
+		public ActionResult Login(String MensajeError, String Redirigir)
         {
-			if (SesionServicio.UsuarioSession == null)
+
+            if (SesionServicio.UsuarioSession == null)
 			{
-				return View();
+                if(MensajeError != null) ViewData["MensajeError"]= MensajeError;
+                return View();
 			}
 			else
 			{
-				return Redirect("/Home/Inicio");
+                Redirigir = Redirigir == null ? "/Home/Inicio" : Redirigir;
+                return Redirect(Redirigir);
             }
 
         }
