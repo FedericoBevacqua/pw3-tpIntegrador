@@ -34,25 +34,39 @@
 <h3>Propuestas más populares</h3>
 <div class="card-columns">
 
-    @*TODO: Servicio con las 5 mas populares*@
-
     @foreach (var p in @Model)
     {
-        <div class="card">
+    <div class="card">
+
+        @if (!String.IsNullOrEmpty(p.Foto))
+        {
             <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
-            <div class="card-body">
-                <h5 class="card-title">@p.Nombre</h5>
-                <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
-                <div class="mb-4"><small>Creado por @p.Usuario.Nombre.ToLower().@p.Usuario.Apellido.ToLower() el @p.FechaCreacion.Date.ToShortDateString()</small></div>
+        }
+        else
+        {
+            // TODO: Modificar Imagen por default
+            <img src="@ViewBag.ImgUrl" class="card-img-top" alt="@p.Nombre">
+        }
+        <div class="card-body">
+            <h5 class="card-title">@p.Nombre</h5>
+            <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
+            <div class="mb-4"><small>Creado por @p.Usuario.Nombre.ToLower().@p.Usuario.Apellido.ToLower() el @p.FechaCreacion.Date.ToShortDateString()</small></div>
 
 
-                <p class="card-text">@p.Descripcion</p>
-                <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver publicación</a>
-            </div>
-            <div class="card-footer">
-                <div>Aceptación: ??%</div>
-            </div>
+            <p class="card-text">@p.Descripcion</p>
+            <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver Detalle</a>
         </div>
+        <div class="card-footer">
+            @if (p.Valoracion != null)
+            {
+                <div>Aceptación: @p.Valoracion%</div>
+            }
+            else
+            {
+                <div>Aceptación: 0%</div>
+            }
+        </div>
+    </div>
     }
 
 </div>

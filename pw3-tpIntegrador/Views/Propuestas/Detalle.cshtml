@@ -10,7 +10,15 @@
     <h2>@Model.Nombre</h2>
     <div class="row">
         <div class="col-md-6">
-            <img src="@ViewBag.Img" alt="..." class="img-thumbnail">
+            @if (!String.IsNullOrEmpty(Model.Foto))
+            {
+                <img src="@Model.Foto" class="img-thumbnail" alt="Foto Propuesta">
+            }
+            else
+            {
+                // TODO: Modificar Imagen por default
+                <img src="@ViewBag.Img" class="img-thumbnail" alt="Foto Propuesta">
+            }
             <div class="text-muted mt-2"><small>Pedido de @Model.TipoDonacionString() - Creado por @Model.Usuario.Nombre.ToLower().@Model.Usuario.Apellido.ToLower() el @Model.FechaCreacion.ToShortDateString()</small></div>
             <div class="text-muted"><small>Abierto hasta el @Model.FechaFin.ToShortDateString()</small></div>
             <p class="mt-2">@Model.Descripcion</p>
@@ -31,15 +39,33 @@
                         @Html.Partial("_DetalleHoras", Model.PropuestasDonacionesHorasTrabajoes.First())
                     }
 
-                    <p class="mt-2 text-muted">Aceptación: 92%</p>
-                    <a href="/Propuestas/Donar/@Model.IdPropuesta" class="btn btn-block btn-success mt-3 font-weight-bold">Donar</a>
+                    @if (Model.Valoracion != null)
+                    {
+                        <p class="mt-2 text-muted">Aceptación: @Model.Valoracion%</p>
+                    }
+                    else
+                    {
+                        <p class="mt-2 text-muted">Aceptación: 0%</p>
+                    }
 
-                    <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-primary mt-3 font-weight-bold flex-fill boton-me-gusta">Me gusta</a>
-                        <a href="#" class="btn btn-secondary mt-3 font-weight-bold flex-fill boton-no-me-gusta">No me gusta</a>
-                    </div>
+                    
+                    @if (Model.Estado == 1) // Muestro los botones solo si la propuesta esta activa
+                    {
+                        <a href="/Propuestas/Donar/@Model.IdPropuesta" class="btn btn-block btn-success mt-3 font-weight-bold">Donar</a>
 
-                    <a href="/Propuestas/Denunciar/@Model.IdPropuesta" class="btn btn-block btn-danger mt-3 font-weight-bold">Denunciar</a>
+                        <div class="d-flex justify-content-between">
+                            <a href="#" class="btn btn-primary mt-3 font-weight-bold flex-fill boton-me-gusta">Me gusta</a>
+                            <a href="#" class="btn btn-secondary mt-3 font-weight-bold flex-fill boton-no-me-gusta">No me gusta</a>
+                        </div>
+
+                        <a href="/Propuestas/Denunciar/@Model.IdPropuesta" class="btn btn-block btn-danger mt-3 font-weight-bold">Denunciar</a>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            Atención: La propuesta está inactiva!
+                        </div>
+                    }
 
                     <div class="mt-4 mb-2 font-weight-bold">Referencias:</div>
                     @foreach (var r in Model.PropuestasReferencias)

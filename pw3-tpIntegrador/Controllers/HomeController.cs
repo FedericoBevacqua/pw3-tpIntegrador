@@ -7,10 +7,10 @@ namespace pw3_tpIntegrador.Controllers
 {
     public class HomeController : Controller
 	{
-        private PropuestaServicio Propuestas = new PropuestaServicio();
+        private readonly PropuestaServicio Propuestas = new PropuestaServicio();
 
         [HttpGet]
-        public ActionResult Inicio()
+        public ActionResult Inicio(bool mostrarPropuestasInactivas = false)
 		{
 			if (SesionServicio.UsuarioSession == null)
 			{
@@ -18,7 +18,8 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
-				return View("InicioUsuarioLogueado", Propuestas.ObtenerTodas());
+                List<Propuesta> propuestas = mostrarPropuestasInactivas ? Propuestas.ObtenerTodas() : Propuestas.ObtenerActivas();
+				return View("InicioUsuarioLogueado", propuestas);
 			}
 		}
 
