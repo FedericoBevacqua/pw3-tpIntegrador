@@ -180,14 +180,17 @@ namespace Servicios
                 ctx.SaveChanges();
             }
 		}
-		public void CalcularValoracionTotal(int Id)
+		public decimal CalcularValoracionTotal(int Id)
 		{
 			var PropuestaActual = ObtenerPorId(Id);
 			var cantidadMeGusta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta && x.Valoracion == true).Count();
 			var cantidadTotal = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta).Count();
 
-			PropuestaActual.Valoracion = (decimal)cantidadMeGusta / cantidadTotal * 100;
+            decimal Valoracion = (decimal)cantidadMeGusta / cantidadTotal * 100;
+            PropuestaActual.Valoracion = Valoracion;
 			ctx.SaveChanges();
+
+            return Valoracion;
 		}
 
         public int CantidadPropuestasActivasPorUsuario(int id)

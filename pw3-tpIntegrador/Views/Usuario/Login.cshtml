@@ -7,33 +7,33 @@
 
 <form class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3" action="/Usuario/Login" method="post">
 
-    <p class="h4 mb-4">Iniciar sesión</p>
+	<p class="h4 mb-4">Iniciar sesión</p>
 
-    <input type="email" name="Email" class="form-control mb-4" placeholder="E-mail">
-    <input type="password" name="Password" class="form-control mb-4" placeholder="Contraseña">
+	<input type="email" name="Email" class="form-control mb-4" placeholder="E-mail">
+	<input type="password" name="Password" class="form-control mb-4" placeholder="Contraseña">
 
-    <button class="btn btn-primary btn-block my-4" type="submit">Ingresar</button>
+	<button class="btn btn-primary btn-block my-4" type="submit">Ingresar</button>
+	@Html.Hidden("url", @Request.QueryString["url"])
+	<p>
+		¿No estás registrado?
+		<a href="/Usuario/Registro">Registrarse</a>
+	</p>
 
-    <p>
-        ¿No estás registrado?
-        <a href="/Usuario/Registro">Registrarse</a>
-    </p>
+	@if (ViewData["MensajeError"] != null)
+	{
+		<br />
+		<div class="alert alert-danger centermsg" role="alert">
+			@ViewData["MensajeError"]
+		</div>
+	}
 
-    @if (ViewData["MensajeError"] != null)
-    {
-        <br />
-        <div class="alert alert-danger centermsg" role="alert">
-            @ViewData["MensajeError"]
-        </div>
-    }
-
-    @if (ViewBag.msg != null)
-    {
-        <br />
-        <div class="alert alert-info centermsg" role="alert">
-            @ViewBag.msg
-        </div>
-    }
+	@if (ViewBag.msg != null)
+	{
+		<br />
+		<div class="alert alert-info centermsg" role="alert">
+			@ViewBag.msg
+		</div>
+	}
 
 </form>
 

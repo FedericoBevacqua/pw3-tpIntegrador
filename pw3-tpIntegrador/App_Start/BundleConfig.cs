@@ -21,6 +21,7 @@ namespace pw3_tpIntegrador
 
             bundles.Add(new ScriptBundle("~/bundles/mainjs").Include(
                          "~/Scripts/crear-propuesta.js",
+                         "~/Scripts/detalle.js",
                          "~/Scripts/donar.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(

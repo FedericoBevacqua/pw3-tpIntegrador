@@ -2,8 +2,7 @@
 
 @{
     ViewBag.Title = "Inicio";
-    ViewBag.TusPropuestasImgUrl = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
-    ViewBag.ImgUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0a3QyGyINLq1pkAfLB8F3oJDfaP0vg3lg_lCcjMeVNCZTMwbs&s";
+    ViewBag.DefaultImg = "https://www.loottis.com/wp-content/uploads/2014/10/default-img.gif";
     Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
 }
 
@@ -55,15 +54,8 @@
         @foreach (var p in @Model.Where(p => p.Usuario.IdUsuario == ((Data.Usuario)Session["UserSession"]).IdUsuario))
         {
             <div class="card">
-                @if (!String.IsNullOrEmpty(p.Foto))
-                {
-                    <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
-                }
-                else
-                {
-                    // TODO: Modificar Imagen por default
-                    <img src="@ViewBag.TusPropuestasImgUrl" class="card-img-top" alt="Foto Propuesta">
-                }
+                
+                <img src="@p.Foto" class="card-img-top" alt="@p.Nombre" onerror="this.src='@ViewBag.DefaultImg'">
                 <div class="card-body">
                     <h5 class="card-title">@p.Nombre</h5>
                     <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
@@ -86,7 +78,7 @@
                         <div>Aceptación: 0%</div>
                     }
 
-                    <div class="text-muted">Finaliza el @p.FechaFin</div>
+                    <div class="text-muted">Finaliza el @p.FechaFin.Date.ToShortDateString()</div>
                 </div>
             </div>
         }
@@ -101,15 +93,8 @@
     @foreach (var p in @Model.Where(p => p.IdUsuarioCreador != ((Data.Usuario)Session["UserSession"]).IdUsuario && p.Estado == 1))
     {
         <div class="card">
-            @if (!String.IsNullOrEmpty(p.Foto))
-            {
-                <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
-            }
-            else
-            {
-                // TODO: Modificar Imagen por default
-                <img src="@ViewBag.TusPropuestasImgUrl" class="card-img-top" alt="Foto Propuesta">
-            }
+
+                <img src="@p.Foto" class="card-img-top" alt="@p.Nombre" onerror="this.src='@ViewBag.DefaultImg'">
                 <div class="card-body">
                     <h5 class="card-title">@p.Nombre</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Creada por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</h6>
@@ -126,7 +111,7 @@
                     <div>Aceptación: 0%</div>
                 }
 
-                <div class="text-muted">Finaliza el @p.FechaFin</div>
+                <div class="text-muted">Finaliza el @p.FechaFin.Date.ToShortDateString()</div>
             </div>
         </div>
     }
