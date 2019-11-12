@@ -2,7 +2,6 @@
 
 @{
 	ViewBag.Title = "Buscar";
-	ViewBag.ImgUrl = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
 	Layout = "~/Views/Shared/_PropuestasLayout.cshtml"; //TODO: Implementar Layout del navbar. Tira error
 }
 
@@ -12,7 +11,7 @@
 	@foreach (var p in @Model)
 	{
 		<div class="card">
-			<img src="@ViewBag.ImgUrl" class="card-img-top" alt="@p.Nombre">
+			<img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
 			<div class="card-body">
 				<h5 class="card-title">@p.Nombre</h5>
 				<div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>

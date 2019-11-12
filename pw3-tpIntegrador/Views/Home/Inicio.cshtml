@@ -2,7 +2,7 @@
 
 @{
 	ViewBag.Title = "Inicio";
-	ViewBag.ImgUrl = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
+	ViewBag.DefaultImg = "https://www.loottis.com/wp-content/uploads/2014/10/default-img.gif";
 	Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 
@@ -38,15 +38,7 @@
     {
     <div class="card">
 
-        @if (!String.IsNullOrEmpty(p.Foto))
-        {
-            <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
-        }
-        else
-        {
-            // TODO: Modificar Imagen por default
-            <img src="@ViewBag.ImgUrl" class="card-img-top" alt="@p.Nombre">
-        }
+        <img src="@p.Foto" class="card-img-top" alt="@p.Nombre"  onerror="this.src='@ViewBag.DefaultImg'">
         <div class="card-body">
             <h5 class="card-title">@p.Nombre</h5>
             <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>

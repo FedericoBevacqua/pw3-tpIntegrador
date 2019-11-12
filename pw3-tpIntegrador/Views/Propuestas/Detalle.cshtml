@@ -1,9 +1,11 @@
 ﻿@model Data.Propuesta
 
 @{
-	ViewBag.Title = "Detalle";
-	ViewBag.Img = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
-	Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+    ViewBag.Title = "Detalle";
+    ViewBag.ValoracionActual = Model.PropuestasValoraciones.Where(x => x.IdPropuesta == Model.IdPropuesta && ViewBag.UsuarioActualId == x.IdUsuario).FirstOrDefault();
+    ViewBag.ClaseColorBotonMeGusta = ViewBag.ValoracionActual == null ? "btn-secondary" : ViewBag.ValoracionActual.Valoracion == true ? "btn-primary" : "btn-secondary";
+    ViewBag.ClaseColorBotonNoMeGusta = ViewBag.ValoracionActual == null ? "btn-secondary" : ViewBag.ValoracionActual.Valoracion == false ? "btn-primary" : "btn-secondary";
+    Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
 }
 
 <div class="container">
@@ -41,11 +43,11 @@
 
                     @if (Model.Valoracion != null)
                     {
-                        <p class="mt-2 text-muted">Aceptación: @Model.Valoracion%</p>
+                        <p class="mt-2 text-muted">Aceptación: <span id="valoracion-span">@Model.Valoracion</span>%</p>
                     }
                     else
                     {
-                        <p class="mt-2 text-muted">Aceptación: 0%</p>
+                        <p class="mt-2 text-muted">Aceptación: <span id="valoracion-span">0</span>%</p>
                     }
 
 
@@ -54,9 +56,9 @@
                     {
                         <a href="/Propuestas/Donar/@Model.IdPropuesta" class="btn btn-block btn-success mt-3 font-weight-bold">Donar</a>
 
-                        <div class="d-flex justify-content-between">
-                            <a href="/Propuestas/MeGusta/@Model.IdPropuesta" class="btn btn-primary mt-3 font-weight-bold flex-fill boton-me-gusta">Me gusta</a>
-                            <a href="/Propuestas/NoMeGusta/@Model.IdPropuesta" class="btn btn-secondary mt-3 font-weight-bold flex-fill boton-no-me-gusta">No me gusta</a>
+                        <div class="d-flex justify-content-between" id="seccion-likes">
+                            <a href="/Propuestas/MeGusta/@Model.IdPropuesta" id="boton-me-gusta" class="btn @ViewBag.ClaseColorBotonMeGusta mt-3 font-weight-bold flex-fill boton-me-gusta">Me gusta</a>
+                            <a href="/Propuestas/NoMeGusta/@Model.IdPropuesta" id="boton-no-me-gusta" class="btn @ViewBag.ClaseColorBotonNoMeGusta mt-3 font-weight-bold flex-fill boton-no-me-gusta">No me gusta</a>
                         </div>
 
                         <a href="/Propuestas/Denunciar/@Model.IdPropuesta" class="btn btn-block btn-danger mt-3 font-weight-bold">Denunciar</a>
