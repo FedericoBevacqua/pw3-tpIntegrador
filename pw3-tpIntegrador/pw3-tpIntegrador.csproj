@@ -161,6 +161,7 @@
     <Content Include="Scripts\bootstrap\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\crear-propuesta.js" />
+    <Content Include="Scripts\detalle.js" />
     <Content Include="Scripts\donar.js" />
     <Content Include="Scripts\jquery\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery\jquery-3.3.1.min.js" />

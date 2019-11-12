@@ -2,8 +2,7 @@
 
 @{
     ViewBag.Title = "Inicio";
-    ViewBag.TusPropuestasImgUrl = "http://k33.kn3.net/B/1/B/B/0/4/B38.jpg";
-    ViewBag.ImgUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0a3QyGyINLq1pkAfLB8F3oJDfaP0vg3lg_lCcjMeVNCZTMwbs&s";
+    ViewBag.DefaultImg = "https://www.loottis.com/wp-content/uploads/2014/10/default-img.gif";
     Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
 }
 
@@ -61,8 +60,7 @@
                 }
                 else
                 {
-                    // TODO: Modificar Imagen por default
-                    <img src="@ViewBag.TusPropuestasImgUrl" class="card-img-top" alt="Foto Propuesta">
+                    <img src="@ViewBag.DefaultImg" class="card-img-top" alt="Foto Propuesta">
                 }
                 <div class="card-body">
                     <h5 class="card-title">@p.Nombre</h5>
@@ -86,7 +84,7 @@
                         <div>Aceptación: 0%</div>
                     }
 
-                    <div class="text-muted">Finaliza el @p.FechaFin</div>
+                    <div class="text-muted">Finaliza el @p.FechaFin.Date.ToShortDateString()</div>
                 </div>
             </div>
         }
@@ -107,8 +105,7 @@
             }
             else
             {
-                // TODO: Modificar Imagen por default
-                <img src="@ViewBag.TusPropuestasImgUrl" class="card-img-top" alt="Foto Propuesta">
+                <img src="@ViewBag.DefaultImg" class="card-img-top" alt="Foto Propuesta">
             }
                 <div class="card-body">
                     <h5 class="card-title">@p.Nombre</h5>
@@ -126,7 +123,7 @@
                     <div>Aceptación: 0%</div>
                 }
 
-                <div class="text-muted">Finaliza el @p.FechaFin</div>
+                <div class="text-muted">Finaliza el @p.FechaFin.Date.ToShortDateString()</div>
             </div>
         </div>
     }

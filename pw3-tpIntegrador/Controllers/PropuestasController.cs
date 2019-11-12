@@ -108,7 +108,8 @@ namespace pw3_tpIntegrador.Controllers
 
 		public ActionResult Detalle(int Id)
         {
-            if (SesionServicio.UsuarioSession == null)
+            Usuario Usuario = SesionServicio.UsuarioSession;
+            if (Usuario == null)
             {
                 return RedirectToAction("Login", "Usuario", new
                 {
@@ -117,6 +118,7 @@ namespace pw3_tpIntegrador.Controllers
                 }); ;
             } else
             {
+                ViewBag.UsuarioActualId = Usuario.IdUsuario;
                 Propuesta p = Propuestas.ObtenerPorId(Id);
                 return View(p);
             }
@@ -130,6 +132,8 @@ namespace pw3_tpIntegrador.Controllers
             Propuesta PropuestaDenunciada = Propuestas.ObtenerPorId(Id);
 
             ViewBag.Img = PropuestaDenunciada.Foto;
+            ViewBag.NombrePropuesta = PropuestaDenunciada.Nombre;
+            ViewBag.UsuarioDenunciado = PropuestaDenunciada.Usuario.UserName;
             ViewBag.IdUsuario = PropuestaDenunciada.Usuario.IdUsuario;
             ViewBag.FechaCreacion = DateTime.Now;
             ViewBag.IdPropuesta = Id;
@@ -280,22 +284,19 @@ namespace pw3_tpIntegrador.Controllers
             var resultado = Propuestas.BuscarPorNombreYUsuario(keyword);
             return View(resultado);
         }
-		[HttpGet]
-		public ActionResult MeGusta(int Id)
-		{
-			Propuestas.ValorarMeGusta(Id);
-			Propuestas.CalcularValoracionTotal(Id);
 
-			return Redirect("/Home/Inicio");
-		}
+        [HttpPost]
+        public decimal MeGusta(int Id)
+        {
+            Propuestas.ValorarMeGusta(Id);
+            return Propuestas.CalcularValoracionTotal(Id);
+        }
 
-		[HttpGet]
-		public ActionResult NoMeGusta(int Id)
+        [HttpPost]
+		public decimal NoMeGusta(int Id)
 		{
 			Propuestas.ValorarNoMeGusta(Id);
-			Propuestas.CalcularValoracionTotal(Id);
-
-			return Redirect("/Home/Inicio");
+			return Propuestas.CalcularValoracionTotal(Id);
 		}
 	}
 }
