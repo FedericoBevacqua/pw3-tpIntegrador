@@ -8,7 +8,7 @@ namespace Servicios
      * Estados de una Denuncia:
      * 0  -> Nueva
      * 1  -> Aceptada (Se bloquea la propuesta)
-     * -1 -> Desestimada
+     * 2 -> Desestimada
      */
     public class DenunciaServicio
     {
@@ -19,7 +19,7 @@ namespace Servicios
         public void Desestimar(int id)
         {
             Denuncia denuncia = ctx.Denuncias.Find(id);
-            denuncia.Estado = -1;
+            denuncia.Estado = 2;
             ctx.SaveChanges();
         }
 
@@ -40,5 +40,6 @@ namespace Servicios
                 .OrderByDescending(x => x.FechaCreacion)
                 .ToList();
         }
+
     }
 }
