@@ -54,14 +54,8 @@
         @foreach (var p in @Model.Where(p => p.Usuario.IdUsuario == ((Data.Usuario)Session["UserSession"]).IdUsuario))
         {
             <div class="card">
-                @if (!String.IsNullOrEmpty(p.Foto))
-                {
-                    <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
-                }
-                else
-                {
-                    <img src="@ViewBag.DefaultImg" class="card-img-top" alt="Foto Propuesta">
-                }
+                
+                <img src="@p.Foto" class="card-img-top" alt="@p.Nombre" onerror="this.src='@ViewBag.DefaultImg'">
                 <div class="card-body">
                     <h5 class="card-title">@p.Nombre</h5>
                     <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
@@ -99,14 +93,8 @@
     @foreach (var p in @Model.Where(p => p.IdUsuarioCreador != ((Data.Usuario)Session["UserSession"]).IdUsuario && p.Estado == 1))
     {
         <div class="card">
-            @if (!String.IsNullOrEmpty(p.Foto))
-            {
-                <img src="@p.Foto" class="card-img-top" alt="@p.Nombre">
-            }
-            else
-            {
-                <img src="@ViewBag.DefaultImg" class="card-img-top" alt="Foto Propuesta">
-            }
+
+                <img src="@p.Foto" class="card-img-top" alt="@p.Nombre" onerror="this.src='@ViewBag.DefaultImg'">
                 <div class="card-body">
                     <h5 class="card-title">@p.Nombre</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Creada por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</h6>
