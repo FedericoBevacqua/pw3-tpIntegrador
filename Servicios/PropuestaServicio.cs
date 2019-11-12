@@ -101,8 +101,6 @@ namespace Servicios
         public void GuardarDonacion(DonacionesMonetaria d)
         {
             d.FechaCreacion = DateTime.Now;
-            // TODO: Revisar...
-            if (d.ArchivoTransferencia == null) d.ArchivoTransferencia = string.Empty;
             ctx.DonacionesMonetarias.Add(d);
             ctx.SaveChanges();
         }
