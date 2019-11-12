@@ -200,29 +200,29 @@ namespace Servicios
 
         public void Modificar(int idPropuesta, Propuesta propuesta)
         {
-
             Propuesta propuestaAModificar = ObtenerPorId(idPropuesta);
             propuestaAModificar.Nombre = propuesta.Nombre;
             propuestaAModificar.Descripcion = propuesta.Descripcion;
             propuestaAModificar.FechaFin = propuesta.FechaFin;
             propuestaAModificar.TelefonoContacto = propuesta.TelefonoContacto;
             propuestaAModificar.TipoDonacion = propuesta.TipoDonacion;
-            propuestaAModificar.Foto = propuesta.Foto;
+            propuestaAModificar.Foto = "FIXME";
+            // TODO: Arreglar propuestaAModificar.Foto = propuesta.Foto;
 
             switch (propuestaAModificar.TipoDonacion)
             {
                 case 1: //TipoMonetaria
-                    ((PropuestasDonacionesMonetaria)propuestaAModificar).Dinero = ((PropuestasDonacionesMonetaria)propuesta).Dinero;
-                    ((PropuestasDonacionesMonetaria)propuestaAModificar).CBU = ((PropuestasDonacionesMonetaria)propuesta).CBU;
+                    propuestaAModificar.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero = (propuesta as PropuestasDonacionesMonetaria).Dinero;
+                    propuestaAModificar.PropuestasDonacionesMonetarias.FirstOrDefault().CBU = (propuesta as PropuestasDonacionesMonetaria).CBU;
                     break;
                 case 2: //TipoInsumos
-
+                    //TODO: Copiar lista de insumos modificada
                     //List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
                     //((PropuestasDonacionesInsumo)propuestaAModificar).DonacionesInsumos = listaInsumos;
                     break;
                 case 3: //TipoHorasTrabajo
-                    ((PropuestasDonacionesHorasTrabajo)propuestaAModificar).CantidadHoras = ((PropuestasDonacionesHorasTrabajo)propuesta).CantidadHoras;
-                    ((PropuestasDonacionesHorasTrabajo)propuestaAModificar).Profesion = ((PropuestasDonacionesHorasTrabajo)propuesta).Profesion;
+                    propuestaAModificar.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().CantidadHoras = (propuesta as PropuestasDonacionesHorasTrabajo).CantidadHoras;
+                    propuestaAModificar.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().Profesion = (propuesta as PropuestasDonacionesHorasTrabajo).Profesion;
                     break;
             }
 

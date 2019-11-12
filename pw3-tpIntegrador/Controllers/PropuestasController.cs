@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using pw3_tpIntegrador.Utils;
+using System.Linq;
 
 namespace pw3_tpIntegrador.Controllers
 {
@@ -59,20 +60,9 @@ namespace pw3_tpIntegrador.Controllers
         public ActionResult Modificar(FormCollection form)
         {
             int idPropuesta = int.Parse(form["idPropuesta"]);
+            int tipoDonacion = int.Parse(form["TipoDonacion"]);
+
             Propuesta propuestaAModificar = Propuestas.ObtenerPorId(idPropuesta);
-
-
-
-            propuestaAModificar.Nombre = form["Nombre"];
-            propuestaAModificar.Descripcion = form["Descripcion"];
-            propuestaAModificar.FechaFin = System.DateTime.Parse(form["FechaFin"]);
-            propuestaAModificar.TelefonoContacto = form["TelefonoContacto"];
-            propuestaAModificar.TipoDonacion = int.Parse(form["TipoDonacion"]);
-            propuestaAModificar.Foto = form["Foto"];
-
-            //TODO: Modificar Referencias 1 y 2
-
-            //TODO: ctx.SaveChanges();
 
             if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
             {
@@ -82,28 +72,58 @@ namespace pw3_tpIntegrador.Controllers
                 propuestaAModificar.Foto = pathRelativoImagen;
             }
 
-            switch (propuestaAModificar.TipoDonacion)
+            switch (tipoDonacion)
             {
                 case 1: //TipoMonetaria
-                    ((PropuestasDonacionesMonetaria)propuestaAModificar).Dinero = decimal.Parse(form["Dinero"]);
-                    ((PropuestasDonacionesMonetaria)propuestaAModificar).CBU = form["CBU"];
+                    PropuestasDonacionesMonetaria pam = propuestaAModificar.PropuestasDonacionesMonetarias.FirstOrDefault();
+
+                    pam.Nombre = form["Nombre"];
+                    pam.Descripcion = form["Descripcion"];
+                    pam.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+                    pam.TelefonoContacto = form["TelefonoContacto"];
+                    pam.TipoDonacion = int.Parse(form["TipoDonacion"]);
+                    pam.Foto = propuestaAModificar.Foto;
+
+                    pam.Dinero = decimal.Parse(form["Dinero"]);
+                    pam.CBU = form["CBU"];
+
+                    Propuestas.Modificar(idPropuesta, pam);
                     break;
+
                 case 2: //TipoInsumos
-                    
+                    PropuestasDonacionesInsumo pi = propuestaAModificar.PropuestasDonacionesInsumos.FirstOrDefault();
+
+                    pi.Nombre = form["Nombre"];
+                    pi.Descripcion = form["Descripcion"];
+                    pi.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+                    pi.TelefonoContacto = form["TelefonoContacto"];
+                    pi.TipoDonacion = int.Parse(form["TipoDonacion"]);
+                    pi.Foto = propuestaAModificar.Foto;
+
+                    //TODO: Copiar lista de insumos modificada
                     //List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
                     //((PropuestasDonacionesInsumo)propuestaAModificar).DonacionesInsumos = listaInsumos;
+                    Propuestas.Modificar(idPropuesta, pi);
                     break;
+
                 case 3: //TipoHorasTrabajo
-                    ((PropuestasDonacionesHorasTrabajo)propuestaAModificar).CantidadHoras = int.Parse(form["CantidadHoras"]);
-                    ((PropuestasDonacionesHorasTrabajo)propuestaAModificar).Profesion = form["Profesion"];
+                    PropuestasDonacionesHorasTrabajo pdt = propuestaAModificar.PropuestasDonacionesHorasTrabajoes.FirstOrDefault();
+
+                    pdt.Nombre = form["Nombre"];
+                    pdt.Descripcion = form["Descripcion"];
+                    pdt.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+                    pdt.TelefonoContacto = form["TelefonoContacto"];
+                    pdt.TipoDonacion = int.Parse(form["TipoDonacion"]);
+                    pdt.Foto = propuestaAModificar.Foto;
+
+                    pdt.CantidadHoras = int.Parse(form["CantidadHoras"]);
+                    pdt.Profesion = form["Profesion"];
+
+                    Propuestas.Modificar(idPropuesta, pdt);
                     break;
             }
 
-            Propuestas.Modificar(idPropuesta, propuestaAModificar);
-
-            //TODO: Actualizar Propuesta con sus modificaciones...
-
-            //return CrearPaso2(form);
+            //TODO: Modificar Referencias 1 y 2
             return Redirect("/Home/Inicio");
         }
 
@@ -172,42 +192,7 @@ namespace pw3_tpIntegrador.Controllers
             Propuestas.Alta(p);
             return Redirect("/Home/Inicio");
         }
-
-        [HttpPost]
-        public ActionResult ModificarTipoMonetaria(FormCollection form)
-        {
-            PropuestasDonacionesMonetaria p = (PropuestasDonacionesMonetaria)ExtraerInformacionComun(form, new PropuestasDonacionesMonetaria());
-
-            p.Dinero = Decimal.Parse(form["Dinero"]);
-            p.CBU = form["CBU"];
-
-            //TODO: Editar
-            //Propuestas.Alta(p);
-            return Redirect("/Home/Inicio");
-        }
-
-        public ActionResult ModificarTipoInsumos(FormCollection form)
-        {
-            Propuesta p = ExtraerInformacionComun(form, new Propuesta());
-            List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
-
-            //TODO: Editar
-            // Propuestas.Alta(p, listaInsumos);
-            return Redirect("/Home/Inicio");
-        }
-
-        public ActionResult ModificarTipoHorasTrabajo(FormCollection form)
-        {
-            PropuestasDonacionesHorasTrabajo p = (PropuestasDonacionesHorasTrabajo)ExtraerInformacionComun(form, new PropuestasDonacionesHorasTrabajo());
-
-            p.CantidadHoras = Int32.Parse(form["CantidadHoras"]);
-            p.Profesion = form["Profesion"];
-            
-            //TODO: Editar
-            //Propuestas.Alta(p);
-            return Redirect("/Home/Inicio");
-        }
-
+       
         public ActionResult Detalle(int Id)
         {
             Usuario Usuario = SesionServicio.UsuarioSession;
