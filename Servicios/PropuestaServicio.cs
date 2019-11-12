@@ -206,9 +206,8 @@ namespace Servicios
             propuestaAModificar.FechaFin = propuesta.FechaFin;
             propuestaAModificar.TelefonoContacto = propuesta.TelefonoContacto;
             propuestaAModificar.TipoDonacion = propuesta.TipoDonacion;
-            propuestaAModificar.Foto = "FIXME";
-            // TODO: Arreglar propuestaAModificar.Foto = propuesta.Foto;
 
+            propuestaAModificar.Foto = !string.IsNullOrEmpty(propuesta.Foto) ? propuesta.Foto : string.Empty;
             switch (propuestaAModificar.TipoDonacion)
             {
                 case 1: //TipoMonetaria
