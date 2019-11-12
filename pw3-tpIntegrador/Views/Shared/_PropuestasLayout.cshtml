@@ -1,4 +1,4 @@
-﻿@model Data.Usuario
+﻿
 @{
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
 }
@@ -35,7 +35,7 @@
                     }
 
                     <li class="nav-item">
-                        @Html.ActionLink("Acerca de", "Ver", "AcercaDe", new object { }, new { @class = "nav-link" })
+                        @Html.ActionLink("Acerca de", "AcercaDe", "Usuario", new object { }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Salir", "LogOut", "Usuario", new object { }, new { @class = "nav-link" })

@@ -156,5 +156,17 @@ namespace pw3_tpIntegrador.Controllers
             
             return View(); //Error
         }
-    }
+		[HttpGet]
+		public ActionResult AcercaDe()
+		{
+			if (SesionServicio.UsuarioSession != null)
+			{
+				return View();
+			}
+			else
+			{
+				return Redirect("/Home/Inicio");
+			}
+		}
+	}
 }
