@@ -118,10 +118,17 @@ namespace pw3_tpIntegrador.Controllers
 
             
         }
-		[HttpGet]
+		
 		public ActionResult Denunciar(int Id)
 		{
-			return View(Propuestas.ObtenerPorId(Id));
+            Propuesta PropuestaDenunciada = Propuestas.ObtenerPorId(Id);
+
+            ViewBag.Img = PropuestaDenunciada.Foto;
+            ViewBag.IdUsuario = PropuestaDenunciada.Usuario.IdUsuario;
+            ViewBag.FechaCreacion = DateTime.Now;
+            ViewBag.IdPropuesta = Id;
+
+            return View();
 		}
 		[HttpPost]
 		public ActionResult Denunciar(Denuncia d)
