@@ -12,17 +12,17 @@ namespace pw3_tpIntegrador.Controllers
         [HttpGet]
         public ActionResult Inicio(bool mostrarPropuestasInactivas = false)
 		{
-			if (SesionServicio.UsuarioSession == null)
+			if (SesionServicio.UsuarioSession == null) //Si esta el user logueado
 			{
-				return View(Propuestas.ObtenerCincoMejoresActivas());
+				return View(Propuestas.ObtenerCincoMejoresActivas()); //Obtiene las 5 mejores propuestas por valoracion activas y vuelve al Inicio
 			}
 			else
-			{
+			{   //Si estas logueado te envia a la vista InicioUsuarioLogueado con la lista de todas las propuestas activas
                 List<Propuesta> propuestas = mostrarPropuestasInactivas ? Propuestas.ObtenerTodas() : Propuestas.ObtenerActivas();
 				return View("InicioUsuarioLogueado", propuestas);
 			}
 		}
-
+        //Manejo de errores
         public ActionResult Error(int error = 0)
         {
             switch (error)

@@ -10,7 +10,7 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult Gestionar()
         {
-			if (SesionServicio.IsAdmin)
+			if (SesionServicio.IsAdmin) //Si es Admin puede entrar a Gestion de denuncias
 			{
                 return View(Denuncias.ObtenerNuevasDenuncias());
 			}
@@ -21,7 +21,7 @@ namespace pw3_tpIntegrador.Controllers
         }
 
         [HttpGet]
-        public ActionResult Aceptar(int id)
+        public ActionResult Aceptar(int id) //Aceptar Denuncia
         {
             if (SesionServicio.IsAdmin)
             {
@@ -35,7 +35,7 @@ namespace pw3_tpIntegrador.Controllers
         }
 
         [HttpGet]
-        public ActionResult Desestimar(int id)
+        public ActionResult Desestimar(int id) //Desestimar Denuncia
         {
             if (SesionServicio.IsAdmin)
             {

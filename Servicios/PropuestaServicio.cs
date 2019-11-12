@@ -183,11 +183,12 @@ namespace Servicios
 		public decimal CalcularValoracionTotal(int Id)
 		{
 			var PropuestaActual = ObtenerPorId(Id);
+            //Cuenta la cantidad total int
 			var cantidadMeGusta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta && x.Valoracion == true).Count();
 			var cantidadTotal = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta).Count();
 
-            decimal Valoracion = (decimal)cantidadMeGusta / cantidadTotal * 100;
-            decimal Resultado = Math.Round(Valoracion, 2);
+            decimal Valoracion = (decimal)cantidadMeGusta / cantidadTotal * 100; //Formula de Valoracion de la Propuesta
+            decimal Resultado = Math.Round(Valoracion, 2); //Solo permite 2 decimales (para que no rompa en la db)
             PropuestaActual.Valoracion = Resultado;
 			ctx.SaveChanges();
 

@@ -72,7 +72,7 @@ namespace Servicios
 			ctx.SaveChanges();
 		}
 
-		private string NuevoCodigoDeActivacion()
+		private string NuevoCodigoDeActivacion() //Generacion automatica del Token para posterior validacion
 		{
 			Random random = new Random();
 			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -100,7 +100,7 @@ namespace Servicios
             var usuario = ctx.Usuarios.Where(x => x.Token == token).FirstOrDefault();
             return usuario;
         }
-
+        //Logica Envio de Email con su Token para activacion
         public void EnviarEmailToken(Usuario usuario)
 		{
 			MailMessage email = new MailMessage();

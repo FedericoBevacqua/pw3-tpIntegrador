@@ -39,7 +39,7 @@ namespace pw3_tpIntegrador.Controllers
 				return View(form);
 			}*/
 
-			return CrearPaso2(form);
+			return CrearPaso2(form); 
 		}
 
         [HttpGet]
@@ -64,6 +64,7 @@ namespace pw3_tpIntegrador.Controllers
 
             Propuesta propuestaAModificar = Propuestas.ObtenerPorId(idPropuesta);
 
+            //Logica Envio Imagen
             if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
             {
                 //TODO: Agregar validacion para confirmar que el archivo es una imagen
@@ -72,7 +73,7 @@ namespace pw3_tpIntegrador.Controllers
                 propuestaAModificar.Foto = pathRelativoImagen;
             }
 
-            switch (tipoDonacion)
+            switch (tipoDonacion) //Modifica segun tipo de donacion
             {
                 case 1: //TipoMonetaria
                     PropuestasDonacionesMonetaria pam = propuestaAModificar.PropuestasDonacionesMonetarias.FirstOrDefault();
@@ -134,7 +135,7 @@ namespace pw3_tpIntegrador.Controllers
             Propuesta NuevaPropuesta;
             String ViewName;
 
-            switch(TipoDonacion)
+            switch(TipoDonacion) //Recibe del formulario Crear el tipo de donacion que selecciono.
             {
                 case 1:
                     NuevaPropuesta = new PropuestasDonacionesMonetaria();
@@ -160,9 +161,9 @@ namespace pw3_tpIntegrador.Controllers
 
             return View(ViewName, NuevaPropuesta);
         }
-
+        //Creaciones segun el tipo Propuesta y guardado en Db
         [HttpPost]
-        public ActionResult ProcesarTipoMonetaria(FormCollection form)
+        public ActionResult ProcesarTipoMonetaria(FormCollection form) 
         {
             PropuestasDonacionesMonetaria p = (PropuestasDonacionesMonetaria) ExtraerInformacionComun(form, new PropuestasDonacionesMonetaria());
 
@@ -198,6 +199,7 @@ namespace pw3_tpIntegrador.Controllers
             Usuario Usuario = SesionServicio.UsuarioSession;
             if (Usuario == null)
             {
+                //Logica si entra al detalle propuesta deslogueado. Te obliga a loguearte y luego te devuelve a la propuesta deseada
 				//Guarda url donde se desea ingresar, y se envia a la vista Login como hidden
 				string url = Url.Content(Request.Url.PathAndQuery);
 				return RedirectToAction("Login", "Usuario", new { url, MensajeError = "Debés iniciar sesión para continuar" });
@@ -302,13 +304,6 @@ namespace pw3_tpIntegrador.Controllers
             return Redirect("/Home/Inicio");
         }
 
-
-
-
-
-
-
-
         //Helpers privados
         private Propuesta ExtraerInformacionComun(FormCollection form, Propuesta p)
         {
@@ -319,6 +314,7 @@ namespace pw3_tpIntegrador.Controllers
             p.TipoDonacion = Int32.Parse(form["TipoDonacion"]);
             p.Foto = form["Foto"];
 
+            //Logica Envio de Foto
             if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
             {
                 //TODO: Agregar validacion para confirmar que el archivo es una imagen
@@ -326,8 +322,6 @@ namespace pw3_tpIntegrador.Controllers
                 string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
                 p.Foto = pathRelativoImagen;
             }
-
-            
 
             PropuestasReferencia referencia1 = new PropuestasReferencia();
             referencia1.Nombre = form["Referencia1Nombre"];
@@ -361,12 +355,12 @@ namespace pw3_tpIntegrador.Controllers
             return listaInsumos;
         }
         [HttpPost]
-        public ActionResult Buscar(string keyword)
+        public ActionResult Buscar(string keyword) //Busquedad cuadro de texto en InicioUsuarioLogueado
         {
-            var resultado = Propuestas.BuscarPorNombreYUsuario(keyword);
+            var resultado = Propuestas.BuscarPorNombreYUsuario(keyword); //Trae propuestas por su nombre o el username del Usuario
             return View(resultado);
         }
-
+        //Logica Valoraciones
         [HttpPost]
         public decimal MeGusta(int Id)
         {
