@@ -19,7 +19,7 @@
                 // TODO: Modificar Imagen por default
                 <img src="@ViewBag.Img" class="img-thumbnail" alt="Foto Propuesta">
             }
-            <div class="text-muted mt-2"><small>Pedido de @Model.TipoDonacionString() - Creado por @Model.Usuario.Nombre.ToLower().@Model.Usuario.Apellido.ToLower() el @Model.FechaCreacion.ToShortDateString()</small></div>
+            <div class="text-muted mt-2"><small>Pedido de @Model.TipoDonacionString() - Creado por @Model.Usuario.UserName el @Model.FechaCreacion.ToShortDateString()</small></div>
             <div class="text-muted"><small>Abierto hasta el @Model.FechaFin.ToShortDateString()</small></div>
             <p class="mt-2">@Model.Descripcion</p>
         </div>
