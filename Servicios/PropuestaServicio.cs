@@ -1,4 +1,4 @@
-using Data;
+﻿using Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -189,6 +189,11 @@ namespace Servicios
 			PropuestaActual.Valoracion = (decimal)cantidadMeGusta / cantidadTotal * 100;
 			ctx.SaveChanges();
 		}
+
+        public int CantidadPropuestasActivasPorUsuario(int id)
+        {
+            return ctx.Propuestas.Where(p => p.IdUsuarioCreador == id).Count();
+        }
 
 	}
 }

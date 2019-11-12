@@ -20,8 +20,14 @@ namespace pw3_tpIntegrador.Controllers
             }
 			else
 			{
-				return View();
-			}
+                //El Usuario solo puede crear una nueva propuesta si tiene menos de 3 propuestas activas
+                if (Propuestas.CantidadPropuestasActivasPorUsuario(SesionServicio.UsuarioSession.IdUsuario) < 3 || SesionServicio.IsAdmin)
+                {
+                    return View();
+                }
+                // TODO: Mostrar mensaje de error
+                return Redirect("/Home/Inicio");
+            }
         }
         [HttpPost]
 		public ActionResult Crear(FormCollection form)
