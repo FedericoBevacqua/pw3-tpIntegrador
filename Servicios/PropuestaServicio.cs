@@ -84,23 +84,23 @@ namespace Servicios
 		}
 		public Denuncia VerificarDenunciaUna(Denuncia d)
 		{
-			DenunciaServicio Denuncias = new DenunciaServicio();
+			return ctx.Denuncias.Where(x => x.IdPropuesta == d.IdPropuesta && x.IdUsuario == SesionServicio.UsuarioSession.IdUsuario).FirstOrDefault();
 
-			var TodasDenuncias = Denuncias.ObtenerTodas();
-			//Doble consulta
-			return ctx.Denuncias.Where(x => x.IdPropuesta == d.IdPropuesta).First();
 		}
 		public void CrearDenuncia(Denuncia d)
         {
             d.FechaCreacion = DateTime.Now;
             d.Estado = 0; //Tipos Estado: 0-Revision | 1-Aceptada | 2-Desestimada
+			d.IdUsuario = SesionServicio.UsuarioSession.IdUsuario;
             ctx.Denuncias.Add(d);
             ctx.SaveChanges();
 
-            if(ctx.Denuncias.Where(x=>x.IdPropuesta == d.IdPropuesta).Where(x=>x.Estado != 2).Count() >= 5)
+            if(ctx.Denuncias.Where(x=>x.IdPropuesta == d.IdPropuesta && x.Estado != 2).Count() >= 5)
             {
                 //Si hay 5 denuncias sobre esta publicación en revisión o aceptadas se bloquea la publicación
-                Propuesta p = ctx.Propuestas.Find(d.Propuesta.IdPropuesta);
+                Propuesta p = ctx.Propuestas.Find(d.IdPropuesta);
+
+
                 p.Estado = 0; //Estado inactivo
                 ctx.SaveChanges();
             }
