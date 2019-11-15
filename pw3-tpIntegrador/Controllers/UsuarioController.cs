@@ -118,6 +118,10 @@ namespace pw3_tpIntegrador.Controllers
         {
             Usuario usuario = SesionServicio.UsuarioSession;
 
+			if(usuario.UserName == null)
+			{
+				return Redirect("/Usuario/CrearPerfil");
+			}
             if (usuario != null)
             {
                 return View(usuario);
@@ -148,19 +152,30 @@ namespace pw3_tpIntegrador.Controllers
 			{
 				return View(p);
 			}
-            //Logica para guardar la Foto
-            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && Request.Files[0].ContentType.Contains("image"))
-            {
-                string nombreSignificativo = p.UserName + DateTime.Now.ToString();
-                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
-                p.Foto = pathRelativoImagen;
-            }
+			Usuario usuario = SesionServicio.UsuarioSession;
+			if (usuario.UserName == null) { 
+				//Logica para guardar la Foto
+				if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && Request.Files[0].ContentType.Contains("image"))
+				{
+					string nombreSignificativo = p.UserName + DateTime.Now.ToString();
+					string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+					p.Foto = pathRelativoImagen;
+				}
 
-            Usuarios.CrearPerfil(p);
+				Usuarios.CrearPerfil(p);
+
+				//Actualizo sesion
+				Usuario user = Usuarios.ObtenerPorId(p.IdUsuario);
+				SesionServicio.UsuarioSession = user;
+
+				return Redirect("/Home/Inicio");
+			}
+			//TODO: Mensaje error ya tiene username creado.
 			return Redirect("/Home/Inicio");
-        }
 
-        [HttpGet]
+		}
+
+		[HttpGet]
         public ActionResult Activar(string token)
         {
             Usuario usuario = Usuarios.ActivarCuenta(token);

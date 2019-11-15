@@ -17,7 +17,14 @@ namespace pw3_tpIntegrador.Controllers
 				return View(Propuestas.ObtenerCincoMejoresActivas()); //Obtiene las 5 mejores propuestas por valoracion activas y vuelve al Inicio
 			}
 			else
-			{   //Si estas logueado te envia a la vista InicioUsuarioLogueado con la lista de todas las propuestas activas
+			{
+				Usuario usuario = SesionServicio.UsuarioSession;
+				if (usuario.UserName == null)
+				{
+					//TODO: Complete su perfil para acceder al sitio normalmente.
+					return Redirect("/Usuario/CrearPerfil");
+				}
+				//Si estas logueado te envia a la vista InicioUsuarioLogueado con la lista de todas las propuestas activas
                 List<Propuesta> propuestas = mostrarPropuestasInactivas ? Propuestas.ObtenerTodas() : Propuestas.ObtenerActivas();
 				return View("InicioUsuarioLogueado", propuestas);
 			}

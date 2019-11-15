@@ -15,20 +15,26 @@ namespace pw3_tpIntegrador.Controllers
 		[HttpGet]
 		public ActionResult Crear()
         {
-			if (SesionServicio.UsuarioSession == null)
+			if (SesionServicio.UsuarioSession == null) //Si no esta logueado
 			{
+				//TODO: Mensaje error no logueado
 				return Redirect("/Home/Inicio");
             }
 			else
 			{
-                //El Usuario solo puede crear una nueva propuesta si tiene menos de 3 propuestas activas
-                if (Propuestas.CantidadPropuestasActivasPorUsuario(SesionServicio.UsuarioSession.IdUsuario) < 3 || SesionServicio.IsAdmin)
-                {
-                    return View();
-                }
+				if (SesionServicio.UsuarioSession.UserName == null) //Si no tiene username creado, no podra crear Propuesta. 
+				{
+					//TODO: Mensaje error : Debe crear su perfil primero
+					return Redirect("/Usuario/CrearPerfil");
+				}
+			}
+			//El Usuario solo puede crear una nueva propuesta si tiene menos de 3 propuestas activas. El admin puede crear mas de 3
+			if (Propuestas.CantidadPropuestasActivasPorUsuario(SesionServicio.UsuarioSession.IdUsuario) < 3 || SesionServicio.IsAdmin)
+            {
+				return View();
+            }
                 // TODO: Mostrar mensaje de error
                 return Redirect("/Home/Inicio");
-            }
         }
 
         [HttpPost]
@@ -213,7 +219,20 @@ namespace pw3_tpIntegrador.Controllers
 		
 		public ActionResult Denunciar(int Id)
 		{
-            Propuesta PropuestaDenunciada = Propuestas.ObtenerPorId(Id);
+			if (SesionServicio.UsuarioSession == null) //Si no esta logueado
+			{
+				//TODO: Mensaje error no logueado o sin perfil creado
+				return Redirect("/Home/Inicio");
+			}
+			else
+			{
+				if (SesionServicio.UsuarioSession.UserName == null) //o no tiene creado su perfil.
+				{
+					//Mensaje de error: Primero debe crear su perfil
+					return Redirect("/Usuario/CrearPerfil");
+				}
+			}
+			Propuesta PropuestaDenunciada = Propuestas.ObtenerPorId(Id);
 
             ViewBag.Img = PropuestaDenunciada.Foto;
             ViewBag.NombrePropuesta = PropuestaDenunciada.Nombre;
@@ -231,9 +250,19 @@ namespace pw3_tpIntegrador.Controllers
 			{
 				return View(d);
 			}
+			if(Propuestas.VerificarDenunciaUna(d) == null)
+			{
+				Propuestas.CrearDenuncia(d);
+				return Redirect("/Home/Inicio");
+			}
+			else
+			{
+				//TODO: Mensaje de error. Ya has hecho una denuncia para esta propuesta.
+				return Redirect("/Home/Inicio");
+			}
 
-			Propuestas.CrearDenuncia(d);
-			return Redirect("/Home/Inicio");
+
+			
 		}
 
 		public ActionResult Donar(int Id)
