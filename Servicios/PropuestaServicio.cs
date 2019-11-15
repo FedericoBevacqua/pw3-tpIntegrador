@@ -82,6 +82,14 @@ namespace Servicios
 		{
 			return ctx.Propuestas.Where(x => x.Estado == 1).OrderByDescending(x => x.Valoracion).Take(5).ToList();
 		}
+		public Denuncia VerificarDenunciaUna(Denuncia d)
+		{
+			DenunciaServicio Denuncias = new DenunciaServicio();
+
+			var TodasDenuncias = Denuncias.ObtenerTodas();
+			//Doble consulta
+			return ctx.Denuncias.Where(x => x.IdPropuesta == d.IdPropuesta).First();
+		}
 		public void CrearDenuncia(Denuncia d)
         {
             d.FechaCreacion = DateTime.Now;
@@ -144,7 +152,7 @@ namespace Servicios
 			int idUsuario = SesionServicio.UsuarioSession.IdUsuario;
 			var PropuestaActual = ObtenerPorId(Id);
 
-			var consulta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta && idUsuario == x.IdUsuario).FirstOrDefault();
+			var consulta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == Id && idUsuario == x.IdUsuario).FirstOrDefault();
 			if (consulta == null)
 			{
 				Valoracion.IdPropuesta = PropuestaActual.IdPropuesta;
@@ -165,7 +173,7 @@ namespace Servicios
 			int idUsuario = SesionServicio.UsuarioSession.IdUsuario;
 			var PropuestaActual = ObtenerPorId(Id);
 
-			var consulta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta && idUsuario == x.IdUsuario).FirstOrDefault();
+			var consulta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == Id && idUsuario == x.IdUsuario).FirstOrDefault();
 			if (consulta == null)
 			{
 			Valoracion.IdPropuesta = PropuestaActual.IdPropuesta;
@@ -183,11 +191,11 @@ namespace Servicios
 		public decimal CalcularValoracionTotal(int Id)
 		{
 			var PropuestaActual = ObtenerPorId(Id);
-            //Cuenta la cantidad total int
-			var cantidadMeGusta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta && x.Valoracion == true).Count();
-			var cantidadTotal = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == PropuestaActual.IdPropuesta).Count();
+            //Cuenta la cantidad total int  
+			var cantidadMeGusta = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == Id && x.Valoracion == true).Count();
+			var cantidadTotal = ctx.PropuestasValoraciones.Where(x => x.IdPropuesta == Id).Count();
 
-            decimal Valoracion = (decimal)cantidadMeGusta / cantidadTotal * 100; //Formula de Valoracion de la Propuesta
+            decimal Valoracion = (decimal)cantidadMeGusta / cantidadTotal * 100; //Formula de Valoracion de la Propuesta  //La cantidad Total nunca va a ser 0. Al ejecutarse la accion de votar antes.
             decimal Resultado = Math.Round(Valoracion, 2); //Solo permite 2 decimales (para que no rompa en la db)
             PropuestaActual.Valoracion = Resultado;
 			ctx.SaveChanges();

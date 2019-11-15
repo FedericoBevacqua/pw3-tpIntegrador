@@ -40,6 +40,10 @@ namespace Servicios
                 .OrderByDescending(x => x.FechaCreacion)
                 .ToList();
         }
+		public List<Denuncia> ObtenerTodas()
+        {
+            return ctx.Denuncias.ToList();
+        }
 
     }
 }
