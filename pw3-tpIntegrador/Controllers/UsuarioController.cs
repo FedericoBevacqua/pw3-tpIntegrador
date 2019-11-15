@@ -200,5 +200,19 @@ namespace pw3_tpIntegrador.Controllers
 				return Redirect("/Home/Inicio");
 			}
 		}
+		[HttpPost]
+		public ActionResult ModificarPerfil(Usuario p)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(p);
+			}
+			Usuarios.Modificar(p);
+
+			//Actualizo sesion
+			Usuario user = Usuarios.ObtenerPorId(p.IdUsuario);
+			SesionServicio.UsuarioSession = user;
+			return Redirect("/Usuario/MiPerfil");
+		}
 	}
 }

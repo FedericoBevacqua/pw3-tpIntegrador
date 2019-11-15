@@ -136,5 +136,14 @@ namespace Servicios
 
             return usuario;
 		}
+		public void Modificar(Usuario u)
+		{
+			Usuario UsuarioViejo = ObtenerPorId(u.IdUsuario);
+			UsuarioViejo.Nombre = u.Nombre;
+			UsuarioViejo.Apellido = u.Apellido;
+			UsuarioViejo.Foto = u.Foto;
+			UsuarioViejo.FechaNacimiento = u.FechaNacimiento.Date;
+			ctx.SaveChanges();
+		}
 	}
 }
