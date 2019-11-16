@@ -52,8 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomDataAnnotations\FechaMinimaHoyAttribute.cs" />
-    <Compile Include="CustomDataAnnotations\MayorDeEdadAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DenunciaServicio.cs" />
     <Compile Include="PropuestaServicio.cs" />

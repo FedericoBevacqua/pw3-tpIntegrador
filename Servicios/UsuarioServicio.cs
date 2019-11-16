@@ -12,15 +12,20 @@ namespace Servicios
 	{
         readonly TpEntities ctx = new TpEntities();
 
-		public void Alta(Usuario u)
+		public void Alta(UsuarioRegistro u)
 		{
-			u.Token = NuevoCodigoDeActivacion(); //Token autogenerado
-			u.FechaCracion = DateTime.Now;
-			u.Activo = false;
-			u.TipoUsuario = 0; // 0 = Normal | 1 = Administrador 
-			ctx.Usuarios.Add(u);
+			var UsuarioNuevo = new Usuario();
+			UsuarioNuevo.Email = u.Email;
+			UsuarioNuevo.Password = u.Password;
+			UsuarioNuevo.FechaNacimiento = u.FechaNacimiento;
+
+			UsuarioNuevo.Token = NuevoCodigoDeActivacion(); //Token autogenerado
+			UsuarioNuevo.FechaCracion = DateTime.Now;
+			UsuarioNuevo.Activo = false;
+			UsuarioNuevo.TipoUsuario = 0; // 0 = Normal | 1 = Administrador 
+			ctx.Usuarios.Add(UsuarioNuevo); //TODO: FIXEAR
 			ctx.SaveChanges();
-            EnviarEmailToken(u);
+            EnviarEmailToken(UsuarioNuevo);
 		}
 
 		public Usuario ObtenerPorId(int id)

@@ -94,7 +94,7 @@ namespace pw3_tpIntegrador.Controllers
             }
         }
 		[HttpPost]
-		public ActionResult Registro(Usuario u)
+		public ActionResult Registro(UsuarioRegistro u)
 		{
 			if (!ModelState.IsValid)
 			{
