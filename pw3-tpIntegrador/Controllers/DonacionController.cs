@@ -1,4 +1,9 @@
 ﻿using Servicios;
+using Servicios.DTO.Donacion;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Web.Mvc;
 
 namespace pw3_tpIntegrador.Controllers
@@ -14,6 +19,7 @@ namespace pw3_tpIntegrador.Controllers
             }
 			else
 			{
+                ViewBag.IdUsuario = SesionServicio.UsuarioSession.IdUsuario;
 				return View();
 			}
         }
