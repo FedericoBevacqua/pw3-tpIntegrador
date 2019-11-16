@@ -24,7 +24,7 @@
             <form action="/Propuestas/DonarHorasTrabajo" method="post" class="mt-2" id="donar-formulario">
 
                 <input type="hidden" name="IdPropuestaDonacionHorasTrabajo" value="@Model.PropuestasDonacionesHorasTrabajoes.First().IdPropuestaDonacionHorasTrabajo" />
-                <input type="hidden" name="IdUsuario" value="@Model.IdUsuarioCreador" />
+                <input type="hidden" name="IdUsuario" value="@ViewBag.DonanteId" />
 
                 <div class="form-group">
                     @Html.Label("Cantidad", "Horas a donar:")

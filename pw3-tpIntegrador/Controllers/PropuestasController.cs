@@ -265,6 +265,7 @@ namespace pw3_tpIntegrador.Controllers
         {
             Propuesta p = Propuestas.ObtenerPorId(Id);
             Usuario usuario = SesionServicio.UsuarioSession;
+            ViewBag.DonanteId = usuario.IdUsuario;
 
             // Si el usuario no es el mismo que creo la propuesta o es Admin puede donar
             if (usuario != null && usuario.IdUsuario != p.IdUsuarioCreador || SesionServicio.IsAdmin)
