@@ -117,6 +117,7 @@
     <Compile Include="Usuario.cs">
       <DependentUpon>TP-2019C.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\PropuestaCrear.cs" />
     <Compile Include="ViewModels\UsuarioModificarPerfil.cs" />
     <Compile Include="ViewModels\UsuarioPerfil.cs" />
     <Compile Include="ViewModels\UsuarioRegistro.cs" />

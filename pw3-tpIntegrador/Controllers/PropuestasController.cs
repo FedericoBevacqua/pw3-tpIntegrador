@@ -40,11 +40,6 @@ namespace pw3_tpIntegrador.Controllers
         [HttpPost]
 		public ActionResult Crear(FormCollection form)
 		{
-			/*if (!ModelState.IsValid)
-			{
-				return View(form);
-			}*/
-
 			return CrearPaso2(form); 
 		}
 

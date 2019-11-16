@@ -42,7 +42,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            @Html.TextBox("Cantidad[" + @currentIndex + "]", 0, new { @class = "form-control cantidad-insumo-donado", @type = "number", @min = "0", @max = "3" })
+                            @Html.TextBox("Cantidad[" + @currentIndex + "]", 0, new { @class = "form-control cantidad-insumo-donado", @type = "number", @min = "0" })
                         </div>
                         <div class="form-group col-md-9">
                             @Html.TextBox("Nombre", @p.Nombre, new { @class = "form-control", @readonly = "readonly" })

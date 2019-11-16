@@ -28,7 +28,7 @@
 
                 <div class="form-group">
                     @Html.Label("Cantidad", "Horas a donar:")
-                    @Html.TextBox("Cantidad", 0, new { @class = "form-control", @type = "number" })
+                    @Html.TextBox("Cantidad", 1, new { @class = "form-control", @type = "number", @min = "1"})
                 </div>
 
                 <input type="submit" class="btn btn-success mt-3" value="Donar" id="donar-submit" />

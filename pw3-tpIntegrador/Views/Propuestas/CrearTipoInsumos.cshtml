@@ -23,11 +23,11 @@
         <div class="form-row insumo">
             <div class="form-group col-md-3">
                 @Html.Label("Cantidad[0]", "Cantidad:")
-                @Html.TextBox("Cantidad[0]", null, new { @class = "form-control", @type = "number" })
+                @Html.TextBox("Cantidad[0]", 1, new { @class = "form-control", @type = "number", @min = "1" })
             </div>
             <div class="form-group col-md-9">
                 @Html.Label("Nombres[0]", "Nombre insumo:")
-                @Html.TextBox("Nombres[0]", null, new { @class = "form-control" })
+                @Html.TextBox("Nombres[0]", null, new { @class = "form-control", @required = "required" })
             </div>
         </div>
 
