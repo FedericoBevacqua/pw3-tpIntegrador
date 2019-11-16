@@ -23,7 +23,7 @@
 
             <form action="/Propuestas/DonarInsumos" method="post" class="mt-2" id="donar-formulario">
 
-                <input type="hidden" name="IdUsuario" value="@Model.IdUsuarioCreador" />
+                <input type="hidden" name="IdUsuario" value="@ViewBag.DonanteId" />
                 <input type="hidden" name="CantidadInsumos" value="@Model.PropuestasDonacionesInsumos.Count()" />
 
                 <div class="form-row">
