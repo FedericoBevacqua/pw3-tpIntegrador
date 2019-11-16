@@ -45,11 +45,13 @@
 		</div>
 
 		<div class="form-group">
-			<label>Foto de perfil (obligatoria): </label>
+			<label>Foto de perfil: </label>
 			<div class="form-row mt-2 mb-4">
 				<div class="custom-file">
 					<input type="file" class="custom-file-input" id="Foto" name="Foto" lang="es">
 					<label class="custom-file-label" for="Foto">Seleccionar archivo</label>
+					@Html.ValidationMessageFor(p => p.Foto, null, new { @class = "text-danger" })
+
 				</div>
 			</div>
 		</div>
