@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DonacionServicio.cs" />
+    <Compile Include="DTO\Donacion\DonacionDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DenunciaServicio.cs" />
     <Compile Include="PropuestaServicio.cs" />
