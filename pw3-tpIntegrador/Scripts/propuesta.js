@@ -1,4 +1,5 @@
-﻿function validarp() {
+﻿function validarp(event) {
+    event.preventDefault();
 	var nombrep, descripcionp, fechafinp, telefonop, TipoDonacion, Imagen, refnombre1p, refnombre2p, reftelefono1p, reftelefono2p;
 
 	nombrep = document.getElementById("nombrep").value;
@@ -6,7 +7,7 @@
 	fechafinp = document.getElementById("fechafinp").value;
 	telefonop = document.getElementById("telefonop").value;
 	TipoDonacion = document.getElementById("TipoDonacion").value;
-	Imagen = document.getElementById("fotop").value;
+	Imagen = document.getElementById("Imagen").value;
 	refnombre1p = document.getElementById("refnombre1p").value;
 	refnombre2p = document.getElementById("refnombre2p").value;
 	reftelefono1p = document.getElementById("reftelefono1p").value;
@@ -63,5 +64,7 @@
 	else if (isNaN(reftelefono2p)) {
 		alert("El telefono del referido 2 ingresado no es un número");
 		return false;
-	}
+    }
+
+    document.getElementById("formulario-crear-propuesta-paso-1").submit();
 }
