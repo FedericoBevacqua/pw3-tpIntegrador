@@ -13,7 +13,9 @@
         </div>
         
         <script>
+            console.log("Cuando se cargue el documento se ejecutara la funcion pedir historial");
             window.onload = () => {
+                console.log("Documento cargado, ejecutando funcion pedirHistorial para el usuario con id @ViewBag.IdUsuario...");
                 pedirHistorial(@ViewBag.IdUsuario);
             }
         </script>
