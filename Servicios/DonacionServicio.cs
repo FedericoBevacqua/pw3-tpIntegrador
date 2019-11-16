@@ -51,7 +51,7 @@ namespace Servicios
             Respuesta.Foto = d.PropuestasDonacionesMonetaria.Propuesta.Foto;
             Respuesta.Nombre = d.PropuestasDonacionesMonetaria.Propuesta.Nombre;
             Respuesta.TipoDonacion = "Donación monetaria";
-            Respuesta.Estado = d.PropuestasDonacionesMonetaria.Estado == 1 ? "activa" : "inactiva";
+            Respuesta.Estado = d.PropuestasDonacionesMonetaria.Propuesta.Estado == 1 ? "activa" : "inactiva";
             Respuesta.TotalRecaudado = "$" + ctx.DonacionesMonetarias.Where(x=>x.IdPropuestaDonacionMonetaria == d.IdPropuestaDonacionMonetaria).Sum(x=>x.Dinero).ToString();
             Respuesta.MiDonacion = "$" + d.Dinero.ToString();
             Respuesta.LinkAPublicacion = "/Propuestas/Detalle/" + d.PropuestasDonacionesMonetaria.IdPropuesta;
@@ -67,7 +67,7 @@ namespace Servicios
             Respuesta.Foto = d.PropuestasDonacionesInsumo.Propuesta.Foto;
             Respuesta.Nombre = d.PropuestasDonacionesInsumo.Propuesta.Nombre;
             Respuesta.TipoDonacion = "Donación de insumos";
-            Respuesta.Estado = d.PropuestasDonacionesInsumo.Estado == 1 ? "activa" : "inactiva";
+            Respuesta.Estado = d.PropuestasDonacionesInsumo.Propuesta.Estado == 1 ? "activa" : "inactiva";
             Respuesta.TotalRecaudado = ctx.DonacionesInsumos.Where(x=>x.IdPropuestaDonacionInsumo == d.IdPropuestaDonacionInsumo).Sum(x=>x.Cantidad).ToString() + " " + d.PropuestasDonacionesInsumo.Nombre;
             Respuesta.MiDonacion = d.PropuestasDonacionesInsumo.Cantidad + " " + d.PropuestasDonacionesInsumo.Nombre;
             Respuesta.LinkAPublicacion = "/Propuestas/Detalle/" + d.PropuestasDonacionesInsumo.IdPropuesta;
@@ -83,7 +83,7 @@ namespace Servicios
             Respuesta.Foto = d.PropuestasDonacionesHorasTrabajo.Propuesta.Foto;
             Respuesta.Nombre = d.PropuestasDonacionesHorasTrabajo.Propuesta.Nombre;
             Respuesta.TipoDonacion = "Donación de horas de trabajo";
-            Respuesta.Estado = d.PropuestasDonacionesHorasTrabajo.Estado == 1 ? "activa" : "inactiva";
+            Respuesta.Estado = d.PropuestasDonacionesHorasTrabajo.Propuesta.Estado == 1 ? "activa" : "inactiva";
             Respuesta.TotalRecaudado = ctx.DonacionesHorasTrabajoes.Where(x=>x.IdPropuestaDonacionHorasTrabajo == d.IdPropuestaDonacionHorasTrabajo).Sum(x=>x.Cantidad).ToString() + " horas de " + d.PropuestasDonacionesHorasTrabajo.Profesion;
             Respuesta.MiDonacion = d.Cantidad.ToString() + " horas";
             Respuesta.LinkAPublicacion = "/Propuestas/Detalle/" + d.PropuestasDonacionesHorasTrabajo.IdPropuesta;
