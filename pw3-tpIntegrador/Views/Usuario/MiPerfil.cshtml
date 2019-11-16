@@ -2,11 +2,18 @@
 @{
 	Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
 }
+
+@if (TempData["MensajePerfilModificadoExito"] != null)
+{
+	<div class="alert alert-success">
+		<strong>Éxito!</strong> @TempData["MensajePerfilModificadoExito"]
+	</div>
+}
 <div class="text-right">
 	<a href="/api/{controller}/{action}/{id}" class="btn btn-info pull-right">Historial de Donaciones</a>
 </div>
 <div class="container">
-    <!--TODO: Actualizar datos-->
+	<!--TODO: Actualizar datos-->
 	<form action="/Usuario/ModificarPerfil" method="post" class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3">
 
 		<p class="h4 mb-4">Mi Perfil</p>

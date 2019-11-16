@@ -17,14 +17,14 @@ namespace pw3_tpIntegrador.Controllers
         {
 			if (SesionServicio.UsuarioSession == null) //Si no esta logueado
 			{
-				//TODO: Mensaje error no logueado
+				TempData["MensajeNoLogueado"] = "Debe estar logueado para ejecutar esta acción.";
 				return Redirect("/Home/Inicio");
             }
 			else
 			{
 				if (SesionServicio.UsuarioSession.UserName == null) //Si no tiene username creado, no podra crear Propuesta. 
 				{
-					//TODO: Mensaje error : Debe crear su perfil primero
+					TempData["MensajeNoPerfil"] = "Debes crear tu perfil para ejecutar esta acción.";
 					return Redirect("/Usuario/CrearPerfil");
 				}
 			}
@@ -33,8 +33,8 @@ namespace pw3_tpIntegrador.Controllers
             {
 				return View();
             }
-                // TODO: Mostrar mensaje de error
-                return Redirect("/Home/Inicio");
+			TempData["MensajeMuchasPropuestas"] = "Solo puedes tener 3 propuestas activas.";
+			return Redirect("/Home/Inicio");
         }
 
         [HttpPost]
@@ -129,9 +129,9 @@ namespace pw3_tpIntegrador.Controllers
                     Propuestas.Modificar(idPropuesta, pdt);
                     break;
             }
-
-            //TODO: Modificar Referencias 1 y 2
-            return Redirect("/Home/Inicio");
+			//TODO: Modificar Referencias 1 y 2
+			TempData["MensajePropuestaModificada"] = "La propuesta ha sido modificada con éxito.";
+			return Redirect("/Home/Inicio");
         }
 
         [HttpPost]
@@ -177,7 +177,8 @@ namespace pw3_tpIntegrador.Controllers
             p.CBU = form["CBU"];
 
             Propuestas.Alta(p);
-            return Redirect("/Home/Inicio");
+			TempData["MensajePropuestaCreada"] = "La propuesta ha sido creada con éxito.";
+			return Redirect("/Home/Inicio");
         }
 
         public ActionResult ProcesarTipoInsumos(FormCollection form)
@@ -186,7 +187,8 @@ namespace pw3_tpIntegrador.Controllers
             List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
 
             Propuestas.Alta(p, listaInsumos);
-            return Redirect("/Home/Inicio");
+			TempData["MensajePropuestaCreada"] = "La propuesta ha sido creada con éxito.";
+			return Redirect("/Home/Inicio");
         }
 
         public ActionResult ProcesarTipoHorasTrabajo(FormCollection form)
@@ -197,7 +199,8 @@ namespace pw3_tpIntegrador.Controllers
             p.Profesion = form["Profesion"];
 
             Propuestas.Alta(p);
-            return Redirect("/Home/Inicio");
+			TempData["MensajePropuestaCreada"] = "La propuesta ha sido creada con éxito.";
+			return Redirect("/Home/Inicio");
         }
        
         public ActionResult Detalle(int Id)
@@ -221,14 +224,14 @@ namespace pw3_tpIntegrador.Controllers
 		{
 			if (SesionServicio.UsuarioSession == null) //Si no esta logueado
 			{
-				//TODO: Mensaje error no logueado o sin perfil creado
+				TempData["MensajeNoLogueado"] = "Debe estar logueado para ejecutar esta acción.";
 				return Redirect("/Home/Inicio");
 			}
 			else
 			{
 				if (SesionServicio.UsuarioSession.UserName == null) //o no tiene creado su perfil.
 				{
-					//Mensaje de error: Primero debe crear su perfil
+					TempData["MensajeNoPerfil"] = "Debes crear tu perfil para ejecutar esta acción.";
 					return Redirect("/Usuario/CrearPerfil");
 				}
 			}
@@ -253,16 +256,14 @@ namespace pw3_tpIntegrador.Controllers
 			if(Propuestas.VerificarDenunciaUna(d) == null)
 			{
 				Propuestas.CrearDenuncia(d);
+				TempData["MensajeDenunciaHecha"] = "La denuncia se ha enviado con éxito.";
 				return Redirect("/Home/Inicio");
 			}
 			else
 			{
-				//TODO: Mensaje de error. Ya has hecho una denuncia para esta propuesta.
+				TempData["MensajeDenunciaYaHecha"] = "Ya has hecho una denuncia para esta propuesta.";
 				return Redirect("/Home/Inicio");
 			}
-
-
-			
 		}
 
 		public ActionResult Donar(int Id)
@@ -293,7 +294,7 @@ namespace pw3_tpIntegrador.Controllers
         [HttpPost]
         public ActionResult DonarMonetaria(DonacionesMonetaria d)
         {
-
+			//Logica Imagen
             if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && Request.Files[0].ContentType.Contains("image"))
             {
                 string nombreSignificativo = d.ArchivoTransferencia + DateTime.Now.ToString();
@@ -302,8 +303,8 @@ namespace pw3_tpIntegrador.Controllers
             }
 
             Propuestas.GuardarDonacion(d);
-
-            return Redirect("/Home/Inicio");
+			TempData["MensajeDonacionHecha"] = "La donación se ha hecho exitosamente.";
+			return Redirect("/Home/Inicio");
         }
 
         [HttpPost]
@@ -321,16 +322,18 @@ namespace pw3_tpIntegrador.Controllers
 
                 donaciones.Add(d);
             }
-
+			
             Propuestas.GuardarDonacion(donaciones);
-            return Redirect("/Home/Inicio");
+			TempData["MensajeDonacionHecha"] = "La donación se ha hecho exitosamente.";
+			return Redirect("/Home/Inicio");
         }
 
         [HttpPost]
         public ActionResult DonarHorasTrabajo(DonacionesHorasTrabajo d)
         {
             Propuestas.GuardarDonacion(d);
-            return Redirect("/Home/Inicio");
+			TempData["MensajeDonacionHecha"] = "La donación se ha hecho exitosamente.";
+			return Redirect("/Home/Inicio");
         }
 
         //Helpers privados

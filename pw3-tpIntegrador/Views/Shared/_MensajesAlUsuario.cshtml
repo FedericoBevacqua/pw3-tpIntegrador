@@ -1,0 +1,70 @@
+﻿@if (TempData["MensajeMuchasPropuestas"] != null)
+{
+	<div class="alert alert-warning">
+		<strong>Warning!</strong> @TempData["MensajeMuchasPropuestas"]
+	</div>
+}
+@if (TempData["MensajePerfilCreado"] != null)
+{
+	<div class="alert alert-success">
+		<strong>Éxito!</strong> @TempData["MensajePerfilCreado"]
+	</div>
+}
+@if (TempData["MensajeRegistroExitoso"] != null)
+{
+	<div class="alert alert-success">
+		<strong>Éxito!</strong> @TempData["MensajeRegistroExitoso"]
+	</div>
+}
+
+@if (TempData["MensajeUsernameYaExiste"] != null)
+{
+	<div class="alert alert-danger">
+		<strong>Danger!</strong> @TempData["MensajeUsernameYaExiste"]
+	</div>
+}
+
+@if (TempData["MensajeNoAdmin"] != null)
+{
+	<div class="alert alert-danger">
+		<strong>Danger!</strong> @TempData["MensajeNoAdmin"]
+	</div>
+}
+
+@if (TempData["MensajeNoLogueado"] != null)
+{
+	<div class="alert alert-danger">
+		<strong>Danger!</strong> @TempData["MensajeNoLogueado"]
+	</div>
+}
+
+@if (TempData["MensajePropuestaCreada"] != null)
+{
+	<div class="alert alert-success">
+		<strong>Éxito!</strong> @TempData["MensajePropuestaCreada"]
+	</div>
+}
+@if (TempData["MensajePropuestaModificada"] != null)
+{
+	<div class="alert alert-success">
+		<strong>Éxito!</strong> @TempData["MensajePropuestaModificada"]
+	</div>
+}
+@if (TempData["MensajeDenunciaYaHecha"] != null)
+{
+	<div class="alert alert-warning">
+		<strong>Warning!</strong> @TempData["MensajeDenunciaYaHecha"]
+	</div>
+}
+@if (TempData["MensajeDenunciaHecha"] != null)
+{
+	<div class="alert alert-success">
+		<strong>Éxito!</strong> @TempData["MensajeDenunciaHecha"]
+	</div>
+}
+@if (TempData["MensajeDonacionHecha"] != null)
+{
+	<div class="alert alert-success">
+		<strong>Éxito!</strong> @TempData["MensajeDonacionHecha"]
+	</div>
+}

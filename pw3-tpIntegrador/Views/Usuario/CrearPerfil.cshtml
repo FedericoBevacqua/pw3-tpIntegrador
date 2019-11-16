@@ -4,36 +4,58 @@
 }
 
 <div class="container">
-	<h2>Crear perfil</h2>
 
-    <form action="/Usuario/CrearPerfil" method="post" enctype="multipart/form-data">
+	@if (TempData["Mensaje"] != null)
+	{
+		<div class="alert alert-info">
+			<strong>Info!</strong> @TempData["Mensaje"]
+		</div>
+	}
 
-        <input type="hidden" name="IdUsuario" value="@Model.IdUsuario" />
+	@if (TempData["MensajePrimerLogueo"] != null)
+	{
+		<div class="alert alert-info">
+			<strong>Info!</strong> @TempData["MensajePrimerLogueo"]
+		</div>
+	}
 
-        <div class="form-group">
-            @Html.Label("Nombre", "Nombre:")
-            @Html.EditorFor(p => p.Nombre, null, new { @class = "form-control" })
-            @Html.ValidationMessageFor(p => p.Nombre, null, new { @class = "text-danger" })
-        </div>
+	@if (TempData["MensajeNoPerfil"] != null)
+	{
+		<div class="alert alert-info">
+			<strong>Info!</strong> @TempData["MensajeNoPerfil"]
+		</div>
+	}
 
-        <div class="form-group">
-            @Html.Label("Apellido", "Apellido:")
-            @Html.EditorFor(p => p.Apellido, null, new { @class = "form-control" })
-            @Html.ValidationMessageFor(p => p.Apellido, null, new { @class = "text-danger" })
-        </div>
+	<form action="/Usuario/CrearPerfil" method="post" enctype="multipart/form-data" class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3">
 
-        <div class="form-group">
-            <label>Foto de perfil:</label>
-            <div class="form-row mt-2 mb-4">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="Foto" name="Foto" lang="es">
-                    <label class="custom-file-label" for="Foto">Seleccionar archivo</label>
-                </div>
-            </div>
-        </div>
+		<p class="h4 mb-4">Crear perfil</p>
 
-        <input type="submit" class="btn btn-primary" name="name" value="Crear perfil" />
-    </form>
+		<input type="hidden" name="IdUsuario" value="@Model.IdUsuario" />
+
+		<div class="form-group">
+			@Html.Label("Nombre", "Nombre:")
+			@Html.EditorFor(p => p.Nombre, null, new { @class = "form-control" })
+			@Html.ValidationMessageFor(p => p.Nombre, null, new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.Label("Apellido", "Apellido:")
+			@Html.EditorFor(p => p.Apellido, null, new { @class = "form-control" })
+			@Html.ValidationMessageFor(p => p.Apellido, null, new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			<label>Foto de perfil:</label>
+			<div class="form-row mt-2 mb-4">
+				<div class="custom-file">
+					<input type="file" class="custom-file-input" id="Foto" name="Foto" lang="es">
+					<label class="custom-file-label" for="Foto">Seleccionar archivo</label>
+				</div>
+			</div>
+		</div>
+
+		<input type="submit" class="btn btn-primary" name="name" value="Crear perfil" />
+	</form>
 </div>
 
 

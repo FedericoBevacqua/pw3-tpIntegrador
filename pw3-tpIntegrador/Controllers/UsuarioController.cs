@@ -56,7 +56,8 @@ namespace pw3_tpIntegrador.Controllers
                     // El usuario tiene que crear su perfil //Al iniciar por primera vez y no tener perfil, te obliga a crearlo.
                     if (String.IsNullOrEmpty(usuario.UserName)) 
                     {
-                        return Redirect("/Usuario/CrearPerfil");
+						TempData["MensajePrimerLogueo"] = "Complete su perfil para acceder al sitio normalmente.";
+						return Redirect("/Usuario/CrearPerfil");
                     }
 					if (!string.IsNullOrEmpty(url))
 					{
@@ -104,7 +105,8 @@ namespace pw3_tpIntegrador.Controllers
 			if(email == null) 
 			{
 				Usuarios.Alta(u);
-				return Redirect("/Home/Inicio"); //TODO: Hacer vista, se ha registrado con exito, recibira el email de activacion
+				TempData["MensajeRegistroExitoso"] = "Te has registrado con exito, recibiras el email de activacion en breve.";
+				return Redirect("/Home/Inicio");
 			}
 			else
 			{
@@ -163,14 +165,14 @@ namespace pw3_tpIntegrador.Controllers
 				}
 
 				Usuarios.CrearPerfil(p);
-
+				TempData["MensajePerfilCreado"] = "Su perfil ha sido creado con éxito.";
 				//Actualizo sesion
 				Usuario user = Usuarios.ObtenerPorId(p.IdUsuario);
 				SesionServicio.UsuarioSession = user;
 
 				return Redirect("/Home/Inicio");
 			}
-			//TODO: Mensaje error ya tiene username creado.
+			TempData["MensajeUsernameYaExiste"] = "Usted ya tiene un nombre de usuario creado.";
 			return Redirect("/Home/Inicio");
 
 		}
@@ -181,12 +183,11 @@ namespace pw3_tpIntegrador.Controllers
             Usuario usuario = Usuarios.ActivarCuenta(token);
             if (usuario != null)
             {
-                //TODO: Agregar mensaje al redirigir o pantalla intermedia
-                ViewBag.msg = "Su usuario ha sido activado con éxito. Por favor, inicie sesión.";
+				TempData["MensajeActivado"] = "Su usuario ha sido activado con éxito. Por favor, inicie sesión.";
                 return Redirect("/Usuario/Login");
             }
-            
-            return View(); //Error
+			ViewData["MensajeErrorActivar"] = "A ocurrido un error, comuniquese con un administrador.";
+			return View(); //Error
         }
 		[HttpGet]
 		public ActionResult AcercaDe()
@@ -208,7 +209,7 @@ namespace pw3_tpIntegrador.Controllers
 				return View(p);
 			}
 			Usuarios.Modificar(p);
-
+			TempData["MensajePerfilModificadoExito"] = "Su perfil ha sido modificado con éxito.";
 			//Actualizo sesion
 			Usuario user = Usuarios.ObtenerPorId(p.IdUsuario);
 			SesionServicio.UsuarioSession = user;

@@ -4,36 +4,45 @@
 	ViewBag.Img = "https://www.loottis.com/wp-content/uploads/2014/10/default-img.gif";
 	Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
 }
-
+@if (TempData["MensajeDenunciaAceptada"] != null)
+{
+	<div class="alert alert-success">
+		<strong>Exito!</strong> @TempData["MensajeDenunciaAceptada"]
+	</div>
+}
+@if (TempData["MensajeDenunciaDesestimada"] != null)
+{
+	<div class="alert alert-success">
+		<strong>Exito!</strong> @TempData["MensajeDenunciaDesestimada"]
+	</div>
+}
 
 <div class="container">
-    <h2>Gestionar denuncias</h2>
-    <div class="card-deck mt-4">
-        @foreach (var d in @Model)
-        {
-        <div class="card">
-            @if (!String.IsNullOrEmpty(d.Propuesta.Foto))
-            {
-                <img src="@d.Propuesta.Foto" class="card-img-top" alt="@d.Propuesta.Nombre">
-            }
-            else
-            {
-                // TODO: Modificar Imagen por default
-                <img src="@ViewBag.Img" class="card-img-top" alt="@d.Propuesta.Nombre">
-            }
-
-            <div class="card-body">
-                <h5 class="card-title">@d.Propuesta.Nombre</h5>
-                <div class="card-subtitle text-muted mb-3"><small>Denuncia hecha por @d.Usuario.UserName el @d.FechaCreacion</small></div>
-                <div class="card-subtitle">Motivo: @d.MotivoDenuncia.Descripcion</div>
-                <div class="card-text">El usuario escribió: <span class="font-italic text-muted">@d.Comentarios</span></div>
-                <a href="/Propuestas/Detalle/@d.IdPropuesta" class="btn btn-primary btn-block mt-4">Ver publicación denunciada</a>
-                <div class="d-flex justify-content-between">
-                    <a href="/Denuncias/Aceptar/@d.IdDenuncia" class="btn btn-danger mt-3 flex-fill boton-bloquear-publicacion">Aceptar</a>
-                    <a href="/Denuncias/Desestimar/@d.IdDenuncia" class="btn btn-secondary mt-3 flex-fill boton-desestimar-denuncia">Desestimar</a>
-                </div>
-            </div>
-        </div>
-        }
-    </div>
+	<h2>Gestionar denuncias</h2>
+	<div class="card-deck mt-4">
+		@foreach (var d in @Model)
+		{
+			<div class="card">
+				@if (!String.IsNullOrEmpty(d.Propuesta.Foto))
+				{
+					<img src="@d.Propuesta.Foto" class="card-img-top" alt="@d.Propuesta.Nombre">
+				}
+				else
+				{
+					<img src="@ViewBag.Img" class="card-img-top" alt="@d.Propuesta.Nombre">
+				}
+				<div class="card-body">
+					<h5 class="card-title">@d.Propuesta.Nombre</h5>
+					<div class="card-subtitle text-muted mb-3"><small>Denuncia hecha por @d.Usuario.UserName el @d.FechaCreacion</small></div>
+					<div class="card-subtitle">Motivo: @d.MotivoDenuncia.Descripcion</div>
+					<div class="card-text">El usuario escribió: <span class="font-italic text-muted">@d.Comentarios</span></div>
+					<a href="/Propuestas/Detalle/@d.IdPropuesta" class="btn btn-primary btn-block mt-4">Ver publicación denunciada</a>
+					<div class="d-flex justify-content-between">
+						<a href="/Denuncias/Aceptar/@d.IdDenuncia" class="btn btn-danger mt-3 flex-fill boton-bloquear-publicacion">Aceptar</a>
+						<a href="/Denuncias/Desestimar/@d.IdDenuncia" class="btn btn-secondary mt-3 flex-fill boton-desestimar-denuncia">Desestimar</a>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
 </div>

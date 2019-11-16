@@ -1,9 +1,16 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
+	Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 
 @model Data.Usuario
+
+@if (TempData["MensajeActivado"] != null)
+{
+	<div class="alert alert-success">
+		<strong>Éxito!</strong> @TempData["MensajeActivado"]
+	</div>
+}
 
 <form class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3" action="/Usuario/Login" method="post">
 

@@ -16,6 +16,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
 			else
 			{
+				TempData["MensajeNoAdmin"] = "Usted no tiene permisos para acceder aquí.";
 				return Redirect("/Home/Inicio");
 			}
         }
@@ -26,11 +27,13 @@ namespace pw3_tpIntegrador.Controllers
             if (SesionServicio.IsAdmin)
             {
                 Denuncias.Aceptar(id);
-                return Redirect("/Denuncias/Gestionar");
+				TempData["MensajeDenunciaAceptada"] = "La denuncia ha sido aceptada con éxito.";
+				return Redirect("/Denuncias/Gestionar");
             }
             else
             {
-                return Redirect("/Home/Inicio");
+				TempData["MensajeNoAdmin"] = "Usted no tiene permisos para acceder aquí.";
+				return Redirect("/Home/Inicio");
             }
         }
 
@@ -40,11 +43,13 @@ namespace pw3_tpIntegrador.Controllers
             if (SesionServicio.IsAdmin)
             {
                 Denuncias.Desestimar(id);
-                return Redirect("/Denuncias/Gestionar");
+				TempData["MensajeDenunciaDesestimada"] = "La denuncia ha sido desestimada.";
+				return Redirect("/Denuncias/Gestionar");
             }
             else
             {
-                return Redirect("/Home/Inicio");
+				TempData["MensajeNoAdmin"] = "Usted no tiene permisos para acceder aquí.";
+				return Redirect("/Home/Inicio");
             }
         }
 

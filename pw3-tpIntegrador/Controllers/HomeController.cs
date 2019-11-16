@@ -21,7 +21,7 @@ namespace pw3_tpIntegrador.Controllers
 				Usuario usuario = SesionServicio.UsuarioSession;
 				if (usuario.UserName == null)
 				{
-					//TODO: Complete su perfil para acceder al sitio normalmente.
+					TempData["Mensaje"] = "Complete su perfil para acceder al Home.";
 					return Redirect("/Usuario/CrearPerfil");
 				}
 				//Si estas logueado te envia a la vista InicioUsuarioLogueado con la lista de todas las propuestas activas

@@ -1,35 +1,36 @@
 ﻿@model List<Data.Propuesta>
 
 @{
-    ViewBag.Title = "Inicio";
-    ViewBag.DefaultImg = "https://www.loottis.com/wp-content/uploads/2014/10/default-img.gif";
-    Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+	ViewBag.Title = "Inicio";
+	ViewBag.DefaultImg = "https://www.loottis.com/wp-content/uploads/2014/10/default-img.gif";
+	Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
 }
 
 <h2>Ayudando al prójimo</h2>
 <hr />
+@RenderPage("~/Views/Shared/_MensajesAlUsuario.cshtml")
 
 <div class="card-columns two-columns">
-    <div class="card">
-        <div class="card-header"><h5 class="card-title">Buscar propuestas</h5></div>
-        <div class="card-body">
-            <form action="/Propuestas/Buscar" method="post">
-                <div class="form-group">
-                    @Html.TextBox("keyword", null, new { @class = "form-control", @placeholder = "Ingresá el nombre del usuario o la propuesta que estás buscando" })
-                </div>
+	<div class="card">
+		<div class="card-header"><h5 class="card-title">Buscar propuestas</h5></div>
+		<div class="card-body">
+			<form action="/Propuestas/Buscar" method="post">
+				<div class="form-group">
+					@Html.TextBox("keyword", null, new { @class = "form-control", @placeholder = "Ingresá el nombre del usuario o la propuesta que estás buscando" })
+				</div>
 
-                <input type="submit" class="btn btn-primary" value="Buscar" />
-            </form>
-        </div>
-    </div>
+				<input type="submit" class="btn btn-primary" value="Buscar" />
+			</form>
+		</div>
+	</div>
 
-    <div class="card">
-        <div class="card-header"><h5 class="card-title">Crear propuesta</h5></div>
-        <div class="card-body">
-            <p class="card-text">Creá una nueva propuesta.</p>
-            @Html.ActionLink("Crear propuesta", "Crear", "Propuestas", new object { }, new { @class = "pull-right btn btn-primary" })
-        </div>
-    </div>
+	<div class="card">
+		<div class="card-header"><h5 class="card-title">Crear propuesta</h5></div>
+		<div class="card-body">
+			<p class="card-text">Creá una nueva propuesta.</p>
+			@Html.ActionLink("Crear propuesta", "Crear", "Propuestas", new object { }, new { @class = "pull-right btn btn-primary" })
+		</div>
+	</div>
 </div>
 
 <hr />
@@ -38,81 +39,81 @@
 <h3 data-toggle="collapse" data-target="#collapsePropuestas" aria-expanded="true" aria-controls="collapsePropuestas">Tus propuestas</h3>
 
 <div class="collapse show" id="collapsePropuestas">
-    <div class="custom-control custom-switch">
-        @if (Request.QueryString.Get("mostrarPropuestasInactivas") == "true")
-        {
-            <input type="checkbox" class="custom-control-input" id="customSwitch1" onchange="window.location= '?mostrarPropuestasInactivas=' + !this.checked">
-        }
-        else
-        {
-            <input type="checkbox" class="custom-control-input" id="customSwitch1" checked onchange="window.location= '?mostrarPropuestasInactivas=' + !this.checked">
-        }
-        <label class="custom-control-label" for="customSwitch1">Sólo visualizar activas</label>
-    </div>
+	<div class="custom-control custom-switch">
+		@if (Request.QueryString.Get("mostrarPropuestasInactivas") == "true")
+		{
+			<input type="checkbox" class="custom-control-input" id="customSwitch1" onchange="window.location= '?mostrarPropuestasInactivas=' + !this.checked">
+		}
+		else
+		{
+			<input type="checkbox" class="custom-control-input" id="customSwitch1" checked onchange="window.location= '?mostrarPropuestasInactivas=' + !this.checked">
+		}
+		<label class="custom-control-label" for="customSwitch1">Sólo visualizar activas</label>
+	</div>
 
-    <div class="card-deck">
-        @foreach (var p in @Model.Where(p => p.Usuario.IdUsuario == ((Data.Usuario)Session["UserSession"]).IdUsuario))
-        {
-            <div class="card">
-                
-                <img src="@p.Foto" class="card-img-top" alt="@p.Nombre" onerror="this.src='@ViewBag.DefaultImg'">
-                <div class="card-body">
-                    <h5 class="card-title">@p.Nombre</h5>
-                    <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
-                    <div class="mb-4"><small>Creada por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</small></div>
-                    <p class="card-text">@p.Descripcion</p>
-                    <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-info">Ver Detalle</a>
+	<div class="card-deck">
+		@foreach (var p in @Model.Where(p => p.Usuario.IdUsuario == ((Data.Usuario)Session["UserSession"]).IdUsuario))
+		{
+			<div class="card">
 
-                    @if (p.Estado == 1) // Solo se pueden editar propuestas activas
-                    {
-                        <a href="/Propuestas/Modificar/@p.IdPropuesta" class="btn btn-danger">Editar Propuesta</a>
-                    }
-                </div>
-                <div class="card-footer">
-                    @if (p.Valoracion != null)
-                    {
-                        <div>Aceptación: @p.Valoracion%</div>
-                    }
-                    else
-                    {
-                        <div>Aceptación: 0%</div>
-                    }
+				<img src="@p.Foto" class="card-img-top" alt="@p.Nombre" onerror="this.src='@ViewBag.DefaultImg'">
+				<div class="card-body">
+					<h5 class="card-title">@p.Nombre</h5>
+					<div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
+					<div class="mb-4"><small>Creada por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</small></div>
+					<p class="card-text">@p.Descripcion</p>
+					<a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-info">Ver Detalle</a>
 
-                    <div class="text-muted">Finaliza el @p.FechaFin.Date.ToShortDateString()</div>
-                </div>
-            </div>
-        }
-    </div>
+					@if (p.Estado == 1) // Solo se pueden editar propuestas activas
+					{
+						<a href="/Propuestas/Modificar/@p.IdPropuesta" class="btn btn-danger">Editar Propuesta</a>
+					}
+				</div>
+				<div class="card-footer">
+					@if (p.Valoracion != null)
+					{
+						<div>Aceptación: @p.Valoracion%</div>
+					}
+					else
+					{
+						<div>Aceptación: 0%</div>
+					}
+
+					<div class="text-muted">Finaliza el @p.FechaFin.Date.ToShortDateString()</div>
+				</div>
+			</div>
+		}
+	</div>
 </div>
 
 <hr />
 
 <h3>Propuestas de otros usuarios</h3>
 <div class="card-deck">
-    <!-- Solo se muestran las propuetas activas que no sean del usuario actual -->
-    @foreach (var p in @Model.Where(p => p.IdUsuarioCreador != ((Data.Usuario)Session["UserSession"]).IdUsuario && p.Estado == 1))
-    {
-        <div class="card">
+	<!-- Solo se muestran las propuetas activas que no sean del usuario actual -->
+	@foreach (var p in @Model.Where(p => p.IdUsuarioCreador != ((Data.Usuario)Session["UserSession"]).IdUsuario && p.Estado == 1))
+	{
+		<div class="card">
 
-                <img src="@p.Foto" class="card-img-top" alt="@p.Nombre" onerror="this.src='@ViewBag.DefaultImg'">
-                <div class="card-body">
-                    <h5 class="card-title">@p.Nombre</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Creada por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</h6>
-                    <p class="card-text">@p.Descripcion</p>
-                    <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-info">Ver Detalle</a>
-                </div>
-            <div class="card-footer">
-                @if (p.Valoracion != null)
-                {
-                    <div>Aceptación: @p.Valoracion%</div>
-                }
-                else
-                {
-                    <div>Aceptación: 0%</div>
-                }
+			<img src="@p.Foto" class="card-img-top" alt="@p.Nombre" onerror="this.src='@ViewBag.DefaultImg'">
+			<div class="card-body">
+				<h5 class="card-title">@p.Nombre</h5>
+				<h6 class="card-subtitle mb-2 text-muted">Creada por @p.Usuario.UserName el @p.FechaCreacion.Date.ToShortDateString()</h6>
+				<p class="card-text">@p.Descripcion</p>
+				<a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-info">Ver Detalle</a>
+			</div>
+			<div class="card-footer">
+				@if (p.Valoracion != null)
+				{
+					<div>Aceptación: @p.Valoracion%</div>
+				}
+				else
+				{
+					<div>Aceptación: 0%</div>
+				}
 
-                <div class="text-muted">Finaliza el @p.FechaFin.Date.ToShortDateString()</div>
-            </div>
-        </div>
-    }
+				<div class="text-muted">Finaliza el @p.FechaFin.Date.ToShortDateString()</div>
+			</div>
+		</div>
+	}
 </div>

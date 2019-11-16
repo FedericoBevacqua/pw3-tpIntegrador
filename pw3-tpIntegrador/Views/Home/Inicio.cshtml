@@ -8,7 +8,7 @@
 
 <h2>Ayudando al prójimo</h2>
 <hr />
-
+@RenderPage("~/Views/Shared/_MensajesAlUsuario.cshtml")
 
 <h3>Acceder al sistema</h3>
 <div class="card-columns two-columns">
@@ -34,31 +34,31 @@
 <h3>Propuestas más populares</h3>
 <div class="card-deck">
 
-    @foreach (var p in @Model)
-    {
-    <div class="card">
+	@foreach (var p in @Model)
+	{
+		<div class="card">
 
-        <img src="@p.Foto" class="card-img-top" alt="@p.Nombre"  onerror="this.src='@ViewBag.DefaultImg'">
-        <div class="card-body">
-            <h5 class="card-title">@p.Nombre</h5>
-            <div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
-            <div class="mb-4"><small>Creado por @p.Usuario.Nombre.ToLower().@p.Usuario.Apellido.ToLower() el @p.FechaCreacion.Date.ToShortDateString()</small></div>
+			<img src="@p.Foto" class="card-img-top" alt="@p.Nombre" onerror="this.src='@ViewBag.DefaultImg'">
+			<div class="card-body">
+				<h5 class="card-title">@p.Nombre</h5>
+				<div><small class="text-muted">Pedido de @p.TipoDonacionString()</small></div>
+				<div class="mb-4"><small>Creado por @p.Usuario.Nombre.ToLower().@p.Usuario.Apellido.ToLower() el @p.FechaCreacion.Date.ToShortDateString()</small></div>
 
 
-            <p class="card-text">@p.Descripcion</p>
-            <a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver Detalle</a>
-        </div>
-        <div class="card-footer">
-            @if (p.Valoracion != null)
-            {
-                <div>Aceptación: @p.Valoracion%</div>
-            }
-            else
-            {
-                <div>Aceptación: 0%</div>
-            }
-        </div>
-    </div>
-    }
+				<p class="card-text">@p.Descripcion</p>
+				<a href="/Propuestas/Detalle/@p.IdPropuesta" class="btn btn-primary">Ver Detalle</a>
+			</div>
+			<div class="card-footer">
+				@if (p.Valoracion != null)
+				{
+					<div>Aceptación: @p.Valoracion%</div>
+				}
+				else
+				{
+					<div>Aceptación: 0%</div>
+				}
+			</div>
+		</div>
+	}
 
 </div>
