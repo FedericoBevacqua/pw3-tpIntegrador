@@ -23,7 +23,7 @@ namespace Servicios
 			UsuarioNuevo.FechaCracion = DateTime.Now;
 			UsuarioNuevo.Activo = false;
 			UsuarioNuevo.TipoUsuario = 0; // 0 = Normal | 1 = Administrador 
-			ctx.Usuarios.Add(UsuarioNuevo); //TODO: FIXEAR
+			ctx.Usuarios.Add(UsuarioNuevo);
 			ctx.SaveChanges();
             EnviarEmailToken(UsuarioNuevo);
 		}
@@ -39,7 +39,7 @@ namespace Servicios
 			return ConsultaUsuario;
 		}
 
-		public void CrearPerfil(Usuario p)
+		public void CrearPerfil(UsuarioPerfil p)
 		{
 			Usuario UsuarioActual = ObtenerPorId(p.IdUsuario);
 
@@ -141,9 +141,10 @@ namespace Servicios
 
             return usuario;
 		}
-		public void Modificar(Usuario u)
+		public void Modificar(UsuarioModificarPerfil u)
 		{
 			Usuario UsuarioViejo = ObtenerPorId(u.IdUsuario);
+
 			UsuarioViejo.Nombre = u.Nombre;
 			UsuarioViejo.Apellido = u.Apellido;
 			UsuarioViejo.Foto = u.Foto;

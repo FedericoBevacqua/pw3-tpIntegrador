@@ -148,7 +148,7 @@ namespace pw3_tpIntegrador.Controllers
 			}
         }
 		[HttpPost]
-		public ActionResult CrearPerfil(Usuario p)
+		public ActionResult CrearPerfil(UsuarioPerfil p)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -202,11 +202,13 @@ namespace pw3_tpIntegrador.Controllers
 			}
 		}
 		[HttpPost]
-		public ActionResult ModificarPerfil(Usuario p)
+		public ActionResult ModificarPerfil(UsuarioModificarPerfil p)
 		{
 			if (!ModelState.IsValid)
 			{
-				return View(p);
+				//p.UserName = SesionServicio.UsuarioSession.UserName;
+				//p.Email = SesionServicio.UsuarioSession.Email;
+				return View("MiPerfil",p);
 			}
 			Usuarios.Modificar(p);
 			TempData["MensajePerfilModificadoExito"] = "Su perfil ha sido modificado con éxito.";

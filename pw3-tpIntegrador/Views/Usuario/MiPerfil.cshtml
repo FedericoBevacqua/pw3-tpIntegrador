@@ -13,13 +13,13 @@
 	<a href="/api/{controller}/{action}/{id}" class="btn btn-info pull-right">Historial de Donaciones</a>
 </div>
 <div class="container">
-	<!--TODO: Actualizar datos-->
 	<form action="/Usuario/ModificarPerfil" method="post" class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3">
 
 		<p class="h4 mb-4">Mi Perfil</p>
 
 		<input type="hidden" name="IdUsuario" value="@Model.IdUsuario" />
-
+		<input type="hidden" name="Username" value="@Model.UserName" />
+		<input type="hidden" name="Email" value="@Model.Email" />
 		<div class="form-group">
 			@Html.Label("Usuario", "Usuario:")
 			@Html.TextBoxFor(p => p.UserName, new { disabled = "disabled" })
@@ -48,6 +48,7 @@
 				<div class="custom-file">
 					<input type="file" class="custom-file-input" id="Foto" name="Foto" lang="es">
 					<label class="custom-file-label" for="Foto">Seleccionar archivo</label>
+					@Html.ValidationMessageFor(p => p.Foto, null, new { @class = "text-danger" })
 				</div>
 			</div>
 		</div>
@@ -55,6 +56,7 @@
 		<div class="form-group">
 			<label for="FechaNacimiento">Fecha de nacimiento actual: @Model.FechaNacimiento.ToShortDateString()</label>
 			<input type="date" class="form-control" name="FechaNacimiento" placeholder="Fecha de nacimiento">
+			@Html.ValidationMessageFor(p => p.FechaNacimiento, null, new { @class = "text-danger" })
 		</div>
 
 		<input type="submit" class="btn btn-primary" name="name" value="Modificar Perfil" />
