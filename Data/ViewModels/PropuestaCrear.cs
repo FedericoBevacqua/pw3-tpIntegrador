@@ -34,7 +34,7 @@ namespace Data
 		[Required(ErrorMessage = "La Foto es requerida")]
 		public string Foto { get; set; }
 
-		/*
+		//
 		[Required(ErrorMessage = "La Referencia Nombre 1 es requerida")]
 		[MaxLength(50, ErrorMessage = "Maximo 50 caracteres")]
 		public string Referencia1Nombre { get; set; }
@@ -50,6 +50,6 @@ namespace Data
 		[Required(ErrorMessage = "La Referencia Telefono 2 es requerida")]
 		[MaxLength(50, ErrorMessage = "Maximo 50 caracteres")]
 		public string Referencia2Telefono { get; set; }
-		*/
+		
 	}
 }

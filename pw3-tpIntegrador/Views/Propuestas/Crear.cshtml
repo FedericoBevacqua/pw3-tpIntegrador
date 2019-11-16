@@ -3,81 +3,82 @@
 	ViewBag.Title = "Crear";
 	Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
 }
-
 <h2>Crear propuesta</h2>
 
-<form action="/Propuestas/CrearPaso2" method="post"  enctype = "multipart/form-data" >
+<form action="/Propuestas/CrearPaso2" method="post" enctype="multipart/form-data" onsubmit="return validarp();">
 
-    <h5 class="mt-5">Información básica</h5>
+	<h5 class="mt-5">Información básica</h5>
 
 	<div class="form-group">
 		@Html.Label("Nombre", "Nombre:")
-		@Html.EditorFor(p => p.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.EditorFor(p => p.Nombre, new { htmlAttributes = new { @class = "form-control", @id = "nombrep" } })
 		@Html.ValidationMessageFor(p => p.Nombre, null, new { @class = "text-danger" })
 	</div>
 
 	<div class="form-group">
 		@Html.Label("Descripcion", "Descripción:")
-		@Html.EditorFor(p => p.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.EditorFor(p => p.Descripcion, new { htmlAttributes = new { @class = "form-control", @id = "descripcionp" } })
 		@Html.ValidationMessageFor(p => p.Descripcion, null, new { @class = "text-danger" })
 	</div>
 
 	<div class="form-group">
 		@Html.Label("FechaFin", "Fecha de fin:")
-		@Html.ValidationMessageFor(p => p.FechaFin, null, new { @class = "text-danger" })
+		@Html.ValidationMessageFor(p => p.FechaFin, null, new { @class = "text-danger", @id = "fechafinp" })
 		<input type="date" name="FechaFin" class="form-control" />
 	</div>
 
 	<div class="form-group">
 		@Html.Label("TelefonoContacto", "Teléfono de contacto:")
 
-		@Html.EditorFor(p => p.TelefonoContacto, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.EditorFor(p => p.TelefonoContacto, new { htmlAttributes = new { @class = "form-control", @id = "telefonop" } })
 		@Html.ValidationMessageFor(p => p.TelefonoContacto, null, new { @class = "text-danger" })
 	</div>
 
-    <div class="form-group">
-        @Html.Label("TipoDonacion", "Tipo de donación:")
-        <select class="form-control" id="TipoDonacion" name="TipoDonacion">
-            <option value="1">Monetaria</option>
-            <option value="2">Insumos</option>
-            <option value="3">Horas de trabajo</option>
-        </select>
-    </div>
+	<div class="form-group">
+		@Html.Label("TipoDonacion", "Tipo de donación:")
+		<select class="form-control" id="TipoDonacion" name="TipoDonacion">
+			<option value="1">Monetaria</option>
+			<option value="2">Insumos</option>
+			<option value="3">Horas de trabajo</option>
+			@Html.ValidationMessageFor(p => p.TipoDonacion, null, new { @class = "text-danger" })
+		</select>
+	</div>
 
-    <h5 class="mt-5">Agregar una foto para la propuesta</h5>
-    <div class="form-row mt-4 mb-4">
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" id="Imagen" name="Foto" lang="es">
-            <label class="custom-file-label" for="Foto">Seleccionar archivo</label>
-        </div>
-    </div>
+	<h5 class="mt-5">Agregar una foto para la propuesta</h5>
+	<div class="form-row mt-4 mb-4">
+		<div class="custom-file">
+			<input type="file" class="custom-file-input" id="Imagen" name="Foto" lang="es">
+			<label class="custom-file-label" for="Foto">Seleccionar archivo</label>
+			@Html.ValidationMessageFor(p => p.Foto, null, new { @class = "text-danger" })
+		</div>
+	</div>
 
-    <h5 class="mt-5">Referencias</h5>
-    <p class="text-muted">Se deben ingresar dos referencias de contacto que den veracidad a la propuesta</p>
+	<h5 class="mt-5">Referencias</h5>
+	<p class="text-muted">Se deben ingresar dos referencias de contacto que den veracidad a la propuesta</p>
 
-    <div class="form-row">
+	<div class="form-row">
 		<div class="form-group col-md-6">
 			@Html.Label("Referencia1Nombre", "Nombre referencia 1:")
-			@Html.TextBox("Referencia1Nombre", null, new { @class = "form-control" })
+			@Html.TextBox("Referencia1Nombre", null, new { @class = "form-control", @id = "refnombre1p" })
 		</div>
-        <div class="form-group col-md-6">
-            @Html.Label("Referencia1Telefono", "Teléfono referencia 1:")
-            @Html.TextBox("Referencia1Telefono", null, new { @class = "form-control" })
-        </div>
-    </div>
+		<div class="form-group col-md-6">
+			@Html.Label("Referencia1Telefono", "Teléfono referencia 1:")
+			@Html.TextBox("Referencia1Telefono", null, new { @class = "form-control", @id = "reftelefono1p" })
+		</div>
+	</div>
 
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            @Html.Label("Referencia2Nombre", "Nombre referencia 2:")
-            @Html.TextBox("Referencia2Nombre", null, new { @class = "form-control" })
-        </div>
-        <div class="form-group col-md-6">
-            @Html.Label("Referencia2Telefono", "Teléfono referencia 2:")
-            @Html.TextBox("Referencia2Telefono", null, new { @class = "form-control" })
-        </div>
-    </div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			@Html.Label("Referencia2Nombre", "Nombre referencia 2:")
+			@Html.TextBox("Referencia2Nombre", null, new { @class = "form-control", @id = "refnombre2p" })
+		</div>
+		<div class="form-group col-md-6">
+			@Html.Label("Referencia2Telefono", "Teléfono referencia 2:")
+			@Html.TextBox("Referencia2Telefono", null, new { @class = "form-control", @id = "reftelefono2p" })
+		</div>
+	</div>
 
 
-    <input type="submit" class="btn btn-primary" value="Continuar" />
+	<input type="submit" class="btn btn-primary" value="Continuar" />
 
 </form>
