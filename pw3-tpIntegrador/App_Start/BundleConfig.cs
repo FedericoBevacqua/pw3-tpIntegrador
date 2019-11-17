@@ -24,7 +24,8 @@ namespace pw3_tpIntegrador
                          "~/Scripts/detalle.js",
                          "~/Scripts/donar.js",
                          "~/Scripts/historial-donaciones.js",
-                         "~/Scripts/propuesta.js"));
+                         "~/Scripts/propuesta.js",
+						 "~/Scripts/validar-donar-monetaria.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
