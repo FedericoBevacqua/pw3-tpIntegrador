@@ -1,6 +1,9 @@
 ﻿Array.from($('input[type="date"]')).forEach((e) => {
-    //Inicializa los input type date con la fecha actual
-    e.value = new Date().toISOString().substring(0, 10);
+    if (e.value) {
+        e.value = new Date(e.value).toISOString().substring(0, 10);
+    } else {
+        e.value = new Date().toISOString().substring(0, 10);
+    }
 });
 
 

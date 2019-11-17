@@ -225,7 +225,7 @@ namespace Servicios
                     propuestaAModificar.PropuestasDonacionesMonetarias.FirstOrDefault().CBU = (propuesta as PropuestasDonacionesMonetaria).CBU;
                     break;
                 case 2: //TipoInsumos
-                    //TODO: Copiar lista de insumos modificada
+                    
                     //List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
                     //((PropuestasDonacionesInsumo)propuestaAModificar).DonacionesInsumos = listaInsumos;
                     break;
@@ -233,6 +233,27 @@ namespace Servicios
                     propuestaAModificar.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().CantidadHoras = (propuesta as PropuestasDonacionesHorasTrabajo).CantidadHoras;
                     propuestaAModificar.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().Profesion = (propuesta as PropuestasDonacionesHorasTrabajo).Profesion;
                     break;
+            }
+
+            ctx.SaveChanges();
+        }
+
+        public void Modificar(Propuesta propuesta, List<PropuestasDonacionesInsumo> listaInsumos)
+        {
+            List<int> idsInsumosActualizados = new List<int>();
+
+            foreach(var ins in listaInsumos)
+            {
+                idsInsumosActualizados.Add(ins.IdPropuestaDonacionInsumo);
+            }
+
+            foreach(var p in propuesta.PropuestasDonacionesInsumos.ToList())
+            {
+                if (idsInsumosActualizados.Contains(p.IdPropuestaDonacionInsumo))
+                {
+                    p.Cantidad = listaInsumos.Where(x => x.IdPropuestaDonacionInsumo == p.IdPropuestaDonacionInsumo).First().Cantidad;
+                    p.Nombre = listaInsumos.Where(x => x.IdPropuestaDonacionInsumo == p.IdPropuestaDonacionInsumo).First().Nombre;
+                }
             }
 
             ctx.SaveChanges();

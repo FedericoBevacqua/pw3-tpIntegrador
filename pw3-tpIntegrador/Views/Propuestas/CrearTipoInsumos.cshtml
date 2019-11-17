@@ -6,7 +6,7 @@
 
 <h2>Crear propuesta</h2>
 
-<form action="/Propuestas/ProcesarTipoInsumos" method="post">
+<form action="/Propuestas/ProcesarTipoInsumos" method="post" onsubmit="return validarCamposTipoInsumos(event);">
 
     <input type="hidden" name="Nombre" value="@Model.Nombre" />
     <input type="hidden" name="Descripcion" value="@Model.Descripcion" />

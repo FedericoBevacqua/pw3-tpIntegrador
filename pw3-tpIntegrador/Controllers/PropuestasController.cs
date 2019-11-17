@@ -93,19 +93,16 @@ namespace pw3_tpIntegrador.Controllers
                     break;
 
                 case 2: //TipoInsumos
-                    PropuestasDonacionesInsumo pi = propuestaAModificar.PropuestasDonacionesInsumos.FirstOrDefault();
+                    propuestaAModificar.Nombre = form["Nombre"];
+                    propuestaAModificar.Descripcion = form["Descripcion"];
+                    propuestaAModificar.FechaFin = System.DateTime.Parse(form["FechaFin"]);
+                    propuestaAModificar.TelefonoContacto = form["TelefonoContacto"];
+                    propuestaAModificar.TipoDonacion = int.Parse(form["TipoDonacion"]);
+                    propuestaAModificar.Foto = propuestaAModificar.Foto;
 
-                    pi.Nombre = form["Nombre"];
-                    pi.Descripcion = form["Descripcion"];
-                    pi.FechaFin = System.DateTime.Parse(form["FechaFin"]);
-                    pi.TelefonoContacto = form["TelefonoContacto"];
-                    pi.TipoDonacion = int.Parse(form["TipoDonacion"]);
-                    pi.Foto = propuestaAModificar.Foto;
-
-                    //TODO: Copiar lista de insumos modificada
-                    //List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
-                    //((PropuestasDonacionesInsumo)propuestaAModificar).DonacionesInsumos = listaInsumos;
-                    Propuestas.Modificar(idPropuesta, pi);
+                    List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
+                    
+                    Propuestas.Modificar(propuestaAModificar, listaInsumos);
                     break;
 
                 case 3: //TipoHorasTrabajo
@@ -375,6 +372,10 @@ namespace pw3_tpIntegrador.Controllers
             for (int i = 0; i < cantidadCompras; i++)
             {
                 donacion = new PropuestasDonacionesInsumo();
+                if(form["IdInsumo[" + i + "]"] != null)
+                {
+                    donacion.IdPropuestaDonacionInsumo = Int32.Parse(form["IdInsumo[" + i + "]"]);
+                }
                 donacion.Nombre = form["Nombres[" + i + "]"];
                 donacion.Cantidad = Int32.Parse(form["Cantidad[" + i + "]"]);
                 listaInsumos.Add(donacion);
