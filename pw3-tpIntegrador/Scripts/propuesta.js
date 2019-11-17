@@ -4,7 +4,7 @@
 
 	nombrep = document.getElementById("nombrep").value;
 	descripcionp = document.getElementById("descripcionp").value;
-	fechafinp = document.getElementById("FechaFin").value;
+	fechafinp = document.getElementById("fechafinp").value;
 	telefonop = document.getElementById("telefonop").value;
 	TipoDonacion = document.getElementById("TipoDonacion").value;
 	Imagen = document.getElementById("Imagen").value;
