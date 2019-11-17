@@ -23,8 +23,8 @@
 
 	<div class="form-group">
 		@Html.Label("FechaFin", "Fecha de fin:")
-		@Html.ValidationMessageFor(p => p.FechaFin, null, new { @class = "text-danger", @id = "fechafinp" })
-		<input type="date" name="FechaFin" class="form-control" />
+		@Html.ValidationMessageFor(p => p.FechaFin, null, new { @class = "text-danger" })
+		<input type="date" name="FechaFin" class="form-control" id="FechaFin" />
 	</div>
 
 	<div class="form-group">
