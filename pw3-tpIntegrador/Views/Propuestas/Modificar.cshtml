@@ -44,9 +44,9 @@
         <input type="hidden" name="TipoDonacion" value="@Model.TipoDonacion" />
         <div class="form-group">
             <select class="form-control" id="TipoDonacion" name="TipoDonacion" disabled>
-                <option value="1">Monetaria</option>
-                <option value="2">Insumos</option>
-                <option value="3">Horas de trabajo</option>
+                <option value="1" @(1 == Model.TipoDonacion ? "selected='selected'" : "")>Monetaria</option>
+                <option value="2" @(2 == Model.TipoDonacion ? "selected='selected'" : "")>Insumos</option>
+                <option value="3" @(3 == Model.TipoDonacion ? "selected='selected'" : "")>Horas de trabajo</option>
             </select>
         </div>
     </div>
@@ -152,7 +152,7 @@
                             <option value="Psicopedagoga" @("Psicopedagoga" == ProfesionSeleccionada ? "selected='selected'" : "")>Psicopedagoga</option>
                             <option value="Cocinero" @("Cocinero" == ProfesionSeleccionada ? "selected='selected'" : "")>Cocinero</option>
                             <option value="Limpieza"  @("Limpieza" == ProfesionSeleccionada ? "selected='selected'" : "")>Limpieza</option>
-                            <option value="Otros" @("Otros" == ProfesionSeleccionada ? "selected='selected'" : "")>>Otros</option>
+                            <option value="Otros" @("Otros" == ProfesionSeleccionada ? "selected='selected'" : "")>Otros</option>
                         </select>
                     </div>
                 </div>
