@@ -65,10 +65,6 @@
 		alert("El telefono del referido 2 ingresado no es un número");
 		return false;
 	}
-	if (document.getElementById("formulario-crear-propuesta-paso-1") != null) {
-		document.getElementById("formulario-crear-propuesta-paso-1").submit();
-	}
-	if (document.getElementById("formulario-modificar-propuesta") != null) {
-		document.getElementById("formulario-modificar-propuesta").submit();
-	}
+
+    event.target.submit();
 }
