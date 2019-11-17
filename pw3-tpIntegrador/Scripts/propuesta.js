@@ -4,7 +4,7 @@
 
 	nombrep = document.getElementById("nombrep").value;
 	descripcionp = document.getElementById("descripcionp").value;
-	fechafinp = document.getElementById("fechafinp").value;
+	fechafinp = document.getElementById("FechaFin").value;
 	telefonop = document.getElementById("telefonop").value;
 	TipoDonacion = document.getElementById("TipoDonacion").value;
 	Imagen = document.getElementById("Imagen").value;
@@ -13,7 +13,7 @@
 	reftelefono1p = document.getElementById("reftelefono1p").value;
 	reftelefono2p = document.getElementById("reftelefono2p").value;
 
-	if (nombrep === "" || descripcionp === "" || fechafinp === "" || telefonop === "" || TipoDonacion === "" || Imagen === "" || refnombre1p === "" || refnombre2p === "" || reftelefono1p === "" || reftelefono2p === "") {
+	if (nombrep === "" || descripcionp === "" || fechafinp === "" || telefonop === "" || TipoDonacion === "" || refnombre1p === "" || refnombre2p === "" || reftelefono1p === "" || reftelefono2p === "") {
 		alert("Todos los campos son obligatorios");
 		return false;
 	}
