@@ -240,23 +240,25 @@ namespace Servicios
 
         public void Modificar(Propuesta propuesta, List<PropuestasDonacionesInsumo> listaInsumos)
         {
-            List<int> idsInsumosActualizados = new List<int>();
-
             foreach(var ins in listaInsumos)
             {
-                idsInsumosActualizados.Add(ins.IdPropuestaDonacionInsumo);
-            }
+                PropuestasDonacionesInsumo insumoActual = propuesta.PropuestasDonacionesInsumos.Where(x=>x.IdPropuestaDonacionInsumo == ins.IdPropuestaDonacionInsumo).FirstOrDefault();
 
-            foreach(var p in propuesta.PropuestasDonacionesInsumos.ToList())
-            {
-                if (idsInsumosActualizados.Contains(p.IdPropuestaDonacionInsumo))
+                if (insumoActual != null)
                 {
-                    p.Cantidad = listaInsumos.Where(x => x.IdPropuestaDonacionInsumo == p.IdPropuestaDonacionInsumo).First().Cantidad;
-                    p.Nombre = listaInsumos.Where(x => x.IdPropuestaDonacionInsumo == p.IdPropuestaDonacionInsumo).First().Nombre;
+                    insumoActual.Nombre = ins.Nombre;
+                    insumoActual.Cantidad = ins.Cantidad;
+                }
+                else
+                {
+                    PropuestasDonacionesInsumo Nuevo = new PropuestasDonacionesInsumo();
+                    Nuevo.Nombre = ins.Nombre;
+                    Nuevo.Cantidad = ins.Cantidad;
+                    propuesta.PropuestasDonacionesInsumos.Add(Nuevo);
                 }
             }
 
-            ctx.SaveChanges();
+             ctx.SaveChanges();
         }
 
 	}
