@@ -21,7 +21,7 @@
 
 			<h5 class="mt-5">Tu donación</h5>
 
-			<form action="/Propuestas/DonarMonetaria" method="post" class="mt-2" id="donar-formulario" enctype = "multipart/form-data">
+			<form action="/Propuestas/DonarMonetaria" method="post" class="mt-2" id="donar-formulario" enctype = "multipart/form-data" onsubmit="return validardm(event);">
 
                 <div class="form-row">
                     <input type="hidden" name="IdPropuestaDonacionMonetaria" value="@Model.PropuestasDonacionesMonetarias.First().IdPropuestaDonacionMonetaria" />
@@ -30,7 +30,7 @@
 
                     <div class="form-group col-md-6">
                         @Html.Label("Dinero", "Cantidad a donar:")
-                        @Html.TextBox("Dinero", 1, new { @class = "form-control", @type = "number", @min = "1", @max = "999999999999999999" })
+                        @Html.TextBox("Dinero", 1, new { @class = "form-control", @id = "montodm", @type = "number", @min = "1", @max = "999999999999999999" })
                     </div>
                     <div class="form-group col-md-6">
                         <label>Comprobante de pago</label>

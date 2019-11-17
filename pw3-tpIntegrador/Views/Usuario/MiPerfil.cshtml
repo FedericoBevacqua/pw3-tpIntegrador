@@ -1,6 +1,7 @@
 ﻿@model Data.Usuario
 @{
 	Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+	ViewBag.DefaultImg = "https://www.loottis.com/wp-content/uploads/2014/10/default-img.gif";
 }
 
 @if (TempData["MensajePerfilModificadoExito"] != null)
@@ -13,7 +14,7 @@
 	<a href="/Donacion/Historial" class="btn btn-info pull-right">Historial de Donaciones</a>
 </div>
 <div class="container">
-	<form action="/Usuario/ModificarPerfil" method="post" class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3">
+	<form action="/Usuario/ModificarPerfil" method="post" enctype="multipart/form-data" class="text-center border border-light p-5 align-items-center col col-md-6 offset-md-3">
 
 		<p class="h4 mb-4">Mi Perfil</p>
 
@@ -44,6 +45,7 @@
 
 		<div class="form-group">
 			<label>Foto de perfil:</label>
+			<img src="@Model.Foto" class="card-img-top" onerror="this.src='@ViewBag.DefaultImg'">
 			<div class="form-row mt-2 mb-4">
 				<div class="custom-file">
 					<input type="file" class="custom-file-input" id="Foto" name="Foto" lang="es">

@@ -187,6 +187,9 @@
     <Content Include="Scripts\modernizr\modernizr-2.8.3.js" />
     <Content Include="Scripts\propuesta.js" />
     <Content Include="Scripts\validar-propuestas.js" />
+    <Content Include="Scripts\validar-donar-horas.js" />
+    <Content Include="Scripts\validar-donar-insumos.js" />
+    <Content Include="Scripts\validar-donar-monetaria.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
