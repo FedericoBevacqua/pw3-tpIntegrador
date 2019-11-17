@@ -120,17 +120,17 @@ namespace pw3_tpIntegrador.Controllers
         {
             Usuario usuario = SesionServicio.UsuarioSession;
 
-			if(usuario.UserName == null)
+			if (usuario == null)
+			{
+				return Redirect("/Usuario/Login");
+			}
+			if (usuario.UserName == null)
 			{
 				return Redirect("/Usuario/CrearPerfil");
+			}else
+			{
+				return View(usuario);
 			}
-            if (usuario != null)
-            {
-                return View(usuario);
-            } else
-            {
-                return Redirect("/Usuario/Login");
-            }
         }
 
         [HttpGet]
