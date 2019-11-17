@@ -21,7 +21,7 @@
 
             <h5 class="mt-5">Tu donación</h5>
 
-            <form action="/Propuestas/DonarInsumos" method="post" class="mt-2" id="donar-formulario">
+            <form action="/Propuestas/DonarInsumos" method="post" class="mt-2" id="donar-formulario" onsubmit="return validardi(event);">
 
                 <input type="hidden" name="IdUsuario" value="@ViewBag.DonanteId" />
                 <input type="hidden" name="CantidadInsumos" value="@Model.PropuestasDonacionesInsumos.Count()" />
@@ -42,10 +42,10 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            @Html.TextBox("Cantidad[" + @currentIndex + "]", 0, new { @class = "form-control cantidad-insumo-donado", @type = "number", @min = "0" })
+                            @Html.TextBox("Cantidad[" + @currentIndex + "]", 0, new { @class = "form-control cantidad-insumo-donado", @id = "cantidaddi", @type = "number", @min = "0", @max = "9999999999" })
                         </div>
                         <div class="form-group col-md-9">
-                            @Html.TextBox("Nombre", @p.Nombre, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.TextBox("Nombre", @p.Nombre, new { @class = "form-control", @id = "nombredi", @readonly = "readonly" })
                         </div>
 
                         <input type="hidden" name="IdPropuestaDonacionInsumo[@currentIndex]" value="@p.IdPropuestaDonacionInsumo" />
