@@ -255,6 +255,7 @@ namespace Servicios
                     Nuevo.Nombre = ins.Nombre;
                     Nuevo.Cantidad = ins.Cantidad;
                     propuesta.PropuestasDonacionesInsumos.Add(Nuevo);
+                    ctx.SaveChanges();
                 }
             }
 
