@@ -210,6 +210,14 @@ namespace pw3_tpIntegrador.Controllers
 				//p.Email = SesionServicio.UsuarioSession.Email;
 				return View("MiPerfil",p);
 			}
+
+			if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && Request.Files[0].ContentType.Contains("image"))
+			{
+				string nombreSignificativo = p.UserName + DateTime.Now.ToString();
+				string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+				p.Foto = pathRelativoImagen;
+			}
+
 			Usuarios.Modificar(p);
 			TempData["MensajePerfilModificadoExito"] = "Su perfil ha sido modificado con éxito.";
 			//Actualizo sesion
