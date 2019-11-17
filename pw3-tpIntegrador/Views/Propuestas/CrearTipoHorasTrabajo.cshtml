@@ -6,7 +6,7 @@
 
 <h2>Crear propuesta</h2>
 
-<form action="/Propuestas/ProcesarTipoHorasTrabajo" method="post">
+<form action="/Propuestas/ProcesarTipoHorasTrabajo" method="post" onsubmit="return validarCamposTipoHorasTrabajo(event);">
 
     <input type="hidden" name="Nombre" value="@Model.Nombre" />
     <input type="hidden" name="Descripcion" value="@Model.Descripcion" />
@@ -44,5 +44,5 @@
         </div>
     </div>
 
-    <input type="submit" value="Crear propuesta" />
+    <input class="btn btn-primary" type="submit" value="Crear propuesta" />
 </form>
