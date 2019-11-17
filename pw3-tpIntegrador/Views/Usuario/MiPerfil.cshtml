@@ -1,6 +1,7 @@
 ﻿@model Data.Usuario
 @{
 	Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+	ViewBag.DefaultImg = "https://www.loottis.com/wp-content/uploads/2014/10/default-img.gif";
 }
 
 @if (TempData["MensajePerfilModificadoExito"] != null)
@@ -44,6 +45,7 @@
 
 		<div class="form-group">
 			<label>Foto de perfil:</label>
+			<img src="@Model.Foto" class="card-img-top" onerror="this.src='@ViewBag.DefaultImg'">
 			<div class="form-row mt-2 mb-4">
 				<div class="custom-file">
 					<input type="file" class="custom-file-input" id="Foto" name="Foto" lang="es">
