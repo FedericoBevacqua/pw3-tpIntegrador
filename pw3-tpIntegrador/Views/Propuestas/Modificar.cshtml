@@ -8,142 +8,147 @@
 
 <h2>Modificar propuesta</h2>
 
-<form action="/Propuestas/Modificar/" method="post" enctype="multipart/form-data">
+<form id="formulario-modificar-propuesta" action="/Propuestas/Modificar/" method="post" enctype="multipart/form-data" onsubmit="return validarp(event);">
 
-    <h5 class="mt-5">Información básica</h5>
+	<h5 class="mt-5">Información básica</h5>
 
-    <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+	<input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
 
-    <div class="form-group">
-        @Html.Label("Nombre", "Nombre:")
-        @Html.EditorFor(p => p.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(p => p.Nombre, null, new { @class = "text-danger" })
-    </div>
+	<div class="form-group">
+		@Html.Label("Nombre", "Nombre:")
+		@Html.EditorFor(p => p.Nombre, new { htmlAttributes = new { @class = "form-control", @id = "nombrep" } })
+		@Html.ValidationMessageFor(p => p.Nombre, null, new { @class = "text-danger" })
+	</div>
 
-    <div class="form-group">
-        @Html.Label("Descripcion", "Descripción:")
-        @Html.EditorFor(p => p.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(p => p.Descripcion, null, new { @class = "text-danger" })
-    </div>
+	<div class="form-group">
+		@Html.Label("Descripcion", "Descripción:")
+		@Html.EditorFor(p => p.Descripcion, new { htmlAttributes = new { @class = "form-control", @id = "descripcionp" } })
+		@Html.ValidationMessageFor(p => p.Descripcion, null, new { @class = "text-danger" })
+	</div>
 
-    <div class="form-group">
-        @Html.Label("FechaFin", "Fecha de fin:")
-        @Html.ValidationMessageFor(p => p.FechaFin, null, new { @class = "text-danger" })
-        <input type="date" name="FechaFin" class="form-control" />
-    </div>
+	<div class="form-group">
+		@Html.Label("FechaFin", "Fecha de fin:")
+		@Html.ValidationMessageFor(p => p.FechaFin, null, new { @class = "text-danger", @id = "fechafinp" })
+		<input type="date" name="FechaFin" class="form-control" />
+	</div>
 
-    <div class="form-group">
-        @Html.Label("TelefonoContacto", "Teléfono de contacto:")
+	<div class="form-group">
+		@Html.Label("TelefonoContacto", "Teléfono de contacto:")
 
-        @Html.EditorFor(p => p.TelefonoContacto, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(p => p.TelefonoContacto, null, new { @class = "text-danger" })
-    </div>
+		@Html.EditorFor(p => p.TelefonoContacto, new { htmlAttributes = new { @class = "form-control", @id = "telefonop" } })
+		@Html.ValidationMessageFor(p => p.TelefonoContacto, null, new { @class = "text-danger" })
+	</div>
 
-    <input type="hidden" name="TipoDonacion" value="@Model.TipoDonacion" />
-    <div class="form-group">
-        <select class="form-control" id="TipoDonacion" name="TipoDonacion" disabled>
-            <option value="1">Monetaria</option>
-            <option value="2">Insumos</option>
-            <option value="3">Horas de trabajo</option>
-        </select>
-    </div>
+	<input type="hidden" name="TipoDonacion" value="@Model.TipoDonacion" />
+	<div class="form-group">
+		<select class="form-control" id="TipoDonacion" name="TipoDonacion" disabled>
+			<option value="1">Monetaria</option>
+			<option value="2">Insumos</option>
+			<option value="3">Horas de trabajo</option>
+		</select>
+	</div>
 
-    <h5 class="mt-5">Modificar la foto de la propuesta</h5>
-    <div class="form-row mt-4 mb-4">
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" id="Imagen" name="Foto" lang="es">
-            <label class="custom-file-label" for="Foto">Seleccionar archivo</label>
-        </div>
-    </div>
+	<h5 class="mt-5">Modificar la foto de la propuesta</h5>
+	<div class="form-row mt-4 mb-4">
+		<div class="custom-file">
+			<input type="file" class="custom-file-input" id="Imagen" name="Foto" lang="es">
+			<label class="custom-file-label" for="Foto">Seleccionar archivo</label>
+		</div>
+	</div>
 
-    <h5 class="mt-5">Referencias</h5>
-    <p class="text-muted">Se deben ingresar dos referencias de contacto que den veracidad a la propuesta</p>
+	<h5 class="mt-5">Referencias</h5>
+	<p class="text-muted">Se deben ingresar dos referencias de contacto que den veracidad a la propuesta</p>
 
-    <div class="form-row">
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			@Html.Label("Referencia1Nombre", "Nombre referencia 1:")
+			@Html.TextBox("Referencia1Nombre", null, new { @class = "form-control", @id = "refnombre1p" })
+		</div>
+		<div class="form-group col-md-6">
+			@Html.Label("Referencia1Telefono", "Teléfono referencia 1:")
+			@Html.TextBox("Referencia1Telefono", null, new { @class = "form-control", @id = "reftelefono1p" })
+		</div>
+	</div>
 
-        @foreach (var r in Model.PropuestasReferencias)
-        {
-            // TODO: Fix Update de Referencias...
-            <div class="form-group col-md-6">
-                @Html.Label("Referencia2Nombre", "Nombre referencia:")
-                @Html.TextBox("Referencia2Nombre", r.Nombre, new { @class = "form-control" })
-            </div>
-            <div class="form-group col-md-6">
-                @Html.Label("Referencia2Telefono", "Teléfono referencia:")
-                @Html.TextBox("Referencia2Telefono", r.Telefono, new { @class = "form-control" })
-            </div>
-        }
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			@Html.Label("Referencia2Nombre", "Nombre referencia 2:")
+			@Html.TextBox("Referencia2Nombre", null, new { @class = "form-control", @id = "refnombre2p" })
+		</div>
+		<div class="form-group col-md-6">
+			@Html.Label("Referencia2Telefono", "Teléfono referencia 2:")
+			@Html.TextBox("Referencia2Telefono", null, new { @class = "form-control", @id = "reftelefono2p" })
+		</div>
+	</div>
 
-    </div>
+	<div class="form-row">
+		@switch (Model.TipoDonacion)
+		{
+			case 1:
+				<div class="form-group">
+					@Html.Label("Dinero", "Cantidad de dinero necesaria (ARS $):")
+					@Html.EditorFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero, null, new { @class = "text-danger" })
+				</div>
 
-    <div class="form-row">
-        @switch (Model.TipoDonacion)
-        {
-            case 1:
-                <div class="form-group">
-                    @Html.Label("Dinero", "Cantidad de dinero necesaria (ARS $):")
-                    @Html.EditorFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero, null, new { @class = "text-danger" })
-                </div>
+				<div class="form-group">
+					@Html.Label("CBU", "CBU/Alias de la cuenta donde se recibirá el dinero:")
+					@Html.EditorFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().CBU, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().CBU, null, new { @class = "text-danger" })
+				</div>
 
-                <div class="form-group">
-                    @Html.Label("CBU", "CBU/Alias de la cuenta donde se recibirá el dinero:")
-                    @Html.EditorFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().CBU, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().CBU, null, new { @class = "text-danger" })
-                </div>
+				break;
 
-                break;
+			case 2:
+				<div id="contenedor-insumos">
+					@foreach (var i in Model.PropuestasDonacionesInsumos)
+					{
+						<div class="form-row insumo">
+							<div class="form-group col-md-3">
+								@Html.Label("Cantidad[0]", "Cantidad:")
+								@Html.TextBox("Cantidad[0]", i.Cantidad, new { @class = "form-control", @type = "number" })
+							</div>
+							<div class="form-group col-md-9">
+								@Html.Label("Nombres[0]", "Nombre insumo:")
+								@Html.TextBox("Nombres[0]", i.Nombre, new { @class = "form-control" })
+							</div>
+						</div>
+					}
 
-            case 2:
-                <div id="contenedor-insumos">
-                    @foreach (var i in Model.PropuestasDonacionesInsumos)
-                    {
-                        <div class="form-row insumo">
-                            <div class="form-group col-md-3">
-                                @Html.Label("Cantidad[0]", "Cantidad:")
-                                @Html.TextBox("Cantidad[0]", i.Cantidad, new { @class = "form-control", @type = "number" })
-                            </div>
-                            <div class="form-group col-md-9">
-                                @Html.Label("Nombres[0]", "Nombre insumo:")
-                                @Html.TextBox("Nombres[0]", i.Nombre, new { @class = "form-control" })
-                            </div>
-                        </div>
-                    }
+					<!-- TODO: Fix Agregar/Quitar Insumo -->
+					<input type="hidden" name="CantidadInsumos" id="input-cantidad-insumos" value="1" />
+					<button type="button" class="btn btn-primary mb-4" onclick="agregarInsumo()">Agregar insumo</button>
+					<button type="button" id="boton-quitar-insumo" class="btn btn-danger mb-4" onclick="quitarInsumo()" disabled>Quitar insumo</button>
+				</div>
 
-                    <!-- TODO: Fix Agregar/Quitar Insumo -->
-                    <input type="hidden" name="CantidadInsumos" id="input-cantidad-insumos" value="1" />
-                    <button type="button" class="btn btn-primary mb-4" onclick="agregarInsumo()">Agregar insumo</button>
-                    <button type="button" id="boton-quitar-insumo" class="btn btn-danger mb-4" onclick="quitarInsumo()" disabled>Quitar insumo</button>
-                </div>
+				break;
 
-                break;
+			case 3:
+				<div class="form-group col-md-2">
+					@Html.Label("CantidadHoras", "Cantidad de horas:")
+					@Html.EditorFor(ph => ph.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().CantidadHoras, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(ph => ph.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().CantidadHoras, null, new { @class = "text-danger" })
+				</div>
+				<div class="form-group col-md-10">
+					@Html.Label("Profesion", "Profesión:")
+					<select class="form-control" id="Profesion" name="Profesion" value="@Model.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().Profesion">
+						<option value="Albañil">Albañil</option>
+						<option value="Plomero">Plomero</option>
+						<option value="Electricista">Electricista</option>
+						<option value="Abogado">Abogado</option>
+						<option value="Contador">Contador</option>
+						<option value="Trabajador social">Trabajador social</option>
+						<option value="Psicóloga">Psicóloga</option>
+						<option value="Psicopedagoga">Psicopedagoga</option>
+						<option value="Cocinero">Cocinero</option>
+						<option value="Limpieza">Limpieza</option>
+						<option value="Otros">Otros</option>
+					</select>
+				</div>
+				break;
+		}
+	</div>
 
-            case 3:
-                <div class="form-group col-md-2">
-                    @Html.Label("CantidadHoras", "Cantidad de horas:")
-                    @Html.EditorFor(ph => ph.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().CantidadHoras, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(ph => ph.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().CantidadHoras, null, new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-md-10">
-                    @Html.Label("Profesion", "Profesión:")
-                    <select class="form-control" id="Profesion" name="Profesion" value="@Model.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().Profesion">
-                        <option value="Albañil">Albañil</option>
-                        <option value="Plomero">Plomero</option>
-                        <option value="Electricista">Electricista</option>
-                        <option value="Abogado">Abogado</option>
-                        <option value="Contador">Contador</option>
-                        <option value="Trabajador social">Trabajador social</option>
-                        <option value="Psicóloga">Psicóloga</option>
-                        <option value="Psicopedagoga">Psicopedagoga</option>
-                        <option value="Cocinero">Cocinero</option>
-                        <option value="Limpieza">Limpieza</option>
-                        <option value="Otros">Otros</option>
-                    </select>
-                </div>
-                break;
-        }
-    </div>
-
-    <input type="submit" class="btn btn-primary" value="Guardar Cambios" />
+	<input type="submit" class="btn btn-primary" value="Guardar Cambios" />
 
 </form>
