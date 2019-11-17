@@ -87,13 +87,13 @@
 			case 1:
 				<div class="form-group">
 					@Html.Label("Dinero", "Cantidad de dinero necesaria (ARS $):")
-					@Html.EditorFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero, new { htmlAttributes = new { @class = "form-control", @min = 0 } })
+					@Html.EditorFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero, new { htmlAttributes = new { @class = "form-control", @min = 0, @max = 999999999999999999} })
 					@Html.ValidationMessageFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().Dinero, null, new { @class = "text-danger" })
 				</div>
 
 				<div class="form-group">
 					@Html.Label("CBU", "CBU/Alias de la cuenta donde se recibirá el dinero:")
-					@Html.EditorFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().CBU, new { htmlAttributes = new { @class = "form-control", @maxlength = 50 } })
+					@Html.EditorFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().CBU, new { htmlAttributes = new { @class = "form-control", @maxlength = 30 } })
 					@Html.ValidationMessageFor(pm => pm.PropuestasDonacionesMonetarias.FirstOrDefault().CBU, null, new { @class = "text-danger" })
 				</div>
 
@@ -106,7 +106,7 @@
 						<div class="form-row insumo">
 							<div class="form-group col-md-3">
 								@Html.Label("Cantidad[0]", "Cantidad:")
-								@Html.TextBox("Cantidad[0]", i.Cantidad, new { @class = "form-control", @type = "number", @min = 0 })
+								@Html.TextBox("Cantidad[0]", i.Cantidad, new { @class = "form-control", @type = "number", @min = 0, @max = 9999999999})
 							</div>
 							<div class="form-group col-md-9">
 								@Html.Label("Nombres[0]", "Nombre insumo:")
@@ -126,7 +126,7 @@
 			case 3:
 				<div class="form-group col-md-2">
 					@Html.Label("CantidadHoras", "Cantidad de horas:")
-					@Html.EditorFor(ph => ph.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().CantidadHoras, new { htmlAttributes = new { @class = "form-control", @min = 1 } })
+					@Html.EditorFor(ph => ph.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().CantidadHoras, new { htmlAttributes = new { @class = "form-control", @min = 1, @max = 999999} })
 					@Html.ValidationMessageFor(ph => ph.PropuestasDonacionesHorasTrabajoes.FirstOrDefault().CantidadHoras, null, new { @class = "text-danger" })
 				</div>
 				<div class="form-group col-md-10">
