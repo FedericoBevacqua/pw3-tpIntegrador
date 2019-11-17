@@ -13,8 +13,12 @@
 		alert("El Monto ingresado no es un numero");
 		return false;
 	}
-	else if (montodm > 999999999999999999 ) {
+	else if (montodm > 999999999999999999) {
 		alert("El Monto ingresado es muy grande");
+		return false;
+	}
+	else if (montodm < 0) {
+		alert("El Monto ingresado es muy pequeño");
 		return false;
 	}
 	event.target.submit();
