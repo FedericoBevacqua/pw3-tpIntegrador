@@ -85,6 +85,12 @@ namespace pw3_tpIntegrador.Controllers
                     pam.TelefonoContacto = form["TelefonoContacto"];
                     pam.TipoDonacion = int.Parse(form["TipoDonacion"]);
                     pam.Foto = propuestaAModificar.Foto;
+                    foreach(var pr in pam.Propuesta.PropuestasReferencias)
+                    {
+                        int currentIndex = pam.Propuesta.PropuestasReferencias.ToList().IndexOf(pr);
+                        pr.Nombre = form["Referencia" + currentIndex + "Nombre"];
+                        pr.Telefono = form["Referencia" + currentIndex + "Telefono"];
+                    }
 
                     pam.Dinero = decimal.Parse(form["Dinero"]);
                     pam.CBU = form["CBU"];
@@ -99,6 +105,12 @@ namespace pw3_tpIntegrador.Controllers
                     propuestaAModificar.TelefonoContacto = form["TelefonoContacto"];
                     propuestaAModificar.TipoDonacion = int.Parse(form["TipoDonacion"]);
                     propuestaAModificar.Foto = propuestaAModificar.Foto;
+                    foreach (var pr in propuestaAModificar.PropuestasReferencias)
+                    {
+                        int currentIndex = propuestaAModificar.PropuestasReferencias.ToList().IndexOf(pr);
+                        pr.Nombre = form["Referencia" + currentIndex + "Nombre"];
+                        pr.Telefono = form["Referencia" + currentIndex + "Telefono"];
+                    }
 
                     List<PropuestasDonacionesInsumo> listaInsumos = ExtraerListaInsumos(form);
                     
@@ -114,6 +126,12 @@ namespace pw3_tpIntegrador.Controllers
                     pdt.TelefonoContacto = form["TelefonoContacto"];
                     pdt.TipoDonacion = int.Parse(form["TipoDonacion"]);
                     pdt.Foto = propuestaAModificar.Foto;
+                    foreach (var pr in pdt.Propuesta.PropuestasReferencias)
+                    {
+                        int currentIndex = pdt.Propuesta.PropuestasReferencias.ToList().IndexOf(pr);
+                        pr.Nombre = form["Referencia" + currentIndex + "Nombre"];
+                        pr.Telefono = form["Referencia" + currentIndex + "Telefono"];
+                    }
 
                     pdt.CantidadHoras = int.Parse(form["CantidadHoras"]);
                     pdt.Profesion = form["Profesion"];
