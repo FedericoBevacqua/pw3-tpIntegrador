@@ -13,10 +13,6 @@
 	reftelefono1p = document.getElementById("reftelefono1p").value;
 	reftelefono2p = document.getElementById("reftelefono2p").value;
 
-	if (fechafinp > Date.now()) {
-		alert("La fecha de finalización no posterior al día de hoy");
-		return false;
-	}else
     if (nombrep === "" || descripcionp === "" || fechafinp === "" || telefonop === "" || TipoDonacion === "" || Imagen === "" || refnombre1p === "" || refnombre2p === "" || reftelefono1p === "" || reftelefono2p === "") {
 		alert("Todos los campos son obligatorios");
 		return false;
@@ -29,7 +25,7 @@
 		alert("La descripción no puede superar los 300 caracteres");
 		return false;
 	}
-	else if (fechafinp < Date.now()) {
+	else if (new Date(fechafinp) <= new Date()) {
 		alert("La fecha de finalización no posterior al día de hoy");
 		return false;
 	}
@@ -102,7 +98,7 @@ function validarEdicion(event) {
         alert("La descripción no puede superar los 300 caracteres");
         return false;
     }
-    else if (fechafinp < Date.now()) {
+	else if (new Date(fechafinp) <= new Date()) {
         alert("La fecha de finalización no posterior al día de hoy");
         return false;
     }
